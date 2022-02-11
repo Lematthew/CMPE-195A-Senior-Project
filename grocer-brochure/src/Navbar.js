@@ -8,11 +8,11 @@ function Navbar(){
     <div>
              <ReactBootStrap.Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
   <ReactBootStrap.Container>
-  <ReactBootStrap.Navbar.Brand href="#home">GrocerBrochure</ReactBootStrap.Navbar.Brand>
+  <ReactBootStrap.Navbar.Brand href="/">GrocerBrochure</ReactBootStrap.Navbar.Brand>
   <ReactBootStrap.Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">
     <ReactBootStrap.Nav className="me-auto">
-      <ReactBootStrap.Nav.Link href="#features">Features</ReactBootStrap.Nav.Link>
+      <ReactBootStrap.Nav.Link href="/Login">Log in</ReactBootStrap.Nav.Link>
       <ReactBootStrap.Nav.Link href="#pricing">Pricing</ReactBootStrap.Nav.Link>
       <ReactBootStrap.NavDropdown title="Dropdown" id="collasible-nav-dropdown">
         <ReactBootStrap.NavDropdown.Item href="#action/3.1">Action</ReactBootStrap.NavDropdown.Item>
@@ -23,10 +23,8 @@ function Navbar(){
       </ReactBootStrap.NavDropdown>
     </ReactBootStrap.Nav>
     <ReactBootStrap.Nav>
-      <ReactBootStrap.Nav.Link href="#cart">Cart</ReactBootStrap.Nav.Link>
-      <ReactBootStrap.Nav.Link eventKey={2} href="#sign-in">
-        Sign in
-      </ReactBootStrap.Nav.Link>
+      <ReactBootStrap.Nav.Link href="/About">About</ReactBootStrap.Nav.Link>
+      <ReactBootStrap.Nav.Link href="/SignUp"> Sign Up</ReactBootStrap.Nav.Link>
     </ReactBootStrap.Nav>
   </ReactBootStrap.Navbar.Collapse>
   </ReactBootStrap.Container>

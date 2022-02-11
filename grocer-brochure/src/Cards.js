@@ -28,7 +28,7 @@ const Cards = () => {
             <ReactBootStrap.Card.Body>
               <ReactBootStrap.Card.Title>{card.title}</ReactBootStrap.Card.Title>
               <ReactBootStrap.Card.Text>{card.text}</ReactBootStrap.Card.Text>
-              <ReactBootStrap.Button variant="primary">Go somewhere</ReactBootStrap.Button>
+              <ReactBootStrap.Button variant="primary">Store Page</ReactBootStrap.Button>
             </ReactBootStrap.Card.Body>
           </ReactBootStrap.Card>
           
