@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Navbar from './Navbar';
+import {AuthProvider} from './Context/AuthProvider'
 
 import Login from './Components/Login.js';
 import About from './Components/About.js';
@@ -14,6 +15,7 @@ import SignUp from './Components/SignUp.js';
 ReactDOM.render(
   <BrowserRouter>
   <React.StrictMode>
+  <AuthProvider>
   <Navbar/>
    <Routes>
       <Route path="/" element={<App />} />
@@ -22,6 +24,7 @@ ReactDOM.render(
       <Route path="StorePage" element={<StorePage/>} />
       <Route path="Signup" element={<SignUp/>} />
     </Routes>
+    </AuthProvider>
   </React.StrictMode>
   </BrowserRouter>,
   document.getElementById('root')

@@ -33,7 +33,6 @@ knex.schema
       }
     })
     .then(() => {
-      // Log success message
       console.log('done')
     })
     .catch((error) => {

@@ -17,10 +17,32 @@ exports.usersAll = async (req, res) => {
     })
 }
 
+exports.usersTest = async (req, res) => {
+ res.json({message: 'Upon your return a flower'})
+}
+
+exports.usersSpecific = async (req, res) => {
+  // Get all users from database
+  knex
+    .select('*') // select all records
+    .from('users').where({       
+    'email': req.body.email,
+    'hashed_password': req.body.hashed_password
+    })
+    .then(userData => {
+      // Send users extracted from database in response
+      res.json(userData)
+    })
+    .catch(err => {
+      // Send a error message in response
+      res.json({ message: `There was an error retrieving users: ${err}` })
+    })
+}
+
 exports.usersCreate = async (req, res) => {
-  // Add new book to database
+
   knex('users')
-    .insert({ // insert new record, a book
+    .insert({
       'email': req.body.email,
       'full_name': req.body.full_name,
       'hashed_password': req.body.hashed_password,
@@ -28,7 +50,7 @@ exports.usersCreate = async (req, res) => {
     })
     .then(() => {
       // Send a success message in response
-      res.json({ message: `User \'${req.body.title}\' by ${req.body.author} created.` })
+      res.json({ message: `User '${req.body.title}' by ${req.body.author} created.` })
     })
     .catch(err => {
       // Send a error message in response
