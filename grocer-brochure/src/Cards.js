@@ -24,11 +24,11 @@ const Cards = () => {
         return (
      
           <ReactBootStrap.Card style={{ width: "18rem" }} key={index} >
-            <ReactBootStrap.Card.Img variant="top" src="holder.js/100px180" src={card.image} />
+            <ReactBootStrap.Card.Img variant="top" src={card.image} />
             <ReactBootStrap.Card.Body>
               <ReactBootStrap.Card.Title>{card.title}</ReactBootStrap.Card.Title>
               <ReactBootStrap.Card.Text>{card.text}</ReactBootStrap.Card.Text>
-              <ReactBootStrap.Button variant="primary">Store Page</ReactBootStrap.Button>
+              <ReactBootStrap.Button variant="primary" href = "StorePage">Store Page</ReactBootStrap.Button>
             </ReactBootStrap.Card.Body>
           </ReactBootStrap.Card>
           
