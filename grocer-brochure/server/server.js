@@ -22,7 +22,7 @@ app.use(compression())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-// Implement books route
+// Implement user route
 app.use('/user', usersRouter)
 
 // Implement 500 error route
