@@ -49,7 +49,7 @@ const Login = () => {
       setPwd('');
     }
     else
-      setErrMsg('WRONG INFO BITCH')
+      setErrMsg('Incorrect info')
     } catch(err){
         if(!err?.response){
           setErrMsg('No Response from Server');
