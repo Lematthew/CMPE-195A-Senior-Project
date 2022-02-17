@@ -41,10 +41,15 @@ const Login = () => {
 
           })
     console.log(JSON.stringify(response?.data));
-    setAuth({user,pwd});
-    setUser('');
-    setPwd('');
-    setSuccess(true);
+ 
+    if(response.data.verified){
+      setSuccess(response);
+      setAuth({user,pwd});
+      setUser('');
+      setPwd('');
+    }
+    else
+      setErrMsg('WRONG INFO BITCH')
     } catch(err){
         if(!err?.response){
           setErrMsg('No Response from Server');
