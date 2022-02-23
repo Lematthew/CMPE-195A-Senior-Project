@@ -4,6 +4,10 @@ import { Button } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
+import CostcoPage from "./Components/CostcoPage";
+import SafewayPage from "./StorePages/SafewayPage";
+import CvsPage from "./Components/CvsPage";
+import WalgreensPage from "./StorePages/WalgreensPage";
 
 const Cards = () => {
     const cardInfo = [
@@ -11,12 +15,26 @@ const Cards = () => {
             image: "./costcoLogo.png",
             title: "Costco",
             text: "Shop Costco",
+            pageLink: "CostcoPage"
         },
         {
             image: "./safewayLogo.png",
             title: "Safeway",
             text: "Shop Safeway",
-        }
+            pageLink: "SafewayPage"
+        },
+        {
+          image: "./cvs.jpg",
+          title: "CVS",
+          text: "Shop CVS",
+          pageLink: "CvsPage"
+      }, 
+      {
+        image: "./walgreens-logo.jpg",
+        title: "Walgreens",
+        text: "Shop Walgreens",
+        pageLink: "WalgreensPage"
+    }
         
         
     ];
@@ -27,8 +45,7 @@ const Cards = () => {
             <ReactBootStrap.Card.Img variant="top" src={card.image} />
             <ReactBootStrap.Card.Body>
               <ReactBootStrap.Card.Title>{card.title}</ReactBootStrap.Card.Title>
-              <ReactBootStrap.Card.Text>{card.text}</ReactBootStrap.Card.Text>
-              <ReactBootStrap.Button variant="primary" href = "StorePage">Store Page</ReactBootStrap.Button>
+              <ReactBootStrap.Button variant="primary" href = {card.pageLink}>{card.text}</ReactBootStrap.Button>
             </ReactBootStrap.Card.Body>
           </ReactBootStrap.Card>
           
