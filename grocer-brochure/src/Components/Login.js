@@ -7,6 +7,7 @@ const Login = () => {
   const LOGIN_URL = '/user/specific'
 
   const {setAuth} = useContext(AuthContext);
+  const {cart,setCart} = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
   

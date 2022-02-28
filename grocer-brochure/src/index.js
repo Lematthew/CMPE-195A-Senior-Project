@@ -11,6 +11,7 @@ import Login from './Components/Login.js';
 import About from './Components/About.js';
 import StorePage from './Components/StorePage.js'; 
 import SignUp from './Components/SignUp.js';
+import Cart from './Components/Cart';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -23,6 +24,7 @@ ReactDOM.render(
       <Route path="About" element={<About />} />
       <Route path="StorePage" element={<StorePage/>} />
       <Route path="Signup" element={<SignUp/>} />
+      <Route path="Cart" element={<Cart/>} />
     </Routes>
     </AuthProvider>
   </React.StrictMode>
