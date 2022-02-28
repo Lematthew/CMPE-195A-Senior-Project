@@ -5,7 +5,6 @@ import * as ReactBootStrap from "react-bootstrap";
 
 function Navbar(){
     return(
-      
     <div>
              <ReactBootStrap.Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
   <ReactBootStrap.Container>
