@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
-import CostcoPage from "./Components/CostcoPage";
+import CostcoPage from "./StorePages/CostcoPage";
 import SafewayPage from "./StorePages/SafewayPage";
 import CvsPage from "./Components/CvsPage";
 import WalgreensPage from "./StorePages/WalgreensPage";
@@ -34,7 +34,128 @@ const Cards = () => {
         title: "Walgreens",
         text: "Shop Walgreens",
         pageLink: "WalgreensPage"
-    }
+      },
+      {
+        image: "./costcoLogo.png",
+        title: "Costco",
+        text: "Shop Costco",
+        pageLink: "CostcoPage"
+    },
+    {
+        image: "./safewayLogo.png",
+        title: "Safeway",
+        text: "Shop Safeway",
+        pageLink: "SafewayPage"
+    },
+    {
+      image: "./cvs.jpg",
+      title: "CVS",
+      text: "Shop CVS",
+      pageLink: "CvsPage"
+  }, 
+  {
+    image: "./walgreens-logo.jpg",
+    title: "Walgreens",
+    text: "Shop Walgreens",
+    pageLink: "WalgreensPage"
+  },
+  {
+    image: "./costcoLogo.png",
+    title: "Costco",
+    text: "Shop Costco",
+    pageLink: "CostcoPage"
+},
+{
+    image: "./safewayLogo.png",
+    title: "Safeway",
+    text: "Shop Safeway",
+    pageLink: "SafewayPage"
+},
+{
+  image: "./cvs.jpg",
+  title: "CVS",
+  text: "Shop CVS",
+  pageLink: "CvsPage"
+}, 
+{
+image: "./walgreens-logo.jpg",
+title: "Walgreens",
+text: "Shop Walgreens",
+pageLink: "WalgreensPage"
+},
+{
+  image: "./costcoLogo.png",
+  title: "Costco",
+  text: "Shop Costco",
+  pageLink: "CostcoPage"
+},
+{
+  image: "./safewayLogo.png",
+  title: "Safeway",
+  text: "Shop Safeway",
+  pageLink: "SafewayPage"
+},
+{
+image: "./cvs.jpg",
+title: "CVS",
+text: "Shop CVS",
+pageLink: "CvsPage"
+}, 
+{
+image: "./walgreens-logo.jpg",
+title: "Walgreens",
+text: "Shop Walgreens",
+pageLink: "WalgreensPage"
+},
+{
+  image: "./costcoLogo.png",
+  title: "Costco",
+  text: "Shop Costco",
+  pageLink: "CostcoPage"
+},
+{
+  image: "./safewayLogo.png",
+  title: "Safeway",
+  text: "Shop Safeway",
+  pageLink: "SafewayPage"
+},
+{
+image: "./cvs.jpg",
+title: "CVS",
+text: "Shop CVS",
+pageLink: "CvsPage"
+}, 
+{
+image: "./walgreens-logo.jpg",
+title: "Walgreens",
+text: "Shop Walgreens",
+pageLink: "WalgreensPage"
+},
+{
+  image: "./costcoLogo.png",
+  title: "Costco",
+  text: "Shop Costco",
+  pageLink: "CostcoPage"
+},
+{
+  image: "./safewayLogo.png",
+  title: "Safeway",
+  text: "Shop Safeway",
+  pageLink: "SafewayPage"
+},
+{
+image: "./cvs.jpg",
+title: "CVS",
+text: "Shop CVS",
+pageLink: "CvsPage"
+}, 
+{
+image: "./walgreens-logo.jpg",
+title: "Walgreens",
+text: "Shop Walgreens",
+pageLink: "WalgreensPage"
+},
+
         
         
     ];

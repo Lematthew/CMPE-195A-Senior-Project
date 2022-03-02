@@ -11,7 +11,7 @@ import Login from './Components/Login.js';
 import About from './Components/About.js';
 import StorePage from './Components/StorePage.js'; 
 import SignUp from './Components/SignUp.js';
-import CostcoPage from './Components/CostcoPage.js';
+import CostcoPage from './StorePages/CostcoPage.js';
 import SafewayPage from './StorePages/SafewayPage.js';
 import CvsPage from './Components/CvsPage.js';
 import WalgreensPage from './StorePages/WalgreensPage.js';
