@@ -22,7 +22,7 @@ ReactDOM.render(
       <Route path="/" element={<App />} />
       <Route path="Login" element={<Login />} />
       <Route path="About" element={<About />} />
-      <Route path="StorePage" element={<StorePage/>} />
+      <Route path="StorePage/:id" element={<StorePage/>} />
       <Route path="Signup" element={<SignUp/>} />
       <Route path="Cart" element={<Cart/>} />
     </Routes>
