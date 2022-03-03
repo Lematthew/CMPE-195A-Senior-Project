@@ -77,6 +77,20 @@
     margin-bottom: 0;
 }
 
+#login-tag {
+    width: 18vh;
+    border-radius: 500px;
+    text-decoration: none;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-tag p {
+    margin-bottom: 0;
+}
+
 .svg-container p {
     color: white;
     text-decoration: none;
