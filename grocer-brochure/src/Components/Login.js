@@ -75,26 +75,27 @@ const Login = () => {
             </p>
         </section>
     ) : (
-    <section>
+    <section class="login-section">
       <p ref = {errRef} className={errMsg ? "errmsg" : "offscreen"} 
       aria-live ="assertive">{errMsg}</p>
+      <div class="login-component">
       <h1>Login In</h1>
 
-      <form onSubmit = {handleSubmit}>
-        <label htmlFor ="username" >Username:</label>
+      <form onSubmit = {handleSubmit} class="login-form">
         <input
           type = "text" 
-          id= "username" 
+          id= "username"
+          placeholder="Username" 
           ref = {userRef}
           autoComplete = "off"
           onChange = {(e) => setUser(e.target.value)}
           value = {user}
           required
         />
-      <label htmlFor ="password" >Password:</label>
         <input
           type = "password" 
           id= "password" 
+          placeholder="Password"
           ref = {userRef}
           autoComplete = "off"
           onChange = {(e) => setPwd(e.target.value)}
@@ -102,14 +103,16 @@ const Login = () => {
           required
         />
 
-        <button>Login In</button>
+        <button>Log In</button>
       </form>
-      <p>Need an Account? <br />
+      <div class="need-account">
+        <p>Need an Account? <br />
+        </p>
         <span className ="line">
-          <a href='/'>Sign Up</a>
+        <a href='/'>Sign Up</a>
         </span>
-      </p> 
-
+      </div>
+      </div>
     </section>
 
   )}
