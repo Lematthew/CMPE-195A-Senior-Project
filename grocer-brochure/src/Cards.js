@@ -1,10 +1,6 @@
 import React from "react";
-import { Card } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
-import { Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import * as ReactBootStrap from "react-bootstrap";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import "./Cards.css";
 
 const Cards = () => {
