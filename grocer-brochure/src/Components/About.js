@@ -6,7 +6,6 @@ const About = () => (
 
   <h2>This is A Senior Project For SJSU </h2>
   <p>By Vishnu Adda, Matthew Le, Alexis Chan</p>
-  <p>I hate it here</p>
   </main>
 );
 
