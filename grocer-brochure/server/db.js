@@ -60,7 +60,7 @@ knex.schema
             console.error(`There was an error creating table: ${error}`)
           })
         }
-      })
+      )
       .then(() => {
         console.log('done')
       })

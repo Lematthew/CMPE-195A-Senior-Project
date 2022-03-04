@@ -37,7 +37,7 @@ const currentCart = JSON.parse(localStorage.getItem('shoppinglist'));
 
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({});
-    const [cart, setCart] = useState(currentCart.length ? currentCart : defaultCart);
+    const [cart, setCart] = useState(currentCart?.length ? currentCart : defaultCart);
 
     return (
         <AuthContext.Provider value={{ auth, setAuth, cart, setCart }}>

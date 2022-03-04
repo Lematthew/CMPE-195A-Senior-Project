@@ -3,8 +3,6 @@ import { useParams } from 'react-router-dom';
 
 const StorePage = () =>{ 
   
-  const id = useParams();
-  
   
   return (
   <main style={{ padding: "1rem 0" }}>
