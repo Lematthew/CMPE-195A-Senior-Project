@@ -10,6 +10,7 @@ import {AuthProvider} from './Context/AuthProvider'
 import Login from './Components/Login.js';
 import About from './Components/About.js';
 import StorePage from './Components/StorePage.js'; 
+import StorePageID from './Components/StorePageID.js'; 
 import SignUp from './Components/SignUp.js';
 
 ReactDOM.render(
@@ -19,10 +20,11 @@ ReactDOM.render(
   <Navbar/>
    <Routes>
       <Route path="/" element={<App />} />
-      <Route path="Login" element={<Login />} />
-      <Route path="About" element={<About />} />
-      <Route path="StorePage" element={<StorePage/>} />
-      <Route path="Signup" element={<SignUp/>} />
+      <Route path="/Login" element={<Login />} />
+      <Route path="/About" element={<About />} />
+      <Route path="/StorePage" exact element={<StorePage/>} />
+      <Route path="/StorePage/:id" element={<StorePageID/>} />
+      <Route path="/Signup" element={<SignUp/>} />
     </Routes>
     </AuthProvider>
   </React.StrictMode>
