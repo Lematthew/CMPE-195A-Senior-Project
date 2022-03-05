@@ -1,4 +1,3 @@
-
 // Import express
 const express = require('express')
 
@@ -10,15 +9,10 @@ const router = express.Router()
 
 
 router.get('/all', usersRoutes.usersAll)
-
 router.post('/specific', usersRoutes.usersSpecific)
-
 router.post('/create', usersRoutes.usersCreate)
-
 router.put('/delete', usersRoutes.usersDelete)
-
 router.put('/reset', usersRoutes.usersReset)
-
 router.post('/test', usersRoutes.usersTest)
 
 

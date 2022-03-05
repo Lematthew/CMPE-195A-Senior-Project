@@ -30,8 +30,10 @@ exports.usersSpecific = async (req, res) => {
     'hashed_password': req.body.hashed_password
     })
     .then(userData => {
-      // Send users extracted from database in response
-      res.json(userData)
+        if(userData.length >= 1)
+          res.json({'verified': true})
+        else
+          res.json({'verified': false})
     })
     .catch(err => {
       // Send a error message in response

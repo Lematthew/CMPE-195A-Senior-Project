@@ -7,7 +7,7 @@ c = conn.cursor()
 
 c.execute("""INSERT INTO  users VALUES (3, "Vishnu@Adda.com",  "Vishnu Adda","Password", "Salt")""")
 c.execute("""INSERT INTO  users VALUES (2, "Alexis@Chan.com", "Alexis Chan", "Password", "Salt")""")
-c.execute("""INSERT INTO  users VALUES (1, "Matthew@Le.com",  "Vishnu Adda", "Password", "Salt")""")
+c.execute("""INSERT INTO  users VALUES (1, "Matthew@Le.com",  "Matthew Le", "Password", "Salt")""")
 
 #Datatypes:
 #Null
