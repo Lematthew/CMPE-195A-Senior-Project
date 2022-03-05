@@ -43,6 +43,7 @@ knex.schema
     knex.schema
     .hasTable('users_details')
       .then((exists) => {
+        if (!exists) {
           return knex.schema.createTable('users_details', (table)  => {
             table.increments('id').primary()
             table.integer('user_id')
@@ -60,12 +61,15 @@ knex.schema
             console.error(`There was an error creating table: ${error}`)
           })
         }
-      )
+      })
       .then(() => {
         console.log('done')
       })
       .catch((error) => {
         console.error(`There was an error setting up the database: ${error}`)
       })
+
+
+      
 
 module.exports = knex

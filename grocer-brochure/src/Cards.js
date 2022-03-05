@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
 import CostcoPage from "./StorePages/CostcoPage";
 import SafewayPage from "./StorePages/SafewayPage";
-import CvsPage from "./Components/CvsPage";
 import WalgreensPage from "./StorePages/WalgreensPage";
 
 const Cards = () => {

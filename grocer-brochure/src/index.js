@@ -13,7 +13,6 @@ import StorePage from './Components/StorePage.js';
 import SignUp from './Components/SignUp.js';
 import CostcoPage from './StorePages/CostcoPage.js';
 import SafewayPage from './StorePages/SafewayPage.js';
-import CvsPage from './Components/CvsPage.js';
 import WalgreensPage from './StorePages/WalgreensPage.js';
 
 ReactDOM.render(
@@ -29,7 +28,6 @@ ReactDOM.render(
       <Route path="Signup" element={<SignUp/>} />
       <Route path="CostcoPage" element={<CostcoPage/>} />
       <Route path="SafewayPage" element={<SafewayPage/>}/>
-      <Route path="CvsPage" element={<CvsPage/>}/>
       <Route path="WalgreensPage" element={<WalgreensPage/>}/>
     </Routes>
     </AuthProvider>

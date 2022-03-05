@@ -5,8 +5,10 @@ const compression = require('compression')
 const cors = require('cors')
 const helmet = require('helmet')
 
-// Import routes
+// 1.Import routes
+//const [***Router] = require ('./routes/user-route')
 const usersRouter = require('./routes/user-route')
+
 
 // Set default port for express app
 const PORT = process.env.PORT || 4001
@@ -22,9 +24,18 @@ app.use(compression())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-// Implement user route
+//2.Implement routes after creating a router
 app.use('/user', usersRouter)
+//app.use('/[RouteName]', )
 
+
+
+
+
+
+
+
+//Error Routes
 // Implement 500 error route
 app.use(function (err, req, res, next) {
   console.error(err.stack)
