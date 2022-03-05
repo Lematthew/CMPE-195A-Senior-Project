@@ -10,8 +10,11 @@ import {AuthProvider} from './Context/AuthProvider'
 import Login from './Components/Login.js';
 import About from './Components/About.js';
 import StorePage from './Components/StorePage.js'; 
-import StorePageID from './Components/StorePageID.js'; 
 import SignUp from './Components/SignUp.js';
+import CostcoPage from './StorePages/CostcoPage.js';
+import SafewayPage from './StorePages/SafewayPage.js';
+import CvsPage from './Components/CvsPage.js';
+import WalgreensPage from './StorePages/WalgreensPage.js';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -20,11 +23,14 @@ ReactDOM.render(
   <Navbar/>
    <Routes>
       <Route path="/" element={<App />} />
-      <Route path="/Login" element={<Login />} />
-      <Route path="/About" element={<About />} />
-      <Route path="/StorePage" exact element={<StorePage/>} />
-      <Route path="/StorePage/:id" element={<StorePageID/>} />
-      <Route path="/Signup" element={<SignUp/>} />
+      <Route path="Login" element={<Login />} />
+      <Route path="About" element={<About />} />
+      <Route path="StorePage" element={<StorePage/>} />
+      <Route path="Signup" element={<SignUp/>} />
+      <Route path="CostcoPage" element={<CostcoPage/>} />
+      <Route path="SafewayPage" element={<SafewayPage/>}/>
+      <Route path="CvsPage" element={<CvsPage/>}/>
+      <Route path="WalgreensPage" element={<WalgreensPage/>}/>
     </Routes>
     </AuthProvider>
   </React.StrictMode>

@@ -1,90 +1,190 @@
 import React from "react";
+import { Card } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useNavigate } from 'react-router-dom';
-import "./Cards.css";
+import * as ReactBootStrap from "react-bootstrap";
+import CostcoPage from "./StorePages/CostcoPage";
+import SafewayPage from "./StorePages/SafewayPage";
+import CvsPage from "./Components/CvsPage";
+import WalgreensPage from "./StorePages/WalgreensPage";
 
 const Cards = () => {
-    const navigate = useNavigate();
-    const changeRoute = (store) => {
-      navigate(`/StorePage/${store}`, {
-        title: store
-      });
-    };
     const cardInfo = [
         {
             image: "./costcoLogo.png",
             title: "Costco",
-            text: "Shop Costco for groceries, tech, and much more!",
-            rating: 4.7
+            text: "Shop Costco",
+            pageLink: "CostcoPage"
         },
         {
             image: "./safewayLogo.png",
             title: "Safeway",
-            text: "Shop Safeway for groceries and fresh pastries",
-            rating: 4.7
+            text: "Shop Safeway",
+            pageLink: "SafewayPage"
         },
         {
-            image: "./safewayLogo.png",
-            title: "Safeway",
-            text: "Shop Safeway for groceries and fresh pastries",
-            rating: 4.7
-        },
-        {
-            image: "./safewayLogo.png",
-            title: "Safeway",
-            text: "Shop Safeway for groceries and fresh pastries",
-            rating: 4.7
-        },
-        {
-            image: "./safewayLogo.png",
-            title: "Safeway",
-            text: "Shop Safeway for groceries and fresh pastries",
-            rating: 4.7
-        },
-        {
-            image: "./safewayLogo.png",
-            title: "Safeway",
-            text: "Shop Safeway for groceries and fresh pastries",
-            rating: 4.7
-        },
-        {
-            image: "./safewayLogo.png",
-            title: "Safeway",
-            text: "Shop Safeway for groceries and fresh pastries",
-            rating: 4.7
-        },
-        {
-            image: "./safewayLogo.png",
-            title: "Safeway",
-            text: "Shop Safeway for groceries and fresh pastries",
-            rating: 4.7
-        }
-        
+          image: "./cvs.jpg",
+          title: "CVS",
+          text: "Shop CVS",
+          pageLink: "CvsPage"
+      }, 
+      {
+        image: "./walgreens-logo.jpg",
+        title: "Walgreens",
+        text: "Shop Walgreens",
+        pageLink: "WalgreensPage"
+      },
+      {
+        image: "./costcoLogo.png",
+        title: "Costco",
+        text: "Shop Costco",
+        pageLink: "CostcoPage"
+    },
+    {
+        image: "./safewayLogo.png",
+        title: "Safeway",
+        text: "Shop Safeway",
+        pageLink: "SafewayPage"
+    },
+    {
+      image: "./cvs.jpg",
+      title: "CVS",
+      text: "Shop CVS",
+      pageLink: "CvsPage"
+  }, 
+  {
+    image: "./walgreens-logo.jpg",
+    title: "Walgreens",
+    text: "Shop Walgreens",
+    pageLink: "WalgreensPage"
+  },
+  {
+    image: "./costcoLogo.png",
+    title: "Costco",
+    text: "Shop Costco",
+    pageLink: "CostcoPage"
+},
+{
+    image: "./safewayLogo.png",
+    title: "Safeway",
+    text: "Shop Safeway",
+    pageLink: "SafewayPage"
+},
+{
+  image: "./cvs.jpg",
+  title: "CVS",
+  text: "Shop CVS",
+  pageLink: "CvsPage"
+}, 
+{
+image: "./walgreens-logo.jpg",
+title: "Walgreens",
+text: "Shop Walgreens",
+pageLink: "WalgreensPage"
+},
+{
+  image: "./costcoLogo.png",
+  title: "Costco",
+  text: "Shop Costco",
+  pageLink: "CostcoPage"
+},
+{
+  image: "./safewayLogo.png",
+  title: "Safeway",
+  text: "Shop Safeway",
+  pageLink: "SafewayPage"
+},
+{
+image: "./cvs.jpg",
+title: "CVS",
+text: "Shop CVS",
+pageLink: "CvsPage"
+}, 
+{
+image: "./walgreens-logo.jpg",
+title: "Walgreens",
+text: "Shop Walgreens",
+pageLink: "WalgreensPage"
+},
+{
+  image: "./costcoLogo.png",
+  title: "Costco",
+  text: "Shop Costco",
+  pageLink: "CostcoPage"
+},
+{
+  image: "./safewayLogo.png",
+  title: "Safeway",
+  text: "Shop Safeway",
+  pageLink: "SafewayPage"
+},
+{
+image: "./cvs.jpg",
+title: "CVS",
+text: "Shop CVS",
+pageLink: "CvsPage"
+}, 
+{
+image: "./walgreens-logo.jpg",
+title: "Walgreens",
+text: "Shop Walgreens",
+pageLink: "WalgreensPage"
+},
+{
+  image: "./costcoLogo.png",
+  title: "Costco",
+  text: "Shop Costco",
+  pageLink: "CostcoPage"
+},
+{
+  image: "./safewayLogo.png",
+  title: "Safeway",
+  text: "Shop Safeway",
+  pageLink: "SafewayPage"
+},
+{
+image: "./cvs.jpg",
+title: "CVS",
+text: "Shop CVS",
+pageLink: "CvsPage"
+}, 
+{
+image: "./walgreens-logo.jpg",
+title: "Walgreens",
+text: "Shop Walgreens",
+pageLink: "WalgreensPage"
+},
+
         
         
     ];
     const renderCard = (card, index) => {
         return (
-          <div class="card" onClick={() => changeRoute(card.title)}>
-            <div class="leftside-card">
-              <img src={card.image} alt={card.title}/>
-            </div>
-            <div class="rightside-card">
-              <p>{card.text}</p>
-              <span class="rating">
-                <p class="rating-number">{card.rating}</p>
-              </span>
-            </div>
-          </div>
+     
+          <ReactBootStrap.Card style={{ width: "18rem" }} key={index} >
+            <ReactBootStrap.Card.Img variant="top" src={card.image} />
+            <ReactBootStrap.Card.Body>
+              <ReactBootStrap.Card.Title>{card.title}</ReactBootStrap.Card.Title>
+              <ReactBootStrap.Button variant="primary" href = {card.pageLink}>{card.text}</ReactBootStrap.Button>
+            </ReactBootStrap.Card.Body>
+          </ReactBootStrap.Card>
           
         );
       };
+
       return (
         
-        <div className = "card-container">
+      <div className = "App">
+        <Row xs={1} md={3} className="g-4">
           {cardInfo.map(renderCard)}
-        </div>
+          </Row>
+          </div>
       );
+
+
+
+    
 };
 
 export default Cards
