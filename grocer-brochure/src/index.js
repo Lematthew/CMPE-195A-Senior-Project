@@ -11,6 +11,9 @@ import Login from './Components/Login.js';
 import About from './Components/About.js';
 import StorePage from './Components/StorePage.js'; 
 import SignUp from './Components/SignUp.js';
+import CheckOut from './Components/CheckOut.js'
+
+//Demo Pages To be Deleted
 import CostcoPage from './StorePages/CostcoPage.js';
 import SafewayPage from './StorePages/SafewayPage.js';
 import WalgreensPage from './StorePages/WalgreensPage.js';
@@ -24,8 +27,10 @@ ReactDOM.render(
       <Route path="/" element={<App />} />
       <Route path="Login" element={<Login />} />
       <Route path="About" element={<About />} />
-      <Route path="StorePage" element={<StorePage/>} />
+      <Route path="StorePage/:id" element={<StorePage/>} />
       <Route path="Signup" element={<SignUp/>} />
+      <Route path="Check-out" element={<CheckOut/>} />
+      {/*Routes to be delted in favor of passing storepage IDs into StorePage */}
       <Route path="CostcoPage" element={<CostcoPage/>} />
       <Route path="SafewayPage" element={<SafewayPage/>}/>
       <Route path="WalgreensPage" element={<WalgreensPage/>}/>

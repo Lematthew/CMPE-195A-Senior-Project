@@ -9,14 +9,12 @@ const Login = () => {
   const LOGIN_URL = '/user/specific'
 
   const {setAuth} = useContext(AuthContext);
-  const {cart,setCart} = useContext(AuthContext);
-  const userRef = useRef();
-  const errRef = useRef();
-  
+  const userRef   = useRef();
+  const errRef    = useRef();
 
-  const [user,setUser] = useState('');
-  const[pwd,setPwd] = useState('');
-  const [errMsg,setErrMsg] = useState('');
+  const [user,setUser]        = useState('');
+  const [pwd,setPwd]          = useState('');
+  const [errMsg,setErrMsg]    = useState('');
   const [success, setSuccess] = useState(false);
 
   useEffect(()=> {

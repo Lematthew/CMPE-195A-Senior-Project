@@ -2,10 +2,12 @@ import React from 'react';
 import {useContext} from 'react'
 import AuthContext from '../Context/AuthProvider'
 import {FaTrashAlt} from 'react-icons/fa'
+import axios from '../Database/axios'
 
 
 const Cart = () => {
 
+const ORDERS_URL = '/orders/specific'
 const Context = useContext(AuthContext)
 
 console.log(Context.cart)
@@ -22,6 +24,8 @@ const handleDelete = (id) => {
   Context.setCart(listItems);
   localStorage.setItem('shoppinglist', JSON.stringify(listItems));
 }
+
+
 
     return (
         <main>

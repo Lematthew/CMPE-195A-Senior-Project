@@ -12,6 +12,7 @@ const knex = require('knex')({
   useNullAsDefault: true
 })
 
+//#region user Tables
 // Create a table in the database called "users"
 knex.schema
   .hasTable('users')
@@ -69,7 +70,87 @@ knex.schema
         console.error(`There was an error setting up the database: ${error}`)
       })
 
+//#endregion
+//#region orders Tables
+      knex.schema
+     .hasTable('orders')
+      .then((exists) => {
+        if (!exists) {
+          return knex.schema.createTable('orders', (table)  => {
+            table.increments('id').primary()
+            table.integer('order_id')
+            table.foreign('user_id').references('users.id')
+            table.float('total')
+            table.dateTime('created_at')
+          })
+          .then(() => {
+            console.log('Table \'orders\' created')
+          })
+          .catch((error) => {
+            console.error(`There was an error creating table: ${error}`)
+          })
+        }
+      })
+      .then(() => {
+        console.log('done')
+      })
+      .catch((error) => {
+        console.error(`There was an error setting up the database: ${error}`)
+      })
 
+      knex.schema
+     .hasTable('orders_items')
+      .then((exists) => {
+        if (!exists) {
+          return knex.schema.createTable('orders', (table)  => {
+            table.increments('id').primary()
+            table.foreign('order_id').references('orders.id')
+            table.foreign('product_id').references('product.id')
+            table.integer('quantity')
+          })
+          .then(() => {
+            console.log('Table \'orders_items\' created')
+          })
+          .catch((error) => {
+            console.error(`There was an error creating table: ${error}`)
+          })
+        }
+      })
+      .then(() => {
+        console.log('done')
+      })
+      .catch((error) => {
+        console.error(`There was an error setting up the database: ${error}`)
+      })
+//#endregion
+//#region product Tables
+knex.schema
+     .hasTable('product')
+      .then((exists) => {
+        if (!exists) {
+          return knex.schema.createTable('orders', (table)  => {
+            table.increments('id').primary()
+            table.foreign('user_id').references('user.id')
+            table.string('name')
+            table.string('description')
+            table.integer('price')
+          })
+          .then(() => {
+            console.log('Table \'product\' created')
+          })
+          .catch((error) => {
+            console.error(`There was an error creating table: ${error}`)
+          })
+        }
+      })
+      .then(() => {
+        console.log('done')
+      })
+      .catch((error) => {
+        console.error(`There was an error setting up the database: ${error}`)
+      })
+
+//#endregion
       
 
 module.exports = knex
