@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Card } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
@@ -7,6 +7,8 @@ import * as ReactBootStrap from "react-bootstrap";
 import CostcoPage from "./StorePages/CostcoPage";
 import SafewayPage from "./StorePages/SafewayPage";
 import WalgreensPage from "./StorePages/WalgreensPage";
+import "aos/dist/aos.css";
+import Aos from "aos";
 
 const Cards = () => {
     const cardInfo = [
@@ -21,15 +23,9 @@ const Cards = () => {
             title: "Safeway",
             text: "Shop Safeway",
             pageLink: "SafewayPage"
-        },
-        {
-          image: "./cvs.jpg",
-          title: "CVS",
-          text: "Shop CVS",
-          pageLink: "CvsPage"
-      }, 
+        }, 
       {
-        image: "./walgreens-logo.jpg",
+        image: "./Images/walgreens-logo.jpg",
         title: "Walgreens",
         text: "Shop Walgreens",
         pageLink: "WalgreensPage"
@@ -165,16 +161,21 @@ pageLink: "WalgreensPage"
             <ReactBootStrap.Card.Img variant="top" src={card.image} />
             <ReactBootStrap.Card.Body>
               <ReactBootStrap.Card.Title>{card.title}</ReactBootStrap.Card.Title>
-              <ReactBootStrap.Button variant="primary" href = {card.pageLink}>{card.text}</ReactBootStrap.Button>
+              <ReactBootStrap.Button variant="success" href = {card.pageLink}>{card.text}</ReactBootStrap.Button>
             </ReactBootStrap.Card.Body>
           </ReactBootStrap.Card>
           
         );
       };
 
+      useEffect(() => {
+        Aos.init({duration: 2000});
+  
+      }, []);
+
       return (
         
-      <div className = "App">
+      <div div data-aos = "fade-up" className = "App">
         <Row xs={1} md={3} className="g-4">
           {cardInfo.map(renderCard)}
           </Row>

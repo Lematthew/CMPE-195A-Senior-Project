@@ -70,6 +70,67 @@ knex.schema
       })
 
 
+// schema for store pages
+      knex.schema
+      .hasTable('storepages')
+        .then((exists) => {
+          if (!exists) {
+            return knex.schema.createTable('storepages', (table)  => {
+              table.increments('id').primary()
+              table.integer('storepages_id')
+              table.foreign('storepages_id').references('storepages.id')
+              table.string('storepage_name')
+              table.string('store_carousel')
+              table.string('store_items')
+
+            })
+            .then(() => {
+              console.log('Table \'storepages\' created')
+            })
+            .catch((error) => {
+              console.error(`There was an error creating table: ${error}`)
+            })
+          }
+        })
+        .then(() => {
+          console.log('done')
+        })
+        .catch((error) => {
+          console.error(`There was an error setting up the database: ${error}`)
+        })
+
+        // schema for storeItems
+      knex.schema
+      .hasTable('storeItems')
+        .then((exists) => {
+          if (!exists) {
+            return knex.schema.createTable('storeItems', (table)  => {
+              table.increments('id').primary()
+              table.integer('storeItems_id')
+              table.foreign('storeItems_id').references('storeItems.id')
+              table.string('storeItems_image')
+              table.string('storeItems_name')
+              table.integer('storeItems_price')
+
+            })
+            .then(() => {
+              console.log('Table \'storeItems\' created')
+            })
+            .catch((error) => {
+              console.error(`There was an error creating table: ${error}`)
+            })
+          }
+        })
+        .then(() => {
+          console.log('done')
+        })
+        .catch((error) => {
+          console.error(`There was an error setting up the database: ${error}`)
+        })
+
+
+
+
       
 
 module.exports = knex

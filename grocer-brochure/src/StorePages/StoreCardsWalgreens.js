@@ -1,13 +1,21 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Card } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as ReactBootStrap from "react-bootstrap";
 import CostcoPage from "./CostcoPage";
+import "aos/dist/aos.css";
+import Aos from "aos";
+
+
 
 
 const StoreCardsWalgreens = () => {
+
+
+
+
     const cardInfo = [
         {
             image: "../Images/bananaPicture.jpg",
@@ -203,9 +211,14 @@ const StoreCardsWalgreens = () => {
         );
       };
 
+      useEffect(() => {
+        Aos.init({duration: 2000});
+  
+      }, []);
+
       return (
         
-      <div className = "App">
+      <div data-aos = "fade-left" className = "App">
         <Row xs={1} md={3} className="g-4">
           {cardInfo.map(renderCard)}
           </Row>
