@@ -42,7 +42,8 @@ function StorePage () {
           {/* <img src={card.image} alt={card.title}/> */}
         </div>
         <div class="rightside-card">
-          <p>{card.name}</p>
+          <h3>{card.name}</h3>
+          <button>Add to Cart</button>
         </div>
       </div>
     );
