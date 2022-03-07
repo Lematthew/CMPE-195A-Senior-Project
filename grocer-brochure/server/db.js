@@ -38,38 +38,90 @@ knex.schema
     })
     .catch((error) => {
       console.error(`There was an error setting up the database: ${error}`)
-    })
+})
 
-    knex.schema
-    .hasTable('users_details')
-      .then((exists) => {
-        if (!exists) {
-          return knex.schema.createTable('users_details', (table)  => {
-            table.increments('id').primary()
-            table.integer('user_id')
-            table.foreign('user_id').references('users.id')
-            table.string('address')
-            table.string('city')
-            table.string('zipcode')
-            table.string('telephone')
-            table.string('mobile')
-          })
-          .then(() => {
-            console.log('Table \'user_details\' created')
-          })
-          .catch((error) => {
-            console.error(`There was an error creating table: ${error}`)
-          })
-        }
+// Create a table in the database called "users_details"
+knex.schema
+.hasTable('users_details')
+  .then((exists) => {
+    if (!exists) {
+      return knex.schema.createTable('users_details', (table)  => {
+        table.increments('id').primary()
+        table.integer('user_id')
+        table.foreign('user_id').references('users.id')
+        table.string('address')
+        table.string('city')
+        table.string('zipcode')
+        table.string('telephone')
+        table.string('mobile')
       })
       .then(() => {
-        console.log('done')
+        console.log('Table \'user_details\' created')
       })
       .catch((error) => {
-        console.error(`There was an error setting up the database: ${error}`)
+        console.error(`There was an error creating table: ${error}`)
       })
+    }
+  })
+  .then(() => {
+    console.log('done')
+  })
+  .catch((error) => {
+    console.error(`There was an error setting up the database: ${error}`)
+})
 
+// Create a table in the database called "merchants"
+knex.schema
+  .hasTable('merchants')
+    .then((exists) => {
+      if (!exists) {
+        return knex.schema.createTable('merchants', (table)  => {
+          table.increments('id').primary()
+          table.string('country').notNullable()
+          table.string('merchant_name').notNullable()
+          table.integer('admin_id')
+        })
+        .then(() => {
+          console.log('Table \'merchants\' created')
+        })
+        .catch((error) => {
+          console.error(`There was an error creating table: ${error}`)
+        })
+      }
+    })
+    .then(() => {
+      console.log('done')
+    })
+    .catch((error) => {
+      console.error(`There was an error setting up the database: ${error}`)
+})
 
-      
+// Create a table in the database called "products"
+knex.schema
+  .hasTable('products')
+    .then((exists) => {
+      if (!exists) {
+        return knex.schema.createTable('products', (table)  => {
+          table.increments('id').primary()
+          table.string('name').notNullable()
+          table.integer('merchant_id').notNullable()
+          table.foreign('merchant_id').references('merchants.id')
+          table.float('price').notNullable()
+          table.string('description').notNullable()
+        })
+        .then(() => {
+          console.log('Table \'products\' created')
+        })
+        .catch((error) => {
+          console.error(`There was an error creating table: ${error}`)
+        })
+      }
+    })
+    .then(() => {
+      console.log('done')
+    })
+    .catch((error) => {
+      console.error(`There was an error setting up the database: ${error}`)
+})
 
 module.exports = knex

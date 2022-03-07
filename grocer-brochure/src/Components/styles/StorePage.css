@@ -40,21 +40,3 @@
     justify-content: center;
     align-items: center;
 }
-
-.rating {
-    border-radius: 50%;
-    background-color: #74B88D;
-    width: 5vh;
-    height: 5vh;
-    position: absolute;
-    top: 10px;
-    left: 51%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.rating-number {
-    margin: 0;
-    color: white;
-}
