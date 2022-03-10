@@ -1,189 +1,69 @@
 import React from "react";
-import { Card } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
-import { Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import * as ReactBootStrap from "react-bootstrap";
-import CostcoPage from "./StorePages/CostcoPage";
-import SafewayPage from "./StorePages/SafewayPage";
-import WalgreensPage from "./StorePages/WalgreensPage";
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from './Database/axios';
+import "./Cards.css";
 
 const Cards = () => {
-    const cardInfo = [
-        {
-            image: "./costcoLogo.png",
-            title: "Costco",
-            text: "Shop Costco",
-            pageLink: "CostcoPage"
-        },
-        {
-            image: "./safewayLogo.png",
-            title: "Safeway",
-            text: "Shop Safeway",
-            pageLink: "SafewayPage"
-        },
-        {
-          image: "./cvs.jpg",
-          title: "CVS",
-          text: "Shop CVS",
-          pageLink: "CvsPage"
-      }, 
-      {
-        image: "./walgreens-logo.jpg",
-        title: "Walgreens",
-        text: "Shop Walgreens",
-        pageLink: "WalgreensPage"
-      },
-      {
-        image: "./costcoLogo.png",
-        title: "Costco",
-        text: "Shop Costco",
-        pageLink: "CostcoPage"
-    },
-    {
-        image: "./safewayLogo.png",
-        title: "Safeway",
-        text: "Shop Safeway",
-        pageLink: "SafewayPage"
-    },
-    {
-      image: "./cvs.jpg",
-      title: "CVS",
-      text: "Shop CVS",
-      pageLink: "CvsPage"
-  }, 
-  {
-    image: "./walgreens-logo.jpg",
-    title: "Walgreens",
-    text: "Shop Walgreens",
-    pageLink: "WalgreensPage"
-  },
-  {
-    image: "./costcoLogo.png",
-    title: "Costco",
-    text: "Shop Costco",
-    pageLink: "CostcoPage"
-},
-{
-    image: "./safewayLogo.png",
-    title: "Safeway",
-    text: "Shop Safeway",
-    pageLink: "SafewayPage"
-},
-{
-  image: "./cvs.jpg",
-  title: "CVS",
-  text: "Shop CVS",
-  pageLink: "CvsPage"
-}, 
-{
-image: "./walgreens-logo.jpg",
-title: "Walgreens",
-text: "Shop Walgreens",
-pageLink: "WalgreensPage"
-},
-{
-  image: "./costcoLogo.png",
-  title: "Costco",
-  text: "Shop Costco",
-  pageLink: "CostcoPage"
-},
-{
-  image: "./safewayLogo.png",
-  title: "Safeway",
-  text: "Shop Safeway",
-  pageLink: "SafewayPage"
-},
-{
-image: "./cvs.jpg",
-title: "CVS",
-text: "Shop CVS",
-pageLink: "CvsPage"
-}, 
-{
-image: "./walgreens-logo.jpg",
-title: "Walgreens",
-text: "Shop Walgreens",
-pageLink: "WalgreensPage"
-},
-{
-  image: "./costcoLogo.png",
-  title: "Costco",
-  text: "Shop Costco",
-  pageLink: "CostcoPage"
-},
-{
-  image: "./safewayLogo.png",
-  title: "Safeway",
-  text: "Shop Safeway",
-  pageLink: "SafewayPage"
-},
-{
-image: "./cvs.jpg",
-title: "CVS",
-text: "Shop CVS",
-pageLink: "CvsPage"
-}, 
-{
-image: "./walgreens-logo.jpg",
-title: "Walgreens",
-text: "Shop Walgreens",
-pageLink: "WalgreensPage"
-},
-{
-  image: "./costcoLogo.png",
-  title: "Costco",
-  text: "Shop Costco",
-  pageLink: "CostcoPage"
-},
-{
-  image: "./safewayLogo.png",
-  title: "Safeway",
-  text: "Shop Safeway",
-  pageLink: "SafewayPage"
-},
-{
-image: "./cvs.jpg",
-title: "CVS",
-text: "Shop CVS",
-pageLink: "CvsPage"
-}, 
-{
-image: "./walgreens-logo.jpg",
-title: "Walgreens",
-text: "Shop Walgreens",
-pageLink: "WalgreensPage"
-},
+    const navigate = useNavigate();
+    const PRODUCTS_URL = "/product/merchantsall";
+    const [merchantInfo, setMerchantInfo] = useState('');
+    const [success, setSuccess] = useState(false);
 
-        
-        
-    ];
-    const renderCard = (card, index) => {
-        return (
-     
-          <ReactBootStrap.Card style={{ width: "18rem" }} key={index} >
-            <ReactBootStrap.Card.Img variant="top" src={card.image} />
-            <ReactBootStrap.Card.Body>
-              <ReactBootStrap.Card.Title>{card.title}</ReactBootStrap.Card.Title>
-              <ReactBootStrap.Button variant="primary" href = {card.pageLink}>{card.text}</ReactBootStrap.Button>
-            </ReactBootStrap.Card.Body>
-          </ReactBootStrap.Card>
-          
-        );
-      };
+    const changeRoute = (store) => {
+      navigate(`/StorePage/${store}`, {
+        title: store
+      });
+    };
+    useEffect(()=>{
+
+      const run = async (e) => {
+        try {
+          const merchantData = await axios.get(PRODUCTS_URL, null)
+          // console.log(JSON.stringify(merchantData?.data));
+
+          setMerchantInfo(merchantData);
+          if (merchantInfo != '') {
+            setSuccess(true)
+          }
+          console.log(merchantInfo.data)
+        } catch (e) {
+
+        }
+      }
+
+      run();
+    }, [merchantInfo])
+    
+    const renderCard = (card) => {
+      return (
+        <div class="card" onClick={() => changeRoute(card.id)}>
+          <div class="leftside-card">
+            {/* <img src={card.image} alt={card.title}/> */}
+          </div>
+          <div class="rightside-card">
+            <p>{card.merchant_name}</p>
+            <span class="rating">
+              <p class="rating-number">4.7</p>
+            </span>
+          </div>
+        </div>
+      );
+    };
 
       return (
-        
-      <div className = "App">
-        <Row xs={1} md={3} className="g-4">
-          {cardInfo.map(renderCard)}
-          </Row>
+        <> {success ? (
+          <div className = "card-container">
+            {merchantInfo.data.map(renderCard)}
           </div>
+        ) : (
+          <div>
+            <h1>Loading</h1>
+          </div>
+        )} 
+        </>
       );
-
-
-
-    
 };
 
 export default Cards

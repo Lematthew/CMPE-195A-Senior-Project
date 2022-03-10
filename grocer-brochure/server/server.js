@@ -8,7 +8,7 @@ const helmet = require('helmet')
 // 1.Import routes
 //const [***Router] = require ('./routes/user-route')
 const usersRouter = require('./routes/user-route')
-
+const productsRouter = require('./routes/product-route')
 
 // Set default port for express app
 const PORT = process.env.PORT || 4001
@@ -26,13 +26,8 @@ app.use(bodyParser.json())
 
 //2.Implement routes after creating a router
 app.use('/user', usersRouter)
+app.use('/product', productsRouter)
 //app.use('/[RouteName]', )
-
-
-
-
-
-
 
 
 //Error Routes

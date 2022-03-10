@@ -41,20 +41,24 @@
     align-items: center;
 }
 
-.rating {
-    border-radius: 50%;
-    background-color: #74B88D;
-    width: 5vh;
-    height: 5vh;
-    position: absolute;
-    top: 10px;
-    left: 51%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.rightside-card p {
+    
 }
 
-.rating-number {
-    margin: 0;
+.rightside-card button {
+    background-color: #74B88D;
+    border: none;
     color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 10px;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.rightside-card button:hover {
+    opacity: 80%;
+    transition: all .4s ease;
+    -webkit-transition: all .4s ease;
 }
