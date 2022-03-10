@@ -3,6 +3,7 @@ import {useContext} from 'react'
 import AuthContext from '../Context/AuthProvider'
 import {FaTrashAlt} from 'react-icons/fa'
 import axios from '../Database/axios'
+import context from 'react-bootstrap/esm/AccordionContext';
 
 
 const Cart = () => {
@@ -25,6 +26,32 @@ const handleDelete = (id) => {
   localStorage.setItem('shoppinglist', JSON.stringify(listItems));
 }
 
+const handleAdd = (id) => {
+    const Item2Add = Products.find(product => product.id === id)
+    const newCart = [...Context.cart, Item2Add]
+    Context.setCart(newCart)
+    console.log(newCart)
+    localStorage.setItem('shoppinglist', JSON.stringify(newCart));
+}
+  
+const Products = [
+
+    {
+        id: 1,
+        item: 'Dog',
+        Quantity: 2,
+        checked: false
+    },
+
+    {
+        id: 5,
+        item: 'New Item',
+        Quantity: 2,
+        checked: false
+    }
+]
+
+const testID = 5;
 
 
     return (
@@ -54,6 +81,8 @@ const handleDelete = (id) => {
             ) : (
                 <p style={{ marginTop: '2rem' }}>Your list is empty.</p>
             )}
+
+        <button onClick = {() => handleAdd(testID)}>Add Item</button>
         </main>
     )
 }

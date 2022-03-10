@@ -41,9 +41,9 @@ const Login = () => {
             headers: {'Content-Type': 'application/json'},
 
           })
-    console.log(JSON.stringify(response?.data));
  
     if(response.data.verified){
+
       setSuccess(response);
       setAuth({user,pwd});
       setUser('');

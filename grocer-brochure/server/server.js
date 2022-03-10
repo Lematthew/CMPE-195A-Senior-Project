@@ -30,8 +30,6 @@ app.use(bodyParser.json())
 app.use('/user', usersRouter)
 app.use('/orders',ordersRouter)
 
-
-
 //Error Routes
 // Implement 500 error route
 app.use(function (err, req, res, next) {

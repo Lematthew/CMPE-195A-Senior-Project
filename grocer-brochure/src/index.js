@@ -29,7 +29,7 @@ ReactDOM.render(
       <Route path="About" element={<About />} />
       <Route path="StorePage/:id" element={<StorePage/>} />
       <Route path="Signup" element={<SignUp/>} />
-      <Route path="Check-out" element={<CheckOut/>} />
+      <Route path="Checkout" element={<CheckOut/>} />
       {/*Routes to be delted in favor of passing storepage IDs into StorePage */}
       <Route path="CostcoPage" element={<CostcoPage/>} />
       <Route path="SafewayPage" element={<SafewayPage/>}/>

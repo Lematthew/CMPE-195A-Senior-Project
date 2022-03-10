@@ -51,8 +51,14 @@ exports.usersCreate = async (req, res) => {
       'salt': req.body.salt
     })
     .then(() => {
-      // Send a success message in response
-      res.json({ message: `User '${req.body.title}' by ${req.body.author} created.` })
+
+      knex('userDetails')
+        .insert({
+            'city': req.body.city,
+            'zipcode':req.body.zipcode,
+            'address':req.address.address
+        })
+
     })
     .catch(err => {
       // Send a error message in response
