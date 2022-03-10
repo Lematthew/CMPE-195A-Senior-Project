@@ -12,6 +12,7 @@ const knex = require('knex')({
   useNullAsDefault: true
 })
 
+//#region user Tables
 // Create a table in the database called "users"
 knex.schema
   .hasTable('users')
@@ -22,8 +23,6 @@ knex.schema
           table.string('email').notNullable()
           table.string('full_name').notNullable()
           table.string('hashed_password').notNullable()
-          table.integer('salt').notNullable()
-          table.string('acc_type').notNullable()
         })
         .then(() => {
           console.log('Table \'users\' created')
@@ -40,20 +39,26 @@ knex.schema
       console.error(`There was an error setting up the database: ${error}`)
 })
 
-// Create a table in the database called "users_details"
-knex.schema
-.hasTable('users_details')
-  .then((exists) => {
-    if (!exists) {
-      return knex.schema.createTable('users_details', (table)  => {
-        table.increments('id').primary()
-        table.integer('user_id')
-        table.foreign('user_id').references('users.id')
-        table.string('address')
-        table.string('city')
-        table.string('zipcode')
-        table.string('telephone')
-        table.string('mobile')
+    knex.schema
+    .hasTable('users_details')
+      .then((exists) => {
+        if (!exists) {
+          return knex.schema.createTable('users_details', (table)  => {
+            table.increments('id').primary()
+            table.integer('user_id')
+            table.string('address')
+            table.string('city')
+            table.string('zipcode')
+            table.string('mobile')
+            table.foreign('user_id').references('users.id')
+          })
+          .then(() => {
+            console.log('Table \'user_details\' created')
+          })
+          .catch((error) => {
+            console.error(`There was an error creating table: ${error}`)
+          })
+        }
       })
       .then(() => {
         console.log('Table \'user_details\' created')
@@ -108,6 +113,7 @@ knex.schema
           table.foreign('merchant_id').references('merchants.id')
           table.float('price').notNullable()
           table.string('description').notNullable()
+          table.string('image_path')
         })
         .then(() => {
           console.log('Table \'products\' created')
