@@ -1,17 +1,19 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import AuthContext from '../Context/AuthProvider'
 import axios from '../Database/axios';
 import  './styles/StorePage.css'
 
 function StorePage () {
+
   const params = useParams();
   const PRODUCTS_URL = '/product/specific';
-  const [productInfo, setProductInfo] = useState([]);
+  const [Products, setProducts] = useState([]);
   const [success, setSuccess] = useState(false);
+  const Context = useContext(AuthContext)
 
   useEffect(()=>{
-
     const run = async (e) => {
       try {
         const productData = await axios.post(PRODUCTS_URL, JSON.stringify({
@@ -20,42 +22,58 @@ function StorePage () {
         {
           headers: {'Content-Type': 'application/json'}
         });
-        console.log(JSON.stringify(productData?.data));
-
-        setProductInfo(productData);
-        if (productInfo != '') {
-          setSuccess(true)
-        }
-        console.log(productInfo.data)
-      } catch (e) {
-
-      }
-    }
-
+        setProducts(productData.data);
+        if (Products !== '') { setSuccess(true)}
+      } catch (e) { }
+   }
+    if(!success)
     run();
-  }, [productInfo])
+  }, [params.id, Products, success])
 
-  const renderCard = (card) => {
+  const handleAdd = (id,Quantity) => {
+    var Item2Add = Products.find(product => product.id === id)
+
+    Item2Add.Quantity = 34
+    console.log(Item2Add)
+    var newCart = []
+
+    if(cartContains(Item2Add)){
+      newCart = Context.cart.map((item) => item.id === id ? { ...item, Quantity:  item.Quantity + Item2Add.Quantity } : item);
+    }
+    else{
+      console.log(Item2Add)
+    newCart = [...Context.cart, Item2Add]
+    }
+    Context.setCart(newCart)
+    localStorage.setItem('shoppinglist', JSON.stringify(newCart));
+}
+
+const cartContains = (product) => { 
+    return Context.cart.some(cartItem => cartItem.id === product.id)
+}
+
+  const renderCard = (product) => {
     return (
-      <div class="card">
-        <div class="leftside-card">
+      <div className="card" key = {product.id}>
+        <div className="leftside-card">
           {/* <img src={card.image} alt={card.title}/> */}
         </div>
-        <div class="rightside-card">
-          <h3>{card.name}</h3>
-          <button>Add to Cart</button>
+        <div className="rightside-card">
+          <h3>{product.name}</h3>
+          <button onClick = {() => handleAdd(product.id,5)}>Add to Cart</button>
         </div>
       </div>
     );
   };
 
+  //#region View
   return (
       <main style={{ padding: "1rem 0" }}>
       <h2>This is a Store Page for {params.id}!</h2>
       <div>
         <> {success ? (
           <div className = "card-container">
-            {productInfo.data.map(renderCard)}
+            {Products.map((item) => renderCard (item))}
           </div>
           ) : (
             <div>
@@ -66,6 +84,8 @@ function StorePage () {
       </div>
       </main>
   );
+
+  //#endregion
 }
 
 export default StorePage;

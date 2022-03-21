@@ -10,8 +10,8 @@ const Cart = () => {
 
 const ORDERS_URL = '/orders/specific'
 const Context = useContext(AuthContext)
+var hash  = require('object-hash');
 
-console.log(Context.cart)
 
 
 const handleCheck = (id) => {
@@ -28,30 +28,68 @@ const handleDelete = (id) => {
 
 const handleAdd = (id) => {
     const Item2Add = Products.find(product => product.id === id)
+    var newCart = []
+
+    if(cartContains(Item2Add)){
+      newCart = Context.cart.map((item) => item.id === id ? { ...item, Quantity: item.Quantity + Item2Add.Quantity } : item);
+    }
+    else{
+    newCart = [...Context.cart, Item2Add]
+    }
+    Context.setCart(newCart)
+    console.log(newCart)
+    localStorage.setItem('shoppinglist', JSON.stringify(newCart));
+}
+
+const cartContains = (product) => { 
+
+     return Context.cart.some(cartItem => cartItem.id === product.id)
+
+}
+
+const handleHash = () => {
+
+    console.log(calculateTotal())
+    /*
+    console.log(JSON.stringify({
+        'hash': hash(Context.cart),
+        'cart': Context.cart
+    }))
+    */
+}
+
+const handleSubmit = (id) => {
+    const Item2Add = Products.find(product => product.id === id)
     const newCart = [...Context.cart, Item2Add]
     Context.setCart(newCart)
     console.log(newCart)
     localStorage.setItem('shoppinglist', JSON.stringify(newCart));
 }
+
+const calculateTotal = () =>{
+    var total = 0;
+    Context.cart.map((item) => total += item.price * item.Quantity)
+    return total
+}
   
 const Products = [
 
     {
-        id: 1,
-        item: 'Dog',
+        id: 32532,
+        name: 'Dog',
         Quantity: 2,
-        checked: false
+        price: 2.30
     },
 
     {
-        id: 5,
-        item: 'New Item',
+        id: 5326,
+        name: 'Apples',
         Quantity: 2,
-        checked: false
+        price: 4.00
     }
 ]
 
-const testID = 5;
+const testID = 5326;
 
 
     return (
@@ -68,8 +106,8 @@ const testID = 5;
                             <label
                                 style={(item.checked) ? { textDecoration: 'line-through' } : null}
                                 onDoubleClick={() => handleCheck(item.id)}
-                            >{item.item}</label>
-                            <label>----- {item.Quantity}</label>
+                            >({item.id}) {item.name}</label>
+                            <label>----Quantity{item.Quantity} </label>
                             <FaTrashAlt
                                 onClick={() => handleDelete(item.id)}
                                 role="button"
@@ -83,6 +121,7 @@ const testID = 5;
             )}
 
         <button onClick = {() => handleAdd(testID)}>Add Item</button>
+        <button onClick = {() => handleHash()}>Hash Button :^)</button>
         </main>
     )
 }

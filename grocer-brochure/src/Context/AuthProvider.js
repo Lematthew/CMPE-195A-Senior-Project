@@ -5,38 +5,44 @@ const AuthContext = createContext({});
 const defaultCart = [
 
     {
-        id: 1,
-        item: 'Dog',
+        id: 431,
+        name: 'Dog',
         Quantity: 2,
-        checked: false
+        price: 9.00
+
+
     },
 
     {
-        id: 2,
-        item: 'Cats',
+        id: 67352,
+        name: 'Cats',
         Quantity: 4,
-        checked: false
+        price: 1.00
+
+
     },
 
     { 
-        id: 3,
-        item:'Motivation to work on senior project ',
+        id: 5323,
+        name:'Motivation to work on senior project ',
         Quantity: 100,
-        checked: false
+        price: 2.00
+
     },
 
     { 
-        id: 4,
-        item: 'Sandwhich',
+        id: 4251,
+        name: 'Sandwhich',
         Quantity: 50,
-        checked: false
+        price: 3.00
+
     }
 ]
 
 const currentCart = JSON.parse(localStorage.getItem('shoppinglist'));
 
 export const AuthProvider = ({ children }) => {
-    const [auth, setAuth] = useState({});
+    const [auth, setAuth] = useState({'verified': false});
     const [cart, setCart] = useState(currentCart?.length ? currentCart : defaultCart);
 
     return (

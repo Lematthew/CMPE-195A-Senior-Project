@@ -32,7 +32,7 @@ const Cards = () => {
 
         }
       }
-
+      if(!success)
       run();
     }, [merchantInfo])
     

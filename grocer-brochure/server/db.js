@@ -116,4 +116,58 @@ knex.schema
       console.error(`There was an error setting up the database: ${error}`)
 })
 
+
+knex.schema
+  .hasTable('orders')
+    .then((exists) => {
+      if (!exists) {
+        return knex.schema.createTable('orders', (table)  => {
+          table.increments('id').primary()
+          table.integer('user_id').notNullable()
+          table.float('order_total').notNullable()
+          table.string('created_at').notNullable();
+        })
+        .then(() => {
+          console.log('Table \'orders\' created')
+        })
+        .catch((error) => {
+          console.error(`There was an error creating table: ${error}`)
+        })
+      }
+    })
+    .then(() => {
+      console.log('done')
+    })
+    .catch((error) => {
+      console.error(`There was an error setting up the database: ${error}`)
+})
+
+knex.schema
+  .hasTable('orders_details')
+    .then((exists) => {
+      if (!exists) {
+        return knex.schema.createTable('orders_details', (table)  => {
+          table.increments('id').primary()
+          table.integer('order_id').notNullable()
+          table.integer('product_id').notNullable()
+          table.integer('quantity').notNullable()
+          table.foreign('order_id').references('orders.id')
+          table.foreign('product_id').references('products.id')
+          table.date('created_at').notNullable();
+        })
+        .then(() => {
+          console.log('Table \'orders\' created')
+        })
+        .catch((error) => {
+          console.error(`There was an error creating table: ${error}`)
+        })
+      }
+    })
+    .then(() => {
+      console.log('done')
+    })
+    .catch((error) => {
+      console.error(`There was an error setting up the database: ${error}`)
+})
+
 module.exports = knex
