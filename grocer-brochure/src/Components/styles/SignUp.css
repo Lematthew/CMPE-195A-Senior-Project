@@ -8,8 +8,8 @@
     justify-content: space-evenly;
     align-items: center;
     background-color: #FFFFFF;
-    width: 400px;
-    height: 400px;
+    width: 700px;
+    height: 500px;
     margin: 7em auto;
     border-radius: 1.5em;
     box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
@@ -20,17 +20,27 @@
 }
 
 .signup-form {
-    /* border: 2px solid black; */
-    height: 50%;
+    height: 60%;
     width: 70%;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.signup-inputs {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-evenly;
+    gap: 10%;
+    flex-wrap: wrap;
+    margin-bottom: 5%;
 }
 
 .signup-form input {
-    width: 60%;
+    width: 40%;
     text-align: center;
     font-weight: 700;
     font-size: 14px;
