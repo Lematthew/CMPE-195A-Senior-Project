@@ -60,20 +60,6 @@ knex.schema
           })
         }
       })
-      .then(() => {
-        console.log('Table \'user_details\' created')
-      })
-      .catch((error) => {
-        console.error(`There was an error creating table: ${error}`)
-      })
-    }
-  })
-  .then(() => {
-    console.log('done')
-  })
-  .catch((error) => {
-    console.error(`There was an error setting up the database: ${error}`)
-})
 
 // Create a table in the database called "merchants"
 knex.schema
