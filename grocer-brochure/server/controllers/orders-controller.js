@@ -42,3 +42,31 @@ exports.ordersSpecific = async (req, res) =>{
           res.json({ message: `There was an error retrieving the data: ${err}` })
      })
  }
+
+ exports.createOrder = async (req, res) =>{
+    knex('orders')
+    .insert({
+        'id': req.body.order_hash,
+        'user_id': req.body.user_id,
+        'order_total':req.body.order_total,
+        'created_at': new Date().toLocaleDateString
+    })
+    .then(() => {
+
+    req.body.cart.foreach(items=>{
+        knex('order_items')
+        .insert({
+            'order_id':req.body.order_hash,
+            'product_id': items.id,
+            'quantity': items.quantity,
+            'created_at': new Date().toLocaleDateString
+        })
+    })
+
+
+    })
+    .catch(err => {
+      // Send a error message in response
+      res.json({ message: `There was an error creating ${req.body.title} user: ${err}` })
+    })
+}
