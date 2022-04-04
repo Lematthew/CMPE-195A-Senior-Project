@@ -180,7 +180,7 @@ const testID = 5326;
             ) : (
                 <p style={{ marginTop: '2rem' }}>Your list is empty.</p>
             )}
-            <button className='checkout-button'>Checkout</button>
+            <button className='checkout-button' onClick={handleCheckout}>Checkout</button>
         </main>
     )
 }
