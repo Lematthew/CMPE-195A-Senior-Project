@@ -166,6 +166,7 @@ const SignUp = () => {
           value = {pwd}
           required
         />
+
         </div>
         <button>Sign Up</button>
       </form>

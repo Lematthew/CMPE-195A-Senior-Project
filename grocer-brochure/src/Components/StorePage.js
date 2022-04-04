@@ -30,21 +30,22 @@ function StorePage () {
     run();
   }, [params.id, Products, success])
 
-  const handleAdd = (id,Quantity) => {
+  const handleAdd = (id,quantity) => {
     var Item2Add = Products.find(product => product.id === id)
 
-    Item2Add.Quantity = 34
+    Item2Add.quantity = 2
     console.log(Item2Add)
     var newCart = []
 
     if(cartContains(Item2Add)){
-      newCart = Context.cart.map((item) => item.id === id ? { ...item, Quantity:  item.Quantity + Item2Add.Quantity } : item);
+      newCart = Context.cart.map((item) => item.id === id ? { ...item, quantity:  item.quantity + Item2Add.quantity } : item);
     }
     else{
       console.log(Item2Add)
     newCart = [...Context.cart, Item2Add]
     }
     Context.setCart(newCart)
+    console.log(newCart)
     localStorage.setItem('shoppinglist', JSON.stringify(newCart));
 }
 

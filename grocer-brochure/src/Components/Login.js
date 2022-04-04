@@ -1,5 +1,6 @@
 import React from 'react';
 import {useRef, useState,useEffect,useContext} from 'react'
+import context from 'react-bootstrap/esm/AccordionContext';
 import AuthContext from '../Context/AuthProvider'
 import axios from '../Database/axios'
 import  './styles/Login.css'
@@ -8,7 +9,7 @@ const Login = () => {
 
   const LOGIN_URL = '/user/specific'
 
-  const {setAuth} = useContext(AuthContext);
+  const Context = useContext(AuthContext);
   const userRef   = useRef();
   const errRef    = useRef();
 
@@ -45,7 +46,7 @@ const Login = () => {
     if(response.data.verified){
 
       setSuccess(response);
-      setAuth({user,pwd});
+      Context.setAuth(response.data);
       setUser('');
       setPwd('');
     }
@@ -73,6 +74,8 @@ const Login = () => {
     <> {success ? (
         <section>
             <h1>You are logged in!</h1>
+            <h2>{Context.auth.role} </h2>
+            <h2>{Context.auth.id} </h2>
             <br />
             <p>
                 <a href="/">Go to Home</a>
