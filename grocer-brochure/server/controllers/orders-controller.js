@@ -3,7 +3,7 @@ const knex = require('../db')
 
 exports.ordersAll = async (req, res) =>{
 knex.select('*') 
-    .from('orders') 
+    .from('order_items') 
     .then(orders => {
       res.json(orders) // Set the results as the records
      })
@@ -15,7 +15,7 @@ knex.select('*')
 
 exports.ordersSpecific = async (req, res) =>{
     knex.select('*') 
-        .from('orders').where({       
+        .from('order_items').where({       
             'order_id': req.body.order_id,
             'user_id' : req.body.user_id
             })
@@ -43,26 +43,30 @@ exports.ordersSpecific = async (req, res) =>{
      })
  }
 
- exports.createOrder = async (req, res) =>{
-    knex('orders')
-    .insert({
-        'id': req.body.order_hash,
-        'user_id': req.body.user_id,
-        'order_total':req.body.order_total,
-        'created_at': new Date().toLocaleDateString
-    })
+ exports.ordersCreate = async (req, res) =>{
+
+    const order_id = req.body.order_hash;
+    const total = req.body.total;
+    const user_id = req.body.user_id;
+
+    const fieldsToInsert = req.body.cart.map(field => 
+        ({ order_hash: order_id,
+           order_total: total,
+           user_id: user_id,
+           created_at: Date.now().toString(),
+           product_id: field.id,
+           quantity: field.quantity,
+           status: 'INCOMPLETE',
+           merchant_id: field.merchant_id
+        })); 
+
+    
+
+    knex('order_items')
+    .insert(fieldsToInsert )
     .then(() => {
-
-    req.body.cart.foreach(items=>{
-        knex('order_items')
-        .insert({
-            'order_id':req.body.order_hash,
-            'product_id': items.id,
-            'quantity': items.quantity,
-            'created_at': new Date().toLocaleDateString
-        })
-    })
-
+    
+        res.json({ message: `Order Created ` })
 
     })
     .catch(err => {
@@ -70,3 +74,18 @@ exports.ordersSpecific = async (req, res) =>{
       res.json({ message: `There was an error creating ${req.body.title} user: ${err}` })
     })
 }
+
+exports.orderUpdateStatus = async (req, res) => {
+  
+    knex('order_items').where('order_hash','=',req.body.order_hash).andWhere('merchant_id','=',req.body.merchant_id)
+      .update({
+        'status': req.body.status
+      })
+      .then(() => {
+        // Send a success message in response
+        res.json({ message: `Product updated ${req.body.name} merchant_id: ${req.body.merchant_id}` })    })
+      .catch(err => {
+        // Send a error message in response
+        res.json({ message: `There was an error retrieving merchants: ${err}` })
+      })
+  }

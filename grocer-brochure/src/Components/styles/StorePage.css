@@ -8,19 +8,18 @@
 }
 
 .card {
-    border: 2px solid #74B88D;
     width: 49%;
     height: 30%;
     border-radius: 20px;
     display: flex;
     flex-direction: row;
-    margin-bottom: 30px;
+   
 }
 
 .card:hover {
     background-color: #F7F7F7;
-    transition: all .4s ease;
-    -webkit-transition: all .4s ease;
+    transition: all .2s ease;
+    -webkit-transition: all .2s ease;
     cursor: pointer;
 }
 
@@ -59,6 +58,6 @@
 
 .rightside-card button:hover {
     opacity: 80%;
-    transition: all .4s ease;
-    -webkit-transition: all .4s ease;
+    transition: all .2s ease;
+    -webkit-transition: all .2s ease;
 }

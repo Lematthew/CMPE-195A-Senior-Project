@@ -31,7 +31,7 @@ exports.usersSpecific = async (req, res) => {
     })
     .then(userData => {
         if(userData.length >= 1)
-          res.json({'id': userData, 'verified': true})
+          res.json({'id': userData, 'verified': true, 'role': 'customer'})
         else
           res.json({'verified': false})
     })
@@ -48,18 +48,10 @@ exports.usersCreate = async (req, res) => {
       'email': req.body.email,
       'full_name': req.body.full_name,
       'hashed_password': req.body.hashed_password,
-      'salt': req.body.salt
     })
     .then(() => {
-
-      knex('userDetails')
-        .insert({
-            'city': req.body.city,
-            'zipcode':req.body.zipcode,
-            'address':req.address.address
-        })
-
-    })
+      // Send a success message in response
+      res.json({ message: `Created Account ${req.body.email} user: ${req.body.full_name}` })    })
     .catch(err => {
       // Send a error message in response
       res.json({ message: `There was an error creating ${req.body.title} user: ${err}` })
@@ -74,7 +66,7 @@ exports.usersDelete = async (req, res) => {
     .del() // delete the record
     .then(() => {
       // Send a success message in response
-      res.json({ message: `Book ${req.body.id} deleted.` })
+      res.json({ message: `User ${req.body.id} deleted.` })
     })
     .catch(err => {
       // Send a error message in response

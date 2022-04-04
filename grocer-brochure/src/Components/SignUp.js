@@ -2,6 +2,7 @@ import React from 'react';
 import {useRef, useState,useEffect,useContext} from 'react'
 import AuthContext from '../Context/AuthProvider'
 import axios from '../Database/axios'
+import './styles/SignUp.css'
 
 const LOGIN_URL = '/user/create'
 
@@ -87,76 +88,78 @@ const SignUp = () => {
             </p>
         </section>
     ) : (
-    <section>
+    <section class="signup-section">
       <p ref = {errRef} className={errMsg ? "errmsg" : "offscreen"} 
       aria-live ="assertive">{errMsg}</p>
+      <div class="signup-component">
       <h1>Sign Up</h1>
 
-      <form onSubmit = {handleSubmit}>
-      <label htmlFor ="name" >Name:</label>
+      <form onSubmit = {handleSubmit} class="signup-form">
+        <div class="signup-inputs">
         <input
           type = "text" 
-          id= "name" 
+          id= "name"
+          placeholder="Full Name"
           ref = {userRef}
           autoComplete = "off"
           onChange = {(e) => setName(e.target.value)}
-          value = {user}
+          // value = {user}
           required
         />
-        <label htmlFor ="username" >Username:</label>
         <input
           type = "text" 
           id= "username" 
+          placeholder="Username"
           ref = {userRef}
           autoComplete = "off"
           onChange = {(e) => setUser(e.target.value)}
-          value = {user}
+          // value = {user}
           required
         />
-      <label htmlFor ="password" >Password:</label>
         <input
           type = "password" 
           id= "password" 
+          placeholder="Password"
           ref = {userRef}
           autoComplete = "off"
           onChange = {(e) => setPwd(e.target.value)}
-          value = {pwd}
+          // value = {pwd}
           required
         />
-                <label htmlFor ="city" >City:</label>
         <input
           type = "text" 
           id= "username" 
+          placeholder="City"
           ref = {userRef}
           autoComplete = "off"
           onChange = {(e) => setCity(e.target.value)}
-          value = {user}
+          // value = {user}
           required
         />
-      <label htmlFor ="zipCode" >ZIP:</label>
         <input
           type = "text" 
-          id= "password" 
+          id= "zip" 
+          placeholder="ZIP"
           ref = {userRef}
           autoComplete = "off"
           onChange = {(e) => setZipcode(e.target.value)}
-          value = {pwd}
+          // value = {pwd}
           required
         />
-        <label htmlFor ="Address" >Address:</label>
         <input
           type = "text" 
-          id= "username" 
+          id= "address" 
+          placeholder="Street Address"
           ref = {userRef}
           autoComplete = "off"
           onChange = {(e) => setAdress(e.target.value)}
-          value = {user}
+          // value = {user}
           required
         />
-      <label htmlFor ="Phone" >Phone:</label>
         <input
           type = "text" 
-          id= "password" 
+          id= "phone-number" 
+          placeholder="Phone Number"
           ref = {userRef}
           autoComplete = "off"
           onChange = {(e) => setPwd(e.target.value)}
@@ -164,13 +167,18 @@ const SignUp = () => {
           required
         />
 
+        </div>
         <button>Sign Up</button>
       </form>
+      <div class="need-account">
       <p>Already have an account ? <br />
         <span className ="line">
           <a href='/login'>Login</a>
         </span>
-      </p> 
+      
+      </p>
+      </div>
+      </div> 
     </section>
   )}
   </>

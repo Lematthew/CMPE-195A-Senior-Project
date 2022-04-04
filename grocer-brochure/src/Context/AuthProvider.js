@@ -7,17 +7,19 @@ const defaultCart = [
     {
         id: 431,
         name: 'Dog',
-        Quantity: 2,
-        price: 9.00
-
+        quantity: 2,
+        price: 9.00,
+        merchant_id:4002
 
     },
 
     {
         id: 67352,
         name: 'Cats',
-        Quantity: 4,
-        price: 1.00
+        quantity: 4,
+        price: 1.00,
+        merchant_id:4002
+        
 
 
     },
@@ -25,16 +27,18 @@ const defaultCart = [
     { 
         id: 5323,
         name:'Motivation to work on senior project ',
-        Quantity: 100,
-        price: 2.00
+        quantity: 100,
+        price: 2.00,
+        merchant_id:4002
 
     },
 
     { 
         id: 4251,
         name: 'Sandwhich',
-        Quantity: 50,
-        price: 3.00
+        quantity: 50,
+        price: 3.00,
+        merchant_id:4002
 
     }
 ]
