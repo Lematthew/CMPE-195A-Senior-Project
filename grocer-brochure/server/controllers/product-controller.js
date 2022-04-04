@@ -16,6 +16,43 @@ exports.productsAll = async (req, res) => {
     })
 }
 
+exports.productsNew = async (req, res) => {
+  
+  knex('products')
+    .insert({
+      'name': req.body.name,
+      'merchant_id': req.body.merchant_id,
+      'price': req.body.price,
+      'description': req.body.description
+    })
+    .then(() => {
+      // Send a success message in response
+      res.json({ message: `Product added ${req.body.name} merchant_id: ${req.body.merchant_id}` })    })
+    .catch(err => {
+      // Send a error message in response
+      res.json({message: "Product not created ERROR :C "})
+    })
+}
+
+exports.productsUpdate = async (req, res) => {
+  
+  knex('products').where('id','=',req.body.id)
+    .update({
+      'name': req.body.name,
+      'merchant_id': req.body.merchant_id,
+      'price': req.body.price,
+      'description': req.body.description,
+      'image_path': req.body.image_path
+    })
+    .then(() => {
+      // Send a success message in response
+      res.json({ message: `Product updated ${req.body.name} merchant_id: ${req.body.merchant_id}` })    })
+    .catch(err => {
+      // Send a error message in response
+      res.json({ message: `There was an error retrieving merchants: ${err}` })
+    })
+}
+
 // Retrieve all merchants
 exports.merchantsAll = async (req, res) => {
   // Get all merchants from database

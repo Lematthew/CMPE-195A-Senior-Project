@@ -1,5 +1,5 @@
 import React from 'react';
-import {useContext} from 'react'
+import {useContext, useState, useRef} from 'react'
 import AuthContext from '../Context/AuthProvider'
 import {FaTrashAlt} from 'react-icons/fa'
 import axios from '../Database/axios'
@@ -9,23 +9,34 @@ import "./styles/Checkout.css";
 
 const Cart = () => {
 
-const ORDERS_URL = '/orders/specific'
+const ORDERS_URL = '/orders/create'
 const Context = useContext(AuthContext)
 var hash  = require('object-hash');
 
+const errRef                = useRef();
+const [errMsg,setErrMsg]    = useState('');
+
+// const [Total,setTotal] = useState()
 
 
-const handleCheck = (id) => {
-  const listItems = Context.cart.map((item) => item.id === id ? { ...item, checked: !item.checked } : item);
-  Context.setCart(listItems);
-  localStorage.setItem('shoppinglist', JSON.stringify(listItems));
+
+
+const cartContains = (product) => { 
+
+     return Context.cart.some(cartItem => cartItem.id === product.id)
+
+}
+const calculateTotal = () =>{
+    var total = 0;
+    Context.cart.map((item) => total += item.price * item.quantity)
+    return total
 }
 
 const handleDelete = (id) => {
-  const listItems = Context.cart.filter((item) => item.id !== id);
-  Context.setCart(listItems);
-  localStorage.setItem('shoppinglist', JSON.stringify(listItems));
-}
+    const listItems = Context.cart.filter((item) => item.id !== id);
+    Context.setCart(listItems);
+    localStorage.setItem('shoppinglist', JSON.stringify(listItems));
+  }
 
 const handleAdd = (id) => {
     const Item2Add = Products.find(product => product.id === id)
@@ -42,21 +53,27 @@ const handleAdd = (id) => {
     localStorage.setItem('shoppinglist', JSON.stringify(newCart));
 }
 
-const cartContains = (product) => { 
+const handleHash = () => {
 
-     return Context.cart.some(cartItem => cartItem.id === product.id)
+    console.log(generateJSON())
 
 }
 
-const handleHash = () => {
+const generateJSON = () => {
+    const total = calculateTotal()
 
-    console.log(calculateTotal())
-    /*
-    console.log(JSON.stringify({
-        'hash': hash(Context.cart),
+    var hashItem = Context.cart
+    hashItem[4] = Date.now().toString()
+
+    const hash_order = hash(hashItem)
+    hashItem.pop()
+
+    return(JSON.stringify({
+        'order_hash': hash_order,
+        'total': total,
+        'user_id': 2,
         'cart': Context.cart
     }))
-    */
 }
 
 const handleSubmit = (id) => {
@@ -76,25 +93,58 @@ const quantityChange = (id, quantity) => {
     localStorage.setItem('shoppinglist', JSON.stringify(newCart));
 }
 
-const calculateTotal = () =>{
-    var total = 0;
-    Context.cart.map((item) => total += item.price * item.Quantity)
-    return total
-}
+const handleCheckout = async (e) => {
+    const total = calculateTotal()
+    var hashItem = Context.cart
+    hashItem[4] = Date.now().toString()
+
+    const hash_order = hash(hashItem)
+    hashItem.pop()
+
+   e.preventDefault();
+
+
+
+    try{
+      const response = await axios.post(ORDERS_URL,  generateJSON(),          {
+        headers: {'Content-Type': 'application/json'},
+      })
+ 
+    if(response){
+        console.log(response.body.message)
+    }
+    else
+      setErrMsg('Incorrect info')
+    } catch(err){
+        if(!err?.response){
+          setErrMsg('No Response from Server');
+        }
+        else if(err.response?.status === 400){
+          setErrMsg('Unable to checkout');
+        }
+        else if(err.Response?.status === 401){
+          setErrMsg("Unauthorized")
+        }
+        else {
+          setErrMsg('Checkout Failed')
+        }
+
+    }
+  }
   
 const Products = [
 
     {
         id: 32532,
         name: 'Dog',
-        Quantity: 2,
+        quantity: 2,
         price: 2.30
     },
 
     {
         id: 5326,
         name: 'Apples',
-        Quantity: 2,
+        quantity: 2,
         price: 4.00
     }
 ]

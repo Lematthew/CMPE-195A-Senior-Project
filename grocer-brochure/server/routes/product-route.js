@@ -10,7 +10,8 @@ const router = express.Router()
 router.get('/all', productsRoutes.productsAll)
 router.get('/merchantsall', productsRoutes.merchantsAll)
 router.post('/specific', productsRoutes.productsSpecific)
-
+router.post('/new', productsRoutes.productsNew)
+router.post('/update', productsRoutes.productsUpdate)
 
 // Export router
 module.exports = router
