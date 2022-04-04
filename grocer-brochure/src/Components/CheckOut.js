@@ -4,6 +4,7 @@ import AuthContext from '../Context/AuthProvider'
 import {FaTrashAlt} from 'react-icons/fa'
 import axios from '../Database/axios'
 import context from 'react-bootstrap/esm/AccordionContext';
+import "./styles/Checkout.css";
 
 
 const Cart = () => {
@@ -66,6 +67,15 @@ const handleSubmit = (id) => {
     localStorage.setItem('shoppinglist', JSON.stringify(newCart));
 }
 
+const quantityChange = (id, quantity) => {
+    var newCart = []
+
+    newCart = Context.cart.map((item) => item.id === id ? { ...item, Quantity: quantity } : item);
+    Context.setCart(newCart)
+    console.log(newCart)
+    localStorage.setItem('shoppinglist', JSON.stringify(newCart));
+}
+
 const calculateTotal = () =>{
     var total = 0;
     Context.cart.map((item) => total += item.price * item.Quantity)
@@ -93,21 +103,22 @@ const testID = 5326;
 
 
     return (
-        <main>
+        <main className='checkout-main'>
+            <h1 className='checkout-h1'>Cart</h1>
             {Context.cart.length ? (
-                <ul>
+                <ul className='checkout-list'>
                     {Context.cart.map((item) => (
                         <li className="item" key={item.id}>
-                            <input
-                                type="checkbox"
-                                onChange={() => handleCheck(item.id)}
-                                checked={item.checked}
+                            <img />
+                            <label className='checkout-item'>{item.name}</label>
+                            <input   
+                                type='tel'   
+                                defaultValue={item.Quantity} 
+                                className='checkout-quantity' 
+                                maxLength={2}
+                                onChange={(e) => quantityChange(item.id, e.target.value)}
                             />
-                            <label
-                                style={(item.checked) ? { textDecoration: 'line-through' } : null}
-                                onDoubleClick={() => handleCheck(item.id)}
-                            >({item.id}) {item.name}</label>
-                            <label>----Quantity{item.Quantity} </label>
+                            <span>${item.price * item.Quantity}</span>
                             <FaTrashAlt
                                 onClick={() => handleDelete(item.id)}
                                 role="button"
@@ -119,9 +130,7 @@ const testID = 5326;
             ) : (
                 <p style={{ marginTop: '2rem' }}>Your list is empty.</p>
             )}
-
-        <button onClick = {() => handleAdd(testID)}>Add Item</button>
-        <button onClick = {() => handleHash()}>Hash Button :^)</button>
+            <button className='checkout-button'>Checkout</button>
         </main>
     )
 }
