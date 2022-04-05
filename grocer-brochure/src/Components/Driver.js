@@ -18,8 +18,8 @@ const Driver = () => {
                 <img />
                 <h3>USER_NAME</h3>
                 <p>ADDRESS</p>
-                <span className='driver-confirm'>/</span>
-                <span className='driver-deny'>X</span>
+                <a className='driver-confirm' href='/Driver/222'>Accept</a>
+                <span className='driver-deny'>Deny</span>
             </div>
         </main>
     )

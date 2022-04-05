@@ -12,7 +12,8 @@ import About from './Components/About.js';
 import StorePage from './Components/StorePage.js'; 
 import SignUp from './Components/SignUp.js';
 import CheckOut from './Components/CheckOut.js';
-import Driver from './Components/Driver';
+import Driver from './Components/Driver.js';
+import Delivery from './Components/Delivery.js';
 
 //Demo Pages To be Deleted
 import CostcoPage from './StorePages/CostcoPage.js';
@@ -32,6 +33,7 @@ ReactDOM.render(
       <Route path="Signup" element={<SignUp/>} />
       <Route path="Checkout" element={<CheckOut/>} />
       <Route path="Driver" element={<Driver/>} />
+      <Route path="Driver/:id" element={<Delivery/>} />
       {/*Routes to be delted in favor of passing storepage IDs into StorePage */}
       <Route path="CostcoPage" element={<CostcoPage/>} />
       <Route path="SafewayPage" element={<SafewayPage/>}/>
