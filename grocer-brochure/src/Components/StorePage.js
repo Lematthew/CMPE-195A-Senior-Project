@@ -2,7 +2,11 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from '../Database/axios';
-import  './styles/StorePage.css'
+import  './styles/StorePage.css';
+import {Carousel} from 'react-bootstrap';
+import Slider from '../StorePages/Slider.js';
+import aos from 'aos'
+import Aos from 'aos';
 
 function StorePage () {
   const params = useParams();
@@ -11,6 +15,8 @@ function StorePage () {
   const [success, setSuccess] = useState(false);
 
   useEffect(()=>{
+
+    Aos.init({duration: 2000});
 
     const run = async (e) => {
       try {
@@ -37,11 +43,11 @@ function StorePage () {
 
   const renderCard = (card) => {
     return (
-      <div class="card">
-        <div class="leftside-card">
+      <div data-aos ="fade-up" class="card">
+        <div data-aos = "fade-up" class="leftside-card">
           {/* <img src={card.image} alt={card.title}/> */}
         </div>
-        <div class="rightside-card">
+        <div data-aos ="fade-up" class="rightside-card">
           <h3>{card.name}</h3>
           <button>Add to Cart</button>
         </div>
@@ -53,6 +59,7 @@ function StorePage () {
       <main style={{ padding: "1rem 0" }}>
       <h2>This is a Store Page for {params.id}!</h2>
       <div>
+        <Slider/>
         <> {success ? (
           <div className = "card-container">
             {productInfo.data.map(renderCard)}

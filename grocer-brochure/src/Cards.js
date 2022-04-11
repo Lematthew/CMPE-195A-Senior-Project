@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from './Database/axios';
 import "./Cards.css";
+import aos from 'aos'
+import Aos from 'aos';
 
 const Cards = () => {
     const navigate = useNavigate();
@@ -17,6 +19,7 @@ const Cards = () => {
       });
     };
     useEffect(()=>{
+      Aos.init({duration: 2000});
 
       const run = async (e) => {
         try {
@@ -38,7 +41,7 @@ const Cards = () => {
     
     const renderCard = (card) => {
       return (
-        <div class="card" onClick={() => changeRoute(card.id)}>
+        <div data-aos ="fade-up" class="card" onClick={() => changeRoute(card.id)}>
           <div class="leftside-card">
             {/* <img src={card.image} alt={card.title}/> */}
           </div>
@@ -54,7 +57,7 @@ const Cards = () => {
 
       return (
         <> {success ? (
-          <div className = "card-container">
+          <div data-aos ="fade-up" className = "card-container">
             {merchantInfo.data.map(renderCard)}
           </div>
         ) : (

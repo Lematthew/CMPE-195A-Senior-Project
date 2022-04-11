@@ -25,6 +25,10 @@ c.execute("""INSERT INTO products VALUES(7, "Yogurt", 3, 2.99, "tastes good") ""
 c.execute("""INSERT INTO products VALUES(8, "Pasta", 3, 3.99, "tastes ok") """)
 c.execute("""INSERT INTO products VALUES(9, "Candy", 3, 4.99, "tastes bad") """)
 
+c.execute("""INSERT INTO StoreImage VALUES(1, "../../public/Images/safeway-logo.png", 3, 2.99, "tastes good") """)
+c.execute("""INSERT INTO StoreImage VALUES(2, "Pasta", 3, 3.99, "tastes ok") """)
+c.execute("""INSERT INTO StoreImage VALUES(3, "Candy", 3, 4.99, "tastes bad") """)
+
 #Datatypes:
 #Null
 #Integer (Whole Numbers)

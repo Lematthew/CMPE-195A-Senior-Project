@@ -1,5 +1,6 @@
-import React from 'react'
-import {Carousel} from 'react-bootstrap'
+import React from 'react';
+import {Carousel} from 'react-bootstrap';
+import axios from '../Database/axios';
 const Slider = () => {
     return (
         <>
@@ -8,7 +9,7 @@ const Slider = () => {
     <img
       className="d-block w-100"
       class="d-block mx-auto"
-      src="../Images/safeway-logo.png"
+      src= "../Images/fruitsimage.jpg"
       alt="First slide"
     />
     <Carousel.Caption>

@@ -4,6 +4,7 @@ import AuthContext from '../Context/AuthProvider'
 import {FaTrashAlt} from 'react-icons/fa'
 import axios from '../Database/axios'
 import context from 'react-bootstrap/esm/AccordionContext';
+import StripeCheckout from 'react-stripe-checkout'
 
 
 const Cart = () => {
@@ -83,6 +84,7 @@ const testID = 5;
             )}
 
         <button onClick = {() => handleAdd(testID)}>Add Item</button>
+        <StripeCheckout/>
         </main>
     )
 }
