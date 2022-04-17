@@ -45,13 +45,20 @@ exports.usersCreate = async (req, res) => {
 
   knex('users')
     .insert({
-      'email': req.body.email,
       'full_name': req.body.full_name,
+      'email': req.body.email,
       'hashed_password': req.body.hashed_password,
+      'address': req.body.address,
+      'city': req.body.city,
+      'zipcode': req.body.zipcode,
+      'role': req.body.role
     })
     .then(() => {
       // Send a success message in response
-      res.json({ message: `Created Account ${req.body.email} user: ${req.body.full_name}` })    })
+      res.json({ message: `Created Account ${req.body.email} user: ${req.body.full_name}`,
+                 'verified': true
+              })   
+    })
     .catch(err => {
       // Send a error message in response
       res.json({ message: `There was an error creating ${req.body.title} user: ${err}` })

@@ -4,7 +4,7 @@ import AuthContext from '../Context/AuthProvider'
 import axios from '../Database/axios'
 import './styles/SignUp.css'
 
-const LOGIN_URL = '/user/create'
+const SIGNUP_URL = '/user/create'
 
 
 const SignUp = () => {
@@ -13,13 +13,14 @@ const SignUp = () => {
   const userRef = useRef();
   const errRef = useRef();
 
+  //Singup Fields
   const [name,setName] = useState('');
   const [user,setUser] = useState('');
   const [pwd,setPwd] = useState('');
-  
   const [address,setAdress] = useState('');
   const [city,setCity] = useState('');
   const [zipcode,setZipcode] = useState('');
+  const [role,setRole] = useState('Customer');
 
 
   const [errMsg,setErrMsg] = useState('');
@@ -41,14 +42,15 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      const response = await axios.post(LOGIN_URL, 
+      const response = await axios.post(SIGNUP_URL, 
         JSON.stringify({
           'full_name': name,
           'email': user,
           'hashed_password': pwd,
           'address': address,
           'city': city,
-          'zipcode': zipcode
+          'zipcode': zipcode,
+          'role': role
           }),
           {
             headers: {'Content-Type': 'application/json'},
@@ -61,19 +63,10 @@ const SignUp = () => {
     else
       setErrMsg('Insufficient info')
     } catch(err){
-        if(!err?.response){
-          setErrMsg('No Response from Server');
-        }
-        else if(err.response?.status === 400){
-          setErrMsg('Missing Username or password');
-        }
-        else if(err.Response?.status === 401){
-          setErrMsg("Unauthorized")
-        }
-        else {
-          setErrMsg('Login Failed')
-        }
-
+        if(!err?.response){ setErrMsg('No Response from Server');  }
+        else if(err.response?.status === 400){setErrMsg('Missing Username or password');}
+        else if(err.Response?.status === 401){setErrMsg("Unauthorized")}
+        else {setErrMsg('Login Failed') }
     }
   }
 
@@ -108,8 +101,8 @@ const SignUp = () => {
         />
         <input
           type = "text" 
-          id= "username" 
-          placeholder="Username"
+          id= "email" 
+          placeholder="Email"
           ref = {userRef}
           autoComplete = "off"
           onChange = {(e) => setUser(e.target.value)}
@@ -156,16 +149,11 @@ const SignUp = () => {
           // value = {user}
           required
         />
-        <input
-          type = "text" 
-          id= "phone-number" 
-          placeholder="Phone Number"
-          ref = {userRef}
-          autoComplete = "off"
-          onChange = {(e) => setPwd(e.target.value)}
-          value = {pwd}
-          required
-        />
+      <select value = {role} name="roles" onChange={(e) => setRole(e.target.value)}>
+        <option value="Customer">Customer</option>
+        <option value="Driver">Driver</option>
+        <option value="Merchant">Merchant</option>
+      </select>
 
         </div>
         <button>Sign Up</button>

@@ -7,6 +7,6 @@ const ordersRoutes = require('./../controllers/orders-controller.js')
 const router = express.Router()
 router.get('/all', ordersRoutes.ordersAll)
 router.post('/create', ordersRoutes.ordersCreate)
-
+router.put('/update', ordersRoutes.orderUpdateStatus)
 
 module.exports = router
