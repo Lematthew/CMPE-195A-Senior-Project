@@ -59,7 +59,7 @@ const SignUp = () => {
       setAuth({user,pwd});
     }
     else
-      setErrMsg('Insuffienct info')
+      setErrMsg('Insufficient info')
     } catch(err){
         if(!err?.response){
           setErrMsg('No Response from Server');
