@@ -59,6 +59,18 @@
     align-items: center;
 }
 
+#driver-tag {
+    width: 18vh;
+    border-radius: 500px;
+    text-decoration: none;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 14px;
+}
+
 #about-tag p {
     margin-bottom: 0;
 }

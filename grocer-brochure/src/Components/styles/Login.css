@@ -38,7 +38,7 @@
     border-radius: 20px;
     border: 2px solid rgba(0, 0, 0, 0.02);
     background: rgba(136, 126, 126, 0.04);
-    height: 17%;
+    height: 20%;
 }
 
 .login-form button {
@@ -48,7 +48,7 @@
     border: 0;
     background-color: #74B88D;
     width: 30%;
-    height: 15%;
+    height: 18%;
 }
 
 .login-form button:hover {

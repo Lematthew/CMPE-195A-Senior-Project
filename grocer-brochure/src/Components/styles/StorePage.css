@@ -1,6 +1,6 @@
 .card-container {
     width: 60%;
-    height: 88vh;
+    /* height: 88vh; */
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -8,8 +8,8 @@
 }
 
 .card {
-    width: 49%;
-    height: 30%;
+    width: 550px;
+    height: 250px;
     border-radius: 20px;
     display: flex;
     flex-direction: row;
@@ -17,7 +17,6 @@
 }
 
 .card:hover {
-    background-color: #F7F7F7;
     transition: all .2s ease;
     -webkit-transition: all .2s ease;
     cursor: pointer;

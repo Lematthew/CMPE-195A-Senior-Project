@@ -43,10 +43,14 @@ const defaultCart = [
     }
 ]
 
-const currentCart = JSON.parse(localStorage.getItem('shoppinglist'));
+const defaultUser = {
+    id: 900
+}
 
+const currentCart = JSON.parse(localStorage.getItem('shoppinglist'));
+const currentUser = JSON.parse(localStorage.getItem('user'));
 export const AuthProvider = ({ children }) => {
-    const [auth, setAuth] = useState({'verified': false});
+    const [auth, setAuth] = useState({id: 500});
     const [cart, setCart] = useState(currentCart?.length ? currentCart : defaultCart);
 
     return (
