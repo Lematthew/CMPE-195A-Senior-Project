@@ -24,6 +24,11 @@ function Navbar(){
               <p>About</p>
             </div>
           </a>
+          <a href="/Driver" id="driver-tag">
+            <div class="svg-container">
+              <p>Driver</p>
+            </div>
+          </a>
           <a href="/Login" id="login-tag">
             <div class="svg-container">
               <p>Log in</p>

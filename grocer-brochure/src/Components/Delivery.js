@@ -8,7 +8,12 @@ import "./styles/Delivery.css";
 
 const Delivery = () => {
     return (
-        <main></main>
+        <main>
+            <div className='directions-box'>
+                <p className='direction-miles'>0.7 miles</p>
+                <p>East Santa Clara Street</p>
+            </div>
+        </main>
     )
 };
 

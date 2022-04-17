@@ -4,23 +4,30 @@ import AuthContext from '../Context/AuthProvider'
 import {FaTrashAlt} from 'react-icons/fa'
 import axios from '../Database/axios'
 import context from 'react-bootstrap/esm/AccordionContext';
+import { faker } from '@faker-js/faker';
 import "./styles/Driver.css";
 
 const Driver = () => {
 
-    const render = (status: Status) => {
-        return <h1>{status}</h1>;
+    const requests = [1, 2, 3, 4, 5]; 
+
+    const renderRequest = () => {
+        return (            
+        <div className='driver-request'>
+            <img />
+            <h3>{faker.name.firstName()}</h3>
+            <p>{faker.address.streetAddress()}</p>
+            <a className='driver-confirm' href='/Driver/222'>Accept</a>
+            <span className='driver-deny'>Deny</span>
+        </div>
+        );
       };
 
     return (
         <main className='driver-main'>
-            <div className='driver-request'>
-                <img />
-                <h3>USER_NAME</h3>
-                <p>ADDRESS</p>
-                <a className='driver-confirm' href='/Driver/222'>Accept</a>
-                <span className='driver-deny'>Deny</span>
-            </div>
+            {requests.map(request => {
+                return (renderRequest())
+            })}
         </main>
     )
 };
