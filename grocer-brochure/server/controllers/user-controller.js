@@ -31,7 +31,7 @@ exports.usersSpecific = async (req, res) => {
     })
     .then(userData => {
         if(userData.length >= 1)
-          res.json({'id': userData, 'verified': true, 'role': 'customer'})
+          res.json({'id':userData[0].id, 'verified': true, 'role': 'customer'})
         else
           res.json({'verified': false})
     })

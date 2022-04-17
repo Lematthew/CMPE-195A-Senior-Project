@@ -163,12 +163,12 @@ const testID = 5326;
                             <label className='checkout-item'>{item.name}</label>
                             <input   
                                 type='tel'   
-                                defaultValue={item.Quantity} 
+                                defaultValue={item.quantity} 
                                 className='checkout-quantity' 
                                 maxLength={2}
                                 onChange={(e) => quantityChange(item.id, e.target.value)}
                             />
-                            <span>${item.price * item.Quantity}</span>
+                            <span>${item.price * item.quantity}</span>
                             <FaTrashAlt
                                 onClick={() => handleDelete(item.id)}
                                 role="button"
