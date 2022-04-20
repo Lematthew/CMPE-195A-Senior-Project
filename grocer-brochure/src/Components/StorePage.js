@@ -4,6 +4,11 @@ import { useEffect, useState, useContext } from 'react';
 import AuthContext from '../Context/AuthProvider'
 import axios from '../Database/axios';
 import  './styles/StorePage.css'
+import {Carousel} from 'react-bootstrap';
+import Slider from '../StorePages/Slider.js';
+import aos from 'aos'
+import Aos from 'aos';
+//github branch
 
 function StorePage () {
 
@@ -14,6 +19,8 @@ function StorePage () {
   const Context = useContext(AuthContext)
 
   useEffect(()=>{
+
+    Aos.init({duration: 2000});
     const run = async (e) => {
       try {
         const productData = await axios.post(PRODUCTS_URL, JSON.stringify({
@@ -55,11 +62,11 @@ const cartContains = (product) => {
 
   const renderCard = (product) => {
     return (
-      <div className="card" key = {product.id}>
+      <div data-aos ="fade-up" className="card" key = {product.id}>
         <div className="leftside-card">
           {/* <img src={card.image} alt={card.title}/> */}
         </div>
-        <div className="rightside-card">
+        <div data-aos ="fade-up" className="rightside-card">
           <h3>{product.name}</h3>
           <button onClick = {() => handleAdd(product.id,5)}>Add to Cart</button>
         </div>
@@ -72,6 +79,7 @@ const cartContains = (product) => {
       <main style={{ padding: "1rem 0" }}>
       <h2>This is a Store Page for {params.id}!</h2>
       <div>
+      <Slider/>
         <> {success ? (
           <div className = "card-container">
             {Products.map((item) => renderCard (item))}
