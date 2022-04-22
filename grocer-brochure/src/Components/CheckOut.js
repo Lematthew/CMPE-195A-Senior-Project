@@ -5,6 +5,7 @@ import {FaTrashAlt} from 'react-icons/fa'
 import axios from '../Database/axios'
 import context from 'react-bootstrap/esm/AccordionContext';
 import "./styles/Checkout.css";
+import StripeCheckout from 'react-stripe-checkout'
 
 
 const Cart = () => {
@@ -180,7 +181,9 @@ const testID = 5326;
             ) : (
                 <p style={{ marginTop: '2rem' }}>Your list is empty.</p>
             )}
+            <h1 className='Total-h1'>Total: </h1>
             <button className='checkout-button' onClick={handleCheckout}>Checkout</button>
+            <StripeCheckout/>
         </main>
     )
 }
