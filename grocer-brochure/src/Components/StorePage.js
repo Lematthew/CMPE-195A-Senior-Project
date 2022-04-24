@@ -66,9 +66,14 @@ const cartContains = (product) => {
         <div className="leftside-card">
           {/* <img src={card.image} alt={card.title}/> */}
         </div>
-        <div data-aos ="fade-up" className="rightside-card">
-          <h3>{product.name}</h3>
-          <button onClick = {() => handleAdd(product.id,5)}>Add to Cart</button>
+        <div data-aos ="fade-up" className="rightside-card-store">
+          <div className="price-store">
+            <p>${product.price}</p>
+          </div>
+          <div className="name-add-store">
+            <h3>{product.name}</h3>
+            <button onClick = {() => handleAdd(product.id,5)}>Add to Cart</button>
+          </div>
         </div>
       </div>
     );

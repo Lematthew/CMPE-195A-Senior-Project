@@ -10,6 +10,8 @@ function Navbar(){
 
   const context = useContext(AuthContext);
 
+  console.log(context.auth.verified);
+
     return(
       <div>
         <div class="nav">
@@ -28,26 +30,26 @@ function Navbar(){
               <p>About</p>
             </div>
           </a>
-          {context.auth.verified  ? (
-          <section>
-          <a href="/Login" id="login-tag">
-            <div class="svg-container">
-              <p>Log in</p>
-            </div>
-          </a>
-          <a href="/Signup" id="signup-tag">
-            <div class="svg-container">
-              <p>Sign Up</p>
-            </div>
-          </a>
-          </section>
+          {context.auth.verified === false  ? (
+            <section className="verified-false">
+              <a href="/Login" id="login-tag">
+                <div class="svg-container">
+                  <p>Log in</p>
+                </div>
+              </a>
+              <a href="/Signup" id="signup-tag">
+                <div class="svg-container">
+                  <p>Sign Up</p>
+                </div>
+              </a>
+            </section>
             ) : (
             <section>
-          <a href="/Signup" id="signup-tag">
-            <div class="svg-container">
-              <p>Sign Out</p>
-            </div>
-          </a>
+              <a href="/Signup" id="signup-tag">
+                <div class="svg-container">
+                  <p>Sign Out</p>
+                </div>
+              </a>
             </section>
             )}
           <a href="/checkout" id="cart-tag">

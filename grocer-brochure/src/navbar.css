@@ -49,6 +49,10 @@
     -webkit-transition: all .4s ease;
 }
 
+.verified-false {
+    display: contents;
+}
+
 #about-tag {
     width: 18vh;
     border-radius: 500px;

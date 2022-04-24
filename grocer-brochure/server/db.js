@@ -72,9 +72,9 @@ knex.schema
           table.increments('id').primary()
           table.string('country').notNullable()
           table.string('merchant_name').notNullable()
-          table.string('image1_path').defaultTo("../Images/safeway-logo.png")
-          table.string('image2_path').defaultTo("../Images/safeway-logo.png")
-          table.string('image3_path').defaultTo("../Images/safeway-logo.png")
+          table.string('image1_path').defaultTo("../Images/safewayLogo.png")
+          table.string('image2_path').defaultTo("../Images/safewayLogo.png")
+          table.string('image3_path').defaultTo("../Images/safewayLogo.png")
           table.integer('admin_id')
         })
         .then(() => {

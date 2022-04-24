@@ -5,13 +5,13 @@ conn = sqlite3.connect("GrocerBrochure.db")
 #create a cursor
 c = conn.cursor()
 
-c.execute("""INSERT INTO  users (id, email, full_name, hashed_password) VALUES (3, "Vishnu@Adda.com",  "Vishnu Adda","Password")""")
+c.execute("""INSERT INTO  users VALUES (3, "Vishnu@Adda.com",  "Vishnu Adda","Password", "address", "city", "zipcode", "mobile", "role", "profilePic")""")
 c.execute("""INSERT INTO  users (id, email, full_name, hashed_password) VALUES (2, "Alexis@Chan.com", "Alexis Chan", "Password")""")
 c.execute("""INSERT INTO  users (id, email, full_name, hashed_password) VALUES (1, "Matthew@Le.com",  "Matthew Le", "Password")""")
 
-c.execute("""INSERT INTO merchants (id, country, merchant_name, admin_id) VALUES(4001, "USA", "Safeway",70766)""")
-c.execute("""INSERT INTO merchants (id, country, merchant_name, admin_id) VALUES(4002, "USA", "Costco", 15521)""")
-c.execute("""INSERT INTO merchants (id, country, merchant_name, admin_id) VALUES(4003, "Canada", "Walgreens", 42142)""")
+c.execute("""INSERT INTO merchants (id, country, merchant_name, admin_id, image1_path) VALUES(4001, "USA", "Safeway",70766, "../Images/safewayLogo.png")""")
+c.execute("""INSERT INTO merchants (id, country, merchant_name, admin_id, image1_path) VALUES(4002, "USA", "Costco", 15521, "../Images/costcoLogo.png")""")
+c.execute("""INSERT INTO merchants (id, country, merchant_name, admin_id, image1_path) VALUES(4003, "Canada", "Walgreens", 42142, "../Images/Walgreens-Logo.png")""")
 
 c.execute("""INSERT INTO products (id, name, merchant_id, price, description) VALUES (1, "Cheese", 4001, 2.99, "tastes good") """)
 c.execute("""INSERT INTO products (id, name, merchant_id, price, description) VALUES (2, "Coke", 4001, 3.99, "tastes ok") """)
