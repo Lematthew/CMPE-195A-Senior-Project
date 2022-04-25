@@ -8,6 +8,7 @@ import {Carousel} from 'react-bootstrap';
 import Slider from '../StorePages/Slider.js';
 import aos from 'aos'
 import Aos from 'aos';
+
 //github branch
 
 function StorePage () {
@@ -64,7 +65,7 @@ const cartContains = (product) => {
     return (
       <div data-aos ="fade-up" className="card" key = {product.id}>
         <div className="leftside-card">
-          {/* <img src={card.image} alt={card.title}/> */}
+          { <img src={product.image_path} alt={product.title}/>}
         </div>
         <div data-aos ="fade-up" className="rightside-card">
           <h3>{product.name}</h3>

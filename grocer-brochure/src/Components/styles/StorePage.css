@@ -1,3 +1,6 @@
+body{
+    background-color: #282c34
+}
 .card-container {
     width: 60%;
     /* height: 88vh; */

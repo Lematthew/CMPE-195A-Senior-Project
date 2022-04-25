@@ -73,7 +73,7 @@ knex.schema
           table.string('country').notNullable()
           table.string('merchant_name').notNullable()
           table.string('image1_path').defaultTo("../Images/safeway-logo.png")
-          table.string('image2_path').defaultTo("../Images/safeway-logo.png")
+          table.string('image2_path').defaultTo("../Images/applefruit.png")
           table.string('image3_path').defaultTo("../Images/safeway-logo.png")
           table.integer('admin_id')
         })
@@ -103,7 +103,7 @@ knex.schema
           table.integer('merchant_id').notNullable()
           table.float('price').notNullable()
           table.string('description').defaultTo("Really Good!")
-          table.string('image_path').defaultTo('../Images/default-product.png')
+          table.string('image_path').defaultTo("../Images/applefruit.png")
           table.foreign('merchant_id').references('merchants.id')
         })
         .then(() => {
