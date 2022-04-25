@@ -28,7 +28,7 @@ knex.schema
           table.string('zipcode').defaultTo('')
           table.string('mobile').defaultTo('')
           table.string('role').defaultTo('Customer')
-          table.string('profilePic').defaultTo('../Images/safeway-logo.png')
+          table.string('profilePic').defaultTo('defaultImage.png')
         })
         .then(() => {
           console.log('Table \'users\' created')
@@ -70,12 +70,14 @@ knex.schema
       if (!exists) {
         return knex.schema.createTable('merchants', (table)  => {
           table.increments('id').primary()
-          table.string('country').notNullable()
+          table.string('country').notNullable().defaultTo("United States")
           table.string('merchant_name').notNullable()
-          table.string('image1_path').defaultTo("../Images/safeway-logo.png")
-          table.string('image2_path').defaultTo("../Images/safeway-logo.png")
-          table.string('image3_path').defaultTo("../Images/safeway-logo.png")
+          table.string('image1_path').defaultTo("defaultImage.png")
+          table.string('image2_path').defaultTo("defaultImage.png")
+          table.string('image3_path').defaultTo("defaultImage.png")
+          table.string('image4_path').defaultTo("defaultImage.png")
           table.integer('admin_id')
+          table.foreign('admin_id').references('users.id')
         })
         .then(() => {
           console.log('Table \'merchants\' created')

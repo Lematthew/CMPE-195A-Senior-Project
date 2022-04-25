@@ -38,7 +38,7 @@ const Cards = () => {
     
     const renderCard = (card) => {
       return (
-        <div class="card" onClick={() => changeRoute(card.id)}>
+        <div class="card" onClick={() => changeRoute(card.admin_id)}>
           <div class="leftside-card">
             {/* <img src={card.image} alt={card.title}/> */}
           </div>

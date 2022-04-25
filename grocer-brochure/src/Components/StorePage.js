@@ -40,7 +40,7 @@ function StorePage () {
   const handleAdd = (id,quantity) => {
     var Item2Add = Products.find(product => product.id === id)
 
-    Item2Add.quantity = 2
+    Item2Add.quantity = quantity
     console.log(Item2Add)
     var newCart = []
 
@@ -61,6 +61,7 @@ const cartContains = (product) => {
 }
 
   const renderCard = (product) => {
+    product.quantity = 1;
     return (
       <div data-aos ="fade-up" className="card" key = {product.id}>
         <div className="leftside-card">
@@ -68,7 +69,17 @@ const cartContains = (product) => {
         </div>
         <div data-aos ="fade-up" className="rightside-card">
           <h3>{product.name}</h3>
-          <button onClick = {() => handleAdd(product.id,5)}>Add to Cart</button>
+          <button onClick = {() => handleAdd(product.id, product.quantity)}>Add to Cart</button>
+          <div class="form-group">
+          <label for="exampleFormControlSelect1">Amount</label>
+          <select class="form-control" id="item_quantity" onChange={(e) => product.quantity = e.target.value}>
+            <option value = '1'>1</option>
+            <option value = '2'>2</option>
+            <option value = '3'>3</option>
+            <option value = '4'>4</option>
+            <option value = '5'>5</option>
+          </select>
+        </div>
         </div>
       </div>
     );
