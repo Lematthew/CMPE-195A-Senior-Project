@@ -24,10 +24,11 @@ const Cards = () => {
           // console.log(JSON.stringify(merchantData?.data));
 
           setMerchantInfo(merchantData);
+          console.log(merchantInfo);
           if (merchantInfo != '') {
             setSuccess(true)
           }
-          console.log(merchantInfo.data)
+          // console.log(merchantInfo.data)
         } catch (e) {
 
         }
@@ -40,7 +41,7 @@ const Cards = () => {
       return (
         <div class="card" onClick={() => changeRoute(card.admin_id)}>
           <div class="leftside-card">
-            {/* <img src={card.image} alt={card.title}/> */}
+            <img src={card.image1_path} alt="hi"/>
           </div>
           <div class="rightside-card">
             <p>{card.merchant_name}</p>

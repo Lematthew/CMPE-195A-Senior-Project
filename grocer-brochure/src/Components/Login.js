@@ -32,7 +32,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try{
-      const response = await axios.post(LOGIN_URL, 
+      const response = await axios.get(LOGIN_URL, 
         JSON.stringify({
           'email': user,
           'hashed_password': pwd
@@ -42,6 +42,7 @@ const Login = () => {
 
           })
  
+      console.log(response);
     if(response.data.verified){
 
       setSuccess(response);

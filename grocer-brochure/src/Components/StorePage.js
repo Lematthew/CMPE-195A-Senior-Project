@@ -69,7 +69,6 @@ const cartContains = (product) => {
         </div>
         <div data-aos ="fade-up" className="rightside-card">
           <h3>{product.name}</h3>
-          <button onClick = {() => handleAdd(product.id, product.quantity)}>Add to Cart</button>
           <div class="form-group">
           <label for="exampleFormControlSelect1">Amount</label>
           <select class="form-control" id="item_quantity" onChange={(e) => product.quantity = e.target.value}>
@@ -80,6 +79,14 @@ const cartContains = (product) => {
             <option value = '5'>5</option>
           </select>
         </div>
+        <div data-aos ="fade-up" className="rightside-card-store">
+          <div className="price-store">
+            <p>${product.price}</p>
+          </div>
+          <div className="name-add-store">
+            <h3>{product.name}</h3>
+            <button onClick = {() => handleAdd(product.id,product.quantity)}>Add to Cart</button>
+          </div>
         </div>
       </div>
     );
