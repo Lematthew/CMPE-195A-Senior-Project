@@ -19,6 +19,7 @@ const [errMsg,setErrMsg]    = useState('');
 const calculateTotal = () =>{
     var total = 0;
     Context.cart.map((item) => total += item.price * item.quantity)
+    total = (Math.round(total * 100) / 100).toFixed(2);
     return total
 }
 

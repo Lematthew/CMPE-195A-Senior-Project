@@ -11,6 +11,10 @@ const Cards = () => {
     const [merchantInfo, setMerchantInfo] = useState('');
     const [success, setSuccess] = useState(false);
 
+      
+  const IMAGE_PATH = "/Images/"
+
+
     const changeRoute = (store) => {
       navigate(`/StorePage/${store}`, {
         title: store
@@ -41,7 +45,7 @@ const Cards = () => {
       return (
         <div class="card" onClick={() => changeRoute(card.admin_id)}>
           <div class="leftside-card">
-            <img src={card.image1_path} alt="hi"/>
+            <img src= {IMAGE_PATH.concat(card.image1_path)} alt="Error Missing Image"/>
           </div>
           <div class="rightside-card">
             <p>{card.merchant_name}</p>

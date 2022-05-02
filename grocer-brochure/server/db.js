@@ -105,7 +105,10 @@ knex.schema
           table.integer('merchant_id').notNullable()
           table.float('price').notNullable()
           table.string('description').defaultTo("Really Good!")
-          table.string('image_path').defaultTo('../Images/default-product.png')
+          table.string('image_path1').defaultTo('default-product.png')
+          table.string('image_path2').defaultTo('default-product.png')
+          table.string('image_path3').defaultTo('default-product.png')
+          table.string('image_path4').defaultTo('default-product.png')
           table.foreign('merchant_id').references('merchants.id')
         })
         .then(() => {
