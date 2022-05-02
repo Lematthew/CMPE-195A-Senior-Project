@@ -15,6 +15,7 @@ import CheckOut from './Components/CheckOut.js';
 import Driver from './Components/Driver.js';
 import Delivery from './Components/Delivery.js';
 import ProductPage from './Components/ProductPage.js';
+import Admin from './Components/Admin';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -31,6 +32,7 @@ ReactDOM.render(
       <Route path="Driver" element={<Driver/>} />
       <Route path="Driver/:id" element={<Delivery/>} />
       <Route path="Dogo" element={<ProductPage/>} />
+      <Route path="Admin" element={<Admin/>}/>
       <Route path="StorePage/:merchant_id/:id" element={<ProductPage/>} />
     </Routes>
     </AuthProvider>
