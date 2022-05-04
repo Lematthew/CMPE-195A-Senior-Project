@@ -41,7 +41,7 @@ const generateJSON = () => {
     return(JSON.stringify({
         'order_hash': hash_order,
         'total': total,
-        'user_id': 2,
+        'user_id': Context.Auth.id,
         'cart': Context.cart
     }))
 }

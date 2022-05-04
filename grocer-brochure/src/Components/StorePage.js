@@ -72,7 +72,7 @@ const cartContains = (product) => {
       <div data-aos ="fade-up" className="card" key ={product.id} onClick={() => changeRoute(product.id)}>
         <div className="leftside-card">
           <div style = {{"justify-content:": "center"}}>
-           <img src={IMAGE_PATH.concat("costcoChicken.jpg")} alt="MISSING IMAGE"/> 
+           <img src={IMAGE_PATH.concat(product.image_path)} alt="MISSING IMAGE"/> 
            </div>
         </div>
         <div data-aos ="fade-up" className="rightside-card">
@@ -101,30 +101,18 @@ const cartContains = (product) => {
     );
 }
 
-  const renderCard2 = (product) => {
+  const renderCard2 = () => {
     return(
-     <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src={IMAGE_PATH.concat("costcoChicken.jpg")} />
+     <Card style={{ width: '18rem' }} onClick={() => changeRoute("create")}>
+        <Card.Img variant="top" src={IMAGE_PATH.concat("Default-Logo.png")} />
         <Card.Body>
-          <Card.Title>{product.name}</Card.Title>
-          <Card.Text>
-              {product.description}
+          <Card.Title>Create New Product</Card.Title>
+          <Card.Text styles= {{'margin-top': "50px"}}> Hello
           </Card.Text>
-          <div class="form-group">
-          <label for="exampleFormControlSelect1">Amount</label>
-          <select class="form-control" id="item_quantity" onChange={(e) => product.quantity = e.target.value}>
-            <option value = '1'>1</option>
-            <option value = '2'>2</option>
-            <option value = '3'>3</option>
-            <option value = '4'>4</option>
-            <option value = '5'>5</option>
-          </select>
-          </div>
-          <Button variant="primary">Go somewhere</Button>
+          <button type="button" class="btn btn-primary">Primary</button>
         </Card.Body>
       </Card>
     )
-
   }
 
   return (
@@ -134,6 +122,7 @@ const cartContains = (product) => {
         <> {success ? (
           <div className = "card-container">
             {Products.map((item) => renderCard(item))}
+            {renderCard2()}
           </div>
           ) : (
             <div>

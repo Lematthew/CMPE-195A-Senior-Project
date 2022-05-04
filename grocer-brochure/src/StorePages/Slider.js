@@ -1,6 +1,7 @@
 import React from 'react'
 import {Carousel} from 'react-bootstrap'
-const Slider = () => {
+const Slider = (Card) => {
+
     return (
         <>
          <Carousel>
