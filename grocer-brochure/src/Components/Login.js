@@ -1,5 +1,6 @@
 import React from 'react';
 import {useRef, useState,useEffect,useContext} from 'react'
+
 import AuthContext from '../Context/AuthProvider'
 import axios from '../Database/axios'
 import  './styles/Login.css'
@@ -8,7 +9,7 @@ const Login = () => {
 
   const LOGIN_URL = '/user/specific'
 
-  const Context = useContext(AuthContext);
+  const Context   = useContext(AuthContext);
   const userRef   = useRef();
   const errRef    = useRef();
 
@@ -17,22 +18,16 @@ const Login = () => {
   const [errMsg,setErrMsg]    = useState('');
   const [success, setSuccess] = useState(false);
 
-  useEffect(()=> {
-
-    userRef.current.focus();
-
-  },[])
 
   useEffect(()=> {
-;
+
     setErrMsg('');
 
   },[user,pwd])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
     try{
-      const response = await axios.get(LOGIN_URL, 
+      const response = await axios.post(LOGIN_URL, 
         JSON.stringify({
           'email': user,
           'hashed_password': pwd
@@ -42,15 +37,15 @@ const Login = () => {
 
           })
  
-      console.log(response);
     if(response.data.verified){
 
       setSuccess(response);
-      Context.setAuth(response.data);
+      localStorage.setItem('user', JSON.stringify(response.data));
       setUser('');
       setPwd('');
     }
     else
+      console.log(response.data)
       setErrMsg('Incorrect info')
     } catch(err){
         if(!err?.response){
@@ -69,9 +64,9 @@ const Login = () => {
     }
   }
 
-
+  console.log(Context.auth.verified)
   return(
-    <> {success ? (
+    <> {Context.auth.verified ? (
         <section>
             <h1>You are logged in!</h1>
             <h2>{Context.auth.role} </h2>
@@ -80,6 +75,7 @@ const Login = () => {
             <p>
                 <a href="/">Go to Home</a>
             </p>
+            <button onclick = {console.log(Context.auth)}>Log In</button>
         </section>
     ) : (
     <section class="login-section">

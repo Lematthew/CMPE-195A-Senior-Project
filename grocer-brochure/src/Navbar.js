@@ -10,6 +10,11 @@ function Navbar(){
 
   const context = useContext(AuthContext);
 
+  const handleSignout = () =>{
+    localStorage.setItem('user', JSON.stringify({'verified': false}))
+    context.setAuth({'verified': false})
+  }
+
   console.log(context.auth.verified);
 
     return(
@@ -42,7 +47,7 @@ function Navbar(){
                   <p>Log in</p>
                 </div>
               </a>
-              <a href="/Signup" id="signup-tag">
+              <a href="/signup"  id="signup-tag">
                 <div class="svg-container">
                   <p>Sign Up</p>
                 </div>
@@ -50,7 +55,7 @@ function Navbar(){
             </section>
             ) : (
             <section>
-              <a href="/Signup" id="signup-tag">
+              <a onClick={handleSignout} id="signup-tag">
                 <div class="svg-container">
                   <p>Sign Out</p>
                 </div>

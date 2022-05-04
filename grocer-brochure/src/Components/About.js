@@ -1,28 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import AuthContext from '../Context/AuthProvider'
 import "./styles/About.css";
 
-const ProductPage = () => {
+const About = () => {
 
+    const Context  = useContext(AuthContext)
 
   
     return(
   <main style={{ padding: "1rem 0" }} className='about-main'> 
-  <div className='container'></div>
-        <div className="row">
-            <div class="col-sm-12 col-md-6 col-lg-2">Col One</div>
-            <div class="col-sm-12 col-md-6 col-lg-8">Col Two</div>
-        </div>
+    <pre>
 
-        <div className="row">
-            <div class="col-sm-6 order-sm-2">Col One</div>
-            <div class="col-sm-6 order-sm-1">Col Two</div>
-        </div>
-
-        <div className="row">
-            <div class="col-sm-4 offset-2">Col One</div>
-            <div class="col-sm-4 offset-1">Col Two</div>
-        </div>
+      <p>ID:{Context.auth.id}</p>
+      <p>role: {Context.auth.role}</p>
+      <p>verified: {String(Context.auth.verified)}</p>
+    </pre>
   </main>
     )
 };
-export default ProductPage;
+export default About;
