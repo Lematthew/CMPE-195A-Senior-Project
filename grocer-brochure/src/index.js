@@ -14,6 +14,7 @@ import SignUp from './Components/SignUp.js';
 import CheckOut from './Components/CheckOut.js';
 import Driver from './Components/Driver.js';
 import Delivery from './Components/Delivery.js';
+import Confirmation from './Components/Confirmation.js';
 
 //Demo Pages To be Deleted
 import CostcoPage from './StorePages/CostcoPage.js';
@@ -29,6 +30,7 @@ ReactDOM.render(
       <Route path="/" element={<App />} />
       <Route path="Login" element={<Login />} />
       <Route path="About" element={<About />} />
+      <Route path="Confirmation" element={<Confirmation/>} />
       <Route path="StorePage/:id" element={<StorePage/>} />
       <Route path="Signup" element={<SignUp/>} />
       <Route path="Checkout" element={<CheckOut/>} />

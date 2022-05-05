@@ -103,6 +103,8 @@ const handleCheckout = async (e) => {
     hashItem.pop()
 
    e.preventDefault();
+   //window.location.href='/Confirmation';
+   window.open("https://buy.stripe.com/test_14k4i435Bfk7cFy3cd");
 
 
 
@@ -181,9 +183,11 @@ const testID = 5326;
             ) : (
                 <p style={{ marginTop: '2rem' }}>Your list is empty.</p>
             )}
-            <h1 className='Total-h1'>Total: </h1>
-            <button className='checkout-button' onClick={handleCheckout}>Checkout</button>
+            <h1 className='Total-h1'>Total: $407.92</h1>
+            <button className='checkout-button' onClick={handleCheckout}>PAY</button>
             <StripeCheckout/>
+            
+            
         </main>
     )
 }
