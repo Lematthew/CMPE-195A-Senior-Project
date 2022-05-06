@@ -22,9 +22,10 @@ VALUES
 	) ;
 END;""")
 
-c.execute("""INSERT INTO  users (id, email, full_name, hashed_password) VALUES (3, "Vishnu@Adda.com",  "Vishnu Adda","Password")""")
-c.execute("""INSERT INTO  users (id, email, full_name, hashed_password) VALUES (2, "Alexis@Chan.com", "Alexis Chan", "Password")""")
-c.execute("""INSERT INTO  users (id, email, full_name, hashed_password) VALUES (1, "Matthew@Le.com",  "Matthew Le", "Password")""")
+c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4, "John@Smith.com",  "John Smith","Password","Driver")""")
+c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (3, "Vishnu@Adda.com",  "Vishnu Adda","Password","Customer")""")
+c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (2, "Alexis@Chan.com", "Alexis Chan", "Password","Customer")""")
+c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (1, "Matthew@Le.com",  "Matthew Le", "Password","Customer")""")
 
 c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4003, "Safeway@store.com",  "Safeway","Password","Merchant")""")
 c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4002, "Costco@store.com", "Costco", "Password","Merchant")""")

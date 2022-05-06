@@ -45,12 +45,14 @@ const defaultCart = [
 
 const currentCart = JSON.parse(localStorage.getItem('shoppinglist'));
 const currentUser = JSON.parse(localStorage.getItem('user'));
+const currentOrder = JSON.parse(localStorage.getItem('selecteduser'));
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState(currentUser?.verified ? currentUser : {'verified': false});
     const [cart, setCart] = useState(currentCart?.length ? currentCart : defaultCart);
+    const [driveOrder, setDriveOrder] = useState(currentOrder?.length ? currentOrder : {'delivering': false});
 
     return (
-        <AuthContext.Provider value={{ auth, setAuth, cart, setCart }}>
+        <AuthContext.Provider value={{ auth, setAuth, cart, setCart, driveOrder, setDriveOrder }}>
             {children}
         </AuthContext.Provider>
     )

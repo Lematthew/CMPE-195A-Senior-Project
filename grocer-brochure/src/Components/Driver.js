@@ -6,10 +6,19 @@ import axios from '../Database/axios'
 import context from 'react-bootstrap/esm/AccordionContext';
 import { faker } from '@faker-js/faker';
 import "./styles/Driver.css";
+import { request } from 'express';
 
 const Driver = () => {
 
-    const requests = [1, 2, 3, 4, 5]; 
+    const requests = [1,2,3,4,5];
+
+    // let requests = [
+    //     {'firstName': faker.name.firstName(), 'streetAddress': faker.address.streetAddress()},
+    //     {'firstName': faker.name.firstName(), 'streetAddress': faker.address.streetAddress()},
+    //     {'firstName': faker.name.firstName(), 'streetAddress': faker.address.streetAddress()},
+    //     {'firstName': faker.name.firstName(), 'streetAddress': faker.address.streetAddress()},
+    //     {'firstName': faker.name.firstName(), 'streetAddress': faker.address.streetAddress()}
+    // ];
 
     const renderRequest = () => {
         return (            

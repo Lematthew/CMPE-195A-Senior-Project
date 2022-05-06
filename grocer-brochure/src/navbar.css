@@ -43,6 +43,11 @@
     height: 8vh;
 }
 
+.no-tag {
+    opacity: 0;
+    position: absolute;
+}
+
 .nav a:hover {
     opacity: 80%;
     transition: all .4s ease;

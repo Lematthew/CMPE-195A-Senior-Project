@@ -24,14 +24,15 @@ exports.usersTest = async (req, res) => {
 exports.usersSpecific = async (req, res) => {
   // Get all users from database
   knex
-    .select('id') // select all records
+    .select('*') // select all records
     .from('users').where({       
     'email': req.body.email,
     'hashed_password': req.body.hashed_password
     })
     .then(userData => {
-        if(userData.length >= 1)
-          res.json({'id':userData[0].id, 'verified': true, 'role': 'customer'})
+        if(userData.length >= 1) {
+          res.json({'id':userData[0].id, 'verified': true, 'role': userData[0].role})
+        }
         else
           res.json({'verified': false})
     })
