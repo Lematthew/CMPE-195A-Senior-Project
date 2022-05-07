@@ -20,6 +20,9 @@ import Confirmation from './Components/Confirmation.js';
 import CostcoPage from './StorePages/CostcoPage.js';
 import SafewayPage from './StorePages/SafewayPage.js';
 import WalgreensPage from './StorePages/WalgreensPage.js';
+import ProductPage from './Components/ProductPage.js';
+import Admin from './Components/Admin';
+import NewProductPage from './Components/NewProductPage';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -36,10 +39,9 @@ ReactDOM.render(
       <Route path="Checkout" element={<CheckOut/>} />
       <Route path="Driver" element={<Driver/>} />
       <Route path="Driver/:id" element={<Delivery/>} />
-      {/*Routes to be delted in favor of passing storepage IDs into StorePage */}
-      <Route path="CostcoPage" element={<CostcoPage/>} />
-      <Route path="SafewayPage" element={<SafewayPage/>}/>
-      <Route path="WalgreensPage" element={<WalgreensPage/>}/>
+      <Route path="Admin" element={<Admin/>}/>
+      <Route path="StorePage/:merchant_id/:id" element={<ProductPage/>} />
+      <Route path="StorePage/:merchant_id/create" element={<NewProductPage/>} />
     </Routes>
     </AuthProvider>
   </React.StrictMode>

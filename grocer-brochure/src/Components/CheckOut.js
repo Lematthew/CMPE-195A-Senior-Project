@@ -17,19 +17,10 @@ var hash  = require('object-hash');
 const errRef                = useRef();
 const [errMsg,setErrMsg]    = useState('');
 
-// const [Total,setTotal] = useState()
-
-
-
-
-const cartContains = (product) => { 
-
-     return Context.cart.some(cartItem => cartItem.id === product.id)
-
-}
 const calculateTotal = () =>{
     var total = 0;
     Context.cart.map((item) => total += item.price * item.quantity)
+    total = (Math.round(total * 100) / 100).toFixed(2);
     return total
 }
 
@@ -38,27 +29,6 @@ const handleDelete = (id) => {
     Context.setCart(listItems);
     localStorage.setItem('shoppinglist', JSON.stringify(listItems));
   }
-
-const handleAdd = (id) => {
-    const Item2Add = Products.find(product => product.id === id)
-    var newCart = []
-
-    if(cartContains(Item2Add)){
-      newCart = Context.cart.map((item) => item.id === id ? { ...item, Quantity: item.Quantity + Item2Add.Quantity } : item);
-    }
-    else{
-    newCart = [...Context.cart, Item2Add]
-    }
-    Context.setCart(newCart)
-    console.log(newCart)
-    localStorage.setItem('shoppinglist', JSON.stringify(newCart));
-}
-
-const handleHash = () => {
-
-    console.log(generateJSON())
-
-}
 
 const generateJSON = () => {
     const total = calculateTotal()
@@ -72,18 +42,11 @@ const generateJSON = () => {
     return(JSON.stringify({
         'order_hash': hash_order,
         'total': total,
-        'user_id': 2,
+        'user_id': Context.Auth.id,
         'cart': Context.cart
     }))
 }
 
-const handleSubmit = (id) => {
-    const Item2Add = Products.find(product => product.id === id)
-    const newCart = [...Context.cart, Item2Add]
-    Context.setCart(newCart)
-    console.log(newCart)
-    localStorage.setItem('shoppinglist', JSON.stringify(newCart));
-}
 
 const quantityChange = (id, quantity) => {
     var newCart = []
@@ -95,11 +58,8 @@ const quantityChange = (id, quantity) => {
 }
 
 const handleCheckout = async (e) => {
-    const total = calculateTotal()
     var hashItem = Context.cart
     hashItem[4] = Date.now().toString()
-
-    const hash_order = hash(hashItem)
     hashItem.pop()
 
    e.preventDefault();
@@ -134,35 +94,14 @@ const handleCheckout = async (e) => {
 
     }
   }
-  
-const Products = [
-
-    {
-        id: 32532,
-        name: 'Dog',
-        quantity: 2,
-        price: 2.30
-    },
-
-    {
-        id: 5326,
-        name: 'Apples',
-        quantity: 2,
-        price: 4.00
-    }
-]
-
-const testID = 5326;
-
 
     return (
         <main className='checkout-main'>
-            <h1 className='checkout-h1'>Cart</h1>
+            <h1 className='checkout-h1'>Check Out!</h1>
             {Context.cart.length ? (
                 <ul className='checkout-list'>
                     {Context.cart.map((item) => (
                         <li className="item" key={item.id}>
-                            <img />
                             <label className='checkout-item'>{item.name}</label>
                             <input   
                                 type='tel'   
@@ -179,9 +118,11 @@ const testID = 5326;
                             />
                         </li>
                     ))}
+                    <label>Your total: ${calculateTotal()}</label>
+                    <button className='checkout-button' onClick={handleCheckout}>Checkout</button>
                 </ul>
             ) : (
-                <p style={{ marginTop: '2rem' }}>Your list is empty.</p>
+                <p style={{ marginTop: '2rem' }}>Your cart is empty.</p>
             )}
             <h1 className='Total-h1'>Total: $407.92</h1>
             <button className='checkout-button' onClick={handleCheckout}>PAY</button>

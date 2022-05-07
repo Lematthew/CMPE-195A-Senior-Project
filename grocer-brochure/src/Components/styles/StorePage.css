@@ -2,8 +2,8 @@ body{
     background-color: #282c34
 }
 .card-container {
-    width: 60%;
-    /* height: 88vh; */
+    width: 90%;
+    gap: 20px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -11,12 +11,23 @@ body{
 }
 
 .card {
-    width: 550px;
+    width: 45%;
+    max-width: 550px;
+    min-width: 450px;
     height: 250px;
     border-radius: 20px;
     display: flex;
     flex-direction: row;
    
+}
+
+@media screen and (max-width: 1333px) {
+    .card-container {
+        justify-content: center;
+    }
+    .card {
+        min-width: 500px;
+    }
 }
 
 .card:hover {
@@ -34,19 +45,29 @@ body{
     height: 150px;
 }
 
-.rightside-card {
+.rightside-card-store {
     width: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
-.rightside-card p {
-    
+.name-add-store {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.rightside-card button {
+.price-store {
+    width: 80%;
+    height: 30%;
+    display: flex;
+    justify-content: end;
+    padding-top: 20px;
+}
+
+.rightside-card-store button {
     background-color: #74B88D;
     border: none;
     color: white;
@@ -58,7 +79,7 @@ body{
     font-size: 16px;
 }
 
-.rightside-card button:hover {
+.rightside-card-store button:hover {
     opacity: 80%;
     transition: all .2s ease;
     -webkit-transition: all .2s ease;

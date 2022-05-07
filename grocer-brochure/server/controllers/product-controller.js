@@ -87,3 +87,23 @@ exports.productsSpecific = async (req, res) => {
       res.json({ message: `There was an error retrieving products: ${err}` })
     })
 }
+
+exports.productsSpecificProduct = async (req, res) => {
+  // Get Products from database from a specific merchant
+  knex
+    .select('*') // select all records
+    .from('products').where({       
+    'merchant_id': req.body.merchant_id,
+    'id': req.body.id
+    })
+    .then(productData => {
+        if(productData.length >= 1)
+          res.json(productData)
+        else
+          res.json({'verified': false})
+    })
+    .catch(err => {
+      // Send a error message in response
+      res.json({ message: `There was an error retrieving products: ${err}` })
+    })
+}

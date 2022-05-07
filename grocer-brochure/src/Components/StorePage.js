@@ -1,23 +1,28 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
+import { Card, Button} from 'react-bootstrap';
 import AuthContext from '../Context/AuthProvider'
 import axios from '../Database/axios';
 import  './styles/StorePage.css'
-import {Carousel} from 'react-bootstrap';
 import Slider from '../StorePages/Slider.js';
-import aos from 'aos'
 import Aos from 'aos';
-
-//github branch
 
 function StorePage () {
 
+  const navigate = useNavigate();
   const params = useParams();
   const PRODUCTS_URL = '/product/specific';
   const [Products, setProducts] = useState([]);
   const [success, setSuccess] = useState(false);
   const Context = useContext(AuthContext)
+
+  const IMAGE_PATH = "/Images/"
+
+  const changeRoute = (productId) => {
+    navigate(`/StorePage/${params.id}/${productId}`, {
+    });
+  };
 
   useEffect(()=>{
 
@@ -41,7 +46,7 @@ function StorePage () {
   const handleAdd = (id,quantity) => {
     var Item2Add = Products.find(product => product.id === id)
 
-    Item2Add.quantity = 2
+    Item2Add.quantity = quantity
     console.log(Item2Add)
     var newCart = []
 
@@ -62,28 +67,62 @@ const cartContains = (product) => {
 }
 
   const renderCard = (product) => {
+    product.quantity = 1;
     return (
-      <div data-aos ="fade-up" className="card" key = {product.id}>
+      <div data-aos ="fade-up" className="card" key ={product.id} onClick={() => changeRoute(product.id)}>
         <div className="leftside-card">
-          { <img src={product.image_path} alt={product.title}/>}
+          <div style = {{"justify-content:": "center"}}>
+           <img src={IMAGE_PATH.concat(product.image_path)} alt="MISSING IMAGE"/> 
+           </div>
         </div>
         <div data-aos ="fade-up" className="rightside-card">
-          <h3>{product.name}</h3>
-          <button onClick = {() => handleAdd(product.id,5)}>Add to Cart</button>
+
+        <div data-aos ="fade-up" className="rightside-card-store">
+          <div className="price-store">
+            <p>${product.price}</p>
+          </div>
+          <div className="name-add-store">
+            <h3>{product.name}</h3>
+            <button onClick = {() => handleAdd(product.id,product.quantity)}>Add to Cart</button>
+          </div>
+          <div class="form-group">
+          <label for="exampleFormControlSelect1">Amount</label>
+          <select class="form-control" id="item_quantity" onChange={(e) => product.quantity = e.target.value}>
+            <option value = '1'>1</option>
+            <option value = '2'>2</option>
+            <option value = '3'>3</option>
+            <option value = '4'>4</option>
+            <option value = '5'>5</option>
+          </select>
+        </div>
         </div>
       </div>
+      </div>
     );
-  };
+}
 
-  //#region View
+  const renderCard2 = () => {
+    return(
+     <Card style={{ width: '18rem' }} onClick={() => changeRoute("create")}>
+        <Card.Img variant="top" src={IMAGE_PATH.concat("Default-Logo.png")} />
+        <Card.Body>
+          <Card.Title>Create New Product</Card.Title>
+          <Card.Text styles= {{'margin-top': "50px"}}> Hello
+          </Card.Text>
+          <button type="button" class="btn btn-primary">Primary</button>
+        </Card.Body>
+      </Card>
+    )
+  }
+
   return (
       <main style={{ padding: "1rem 0" }}>
-      <h2>This is a Store Page for {params.id}!</h2>
       <div>
       <Slider/>
         <> {success ? (
           <div className = "card-container">
-            {Products.map((item) => renderCard (item))}
+            {Products.map((item) => renderCard(item))}
+            {renderCard2()}
           </div>
           ) : (
             <div>
@@ -91,11 +130,8 @@ const cartContains = (product) => {
             </div>
           )} 
         </>
-      </div>
+        </div>
       </main>
   );
-
-  //#endregion
-}
-
+          }
 export default StorePage;
