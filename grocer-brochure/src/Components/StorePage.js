@@ -17,6 +17,16 @@ function StorePage () {
   const [success, setSuccess] = useState(false);
   const Context = useContext(AuthContext)
 
+
+  const [filter, setFilter] = useState('');
+  const searchText = (event) => {
+    setFilter(event.target.value);
+  }
+  
+
+  console.warn(filter)
+
+
   const IMAGE_PATH = "/Images/"
 
   const changeRoute = (productId) => {
