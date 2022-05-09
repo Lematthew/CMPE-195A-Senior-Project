@@ -7,6 +7,7 @@ import axios from '../Database/axios';
 import  './styles/StorePage.css'
 import Slider from '../StorePages/Slider.js';
 import Aos from 'aos';
+import aos from 'aos';
 
 function StorePage () {
 
@@ -51,7 +52,8 @@ function StorePage () {
     var newCart = []
 
     if(cartContains(Item2Add)){
-      newCart = Context.cart.map((item) => item.id === id ? { ...item, quantity:  item.quantity + Item2Add.quantity } : item);
+      newCart = Context.cart.map((item) => item.id === id ?
+         { ...item, quantity:  parseInt(item.quantity) + parseInt(Item2Add.quantity) } : item);
     }
     else{
       console.log(Item2Add)
@@ -72,7 +74,7 @@ const cartContains = (product) => {
       <div data-aos ="fade-up" className="card" key ={product.id} onClick={() => changeRoute(product.id)}>
         <div className="leftside-card">
           <div style = {{"justify-content:": "center"}}>
-           <img src={IMAGE_PATH.concat(product.image_path)} alt="MISSING IMAGE"/> 
+           <img src={IMAGE_PATH.concat(product.image_path1)} alt="MISSING IMAGE"/> 
            </div>
         </div>
         <div data-aos ="fade-up" className="rightside-card">
@@ -115,6 +117,10 @@ const cartContains = (product) => {
     )
   }
 
+  console.log(Context.auth.id)
+  console.log(params.id)
+  console.log(Context.auth.id === params.id)
+
   return (
       <main style={{ padding: "1rem 0" }}>
       <div>
@@ -122,7 +128,8 @@ const cartContains = (product) => {
         <> {success ? (
           <div className = "card-container">
             {Products.map((item) => renderCard(item))}
-            {renderCard2()}
+            {Context.auth.id == params.id ?  renderCard2(): console.log(params.id) }
+        
           </div>
           ) : (
             <div>

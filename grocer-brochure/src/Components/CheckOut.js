@@ -104,7 +104,7 @@ const handleCheckout = async (e) => {
                                 maxLength={2}
                                 onChange={(e) => quantityChange(item.id, e.target.value)}
                             />
-                            <span>${item.price * item.quantity}</span>
+                            <span>${(Math.round((item.price * item.quantity) * 100) / 100).toFixed(2)}</span>
                             <FaTrashAlt
                                 onClick={() => handleDelete(item.id)}
                                 role="button"

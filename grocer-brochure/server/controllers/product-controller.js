@@ -23,14 +23,15 @@ exports.productsNew = async (req, res) => {
       'name': req.body.name,
       'merchant_id': req.body.merchant_id,
       'price': req.body.price,
-      'description': req.body.description
+      'description': req.body.description,
+      'image_path1': req.file.filename
     })
     .then(() => {
       // Send a success message in response
-      res.json({ message: `Product added ${req.body.name} merchant_id: ${req.body.merchant_id}` })    })
+      res.json({ message: `Product added ${req.body.name} merchant_id: ${req.body.merchant_id}`, 'verified': true })    })
     .catch(err => {
       // Send a error message in response
-      res.json({message: "Product not created ERROR :C "})
+      res.json({message:  `Product not created ERROR ${err} `})
     })
 }
 

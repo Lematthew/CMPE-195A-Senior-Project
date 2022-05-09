@@ -16,8 +16,10 @@ const ProductPage = () => {
     const path2 = IMAGE_PATH.concat(ImageName)
     const params = useParams();
 
-    const [Product, setProduct] = useState({"Nothing": true});
+    const [Product, setProduct] = useState('');
+    const [quantity, setQuantity] = useState(1);
     const [success, setSuccess] = useState(false);
+    const [show, setShow] = useState(false);
     const Context = useContext(AuthContext)
 
     const PRODUCTS_URL = "product/specificProduct"
@@ -44,20 +46,40 @@ const ProductPage = () => {
         run();
       }, [params.id, Product, success, params.merchant_id])
 
+      const cartContains = (product) => { 
+        return Context.cart.some(cartItem => cartItem.id === product.id)
+    }
 
+      const handleAdd = (item,quantity) => {
+        var Item2Add = item
+        Item2Add.quantity = quantity
+        console.log(Item2Add)
+        var newCart = []
+    
+        if(cartContains(Item2Add)){
+          newCart = Context.cart.map((item) => item.id === Item2Add.id ? { ...item, quantity:  parseInt(item.quantity) + parseInt(Item2Add.quantity) } : item);
+        }
+        else{
+        newCart = [...Context.cart, Item2Add]
+        }
+        Context.setCart(newCart)
+        localStorage.setItem('shoppinglist', JSON.stringify(newCart));
+        setShow(true)
+        
+    }
   
     return(
         
     <main><body>
     <div className="container d-grid">
-    <Alert key="success"variant="success" show = {false}>
+    <Alert key="success"variant="success" show = {show} style ={{'font-size': '24px'}}>
             Added Item to cart!
     </Alert>
     <h1> Product Information</h1>
         <div className="row">
             <div className="col-sm-6">
                 <div className="p-3 border bg-light">
-                 <img src= {IMAGE_PATH.concat(Product.image_path)} alt="Missing Image"
+                 <img src= {IMAGE_PATH.concat(Product.image_path1)} alt="Missing Image"
                  style ={{
                      "width": 500,
                      "height":480,
@@ -74,7 +96,7 @@ const ProductPage = () => {
                 </div>
                 <div class="form-group">
                 <label for="exampleFormControlSelect1">Amount</label>
-                <select class="form-control" id="item_quantity" style={{ "font-size": "24px" }}>
+                <select class="form-control" id="item_quantity" style={{ "font-size": "24px" }} onChange={e => setQuantity(e.target.value)}>
                     <option value = '1'>1</option>
                     <option value = '2'>2</option>
                     <option value = '3'>3</option>
@@ -85,10 +107,8 @@ const ProductPage = () => {
 
             </div>
         </div>
-
-        <div className="row my-custom-row justify-content-center align-items-center" style= {{"margin-top": "50px"}}>
-
-            <Button variant="success" size="lg" onClick={console.log(params.merchant_id)}>
+        <div className="row my-custom-row justify-content-center align-items-center" style= {{"margintop": "50px"}}>
+            <Button variant="success" size="lg" style={{'font-size': '36px'}} onClick= { e => handleAdd(Product,quantity)}>
                      Add To Cart
             </Button>
         </div>
