@@ -141,6 +141,7 @@ knex.schema
           table.float('order_total').notNullable()
           table.integer('merchant_id').notNullable()
           table.string('status').defaultTo('INCOMPLETE')
+          table.foreign('user_id').references('user.id')
           table.foreign('product_id').references('products.id')
           table.foreign('merchant_id').references('merchants.id')
 
