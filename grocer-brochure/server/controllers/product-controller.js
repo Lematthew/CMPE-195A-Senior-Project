@@ -16,6 +16,19 @@ exports.productsAll = async (req, res) => {
     })
 }
 
+exports.merchantsAll = async(req,res) => {
+  knex
+    .select({req})
+    .from("merchants")
+    .then(merchantData => {
+      res.json(merchantData)
+    })
+    .catch(err => {
+      res.json({ message: `There was an error retrieving merchants: ${err}` })
+    })
+    
+}
+
 exports.productsNew = async (req, res) => {
   
   knex('products')

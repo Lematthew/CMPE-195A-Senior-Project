@@ -12,6 +12,7 @@ import About from './Components/About.js';
 import StorePage from './Components/StorePage.js'; 
 import SignUp from './Components/SignUp.js';
 import CheckOut from './Components/CheckOut.js';
+import Search from './Components/Search.js';
 import Driver from './Components/Driver.js';
 import Delivery from './Components/Delivery.js';
 import Confirmation from './Components/Confirmation.js';
@@ -37,6 +38,7 @@ ReactDOM.render(
       <Route path="StorePage/:id" element={<StorePage/>} />
       <Route path="Signup" element={<SignUp/>} />
       <Route path="Checkout" element={<CheckOut/>} />
+      <Route path="Search" element={<Search/>} />
       <Route path="Driver" element={<Driver/>} />
       <Route path="Driver/:id" element={<Delivery/>} />
       <Route path="Admin" element={<Admin/>}/>

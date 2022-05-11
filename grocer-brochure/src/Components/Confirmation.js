@@ -1,11 +1,13 @@
 import React from 'react';
 import "./styles/Confirmation.css";
+import ProgressBar from 'react-bootstrap/ProgressBar'
 import Card from 'react-bootstrap/Card';
 
 const Confirmation = () => (
     
   <main style={{ padding: "1rem 0" }} className='confirmation-main'> 
   <div class= 'newCard'>
+  <ProgressBar animated now={30} />
       <Card>
     <Card.Img variant="top" src="/deliveryPhoto.jpg"/>
     <Card.Body>

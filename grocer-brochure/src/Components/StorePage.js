@@ -7,6 +7,7 @@ import axios from '../Database/axios';
 import  './styles/StorePage.css'
 import Slider from '../StorePages/Slider.js';
 import Aos from 'aos';
+import HomeCarousel from '../Components/HomeCarousel';
 
 function StorePage () {
 
@@ -114,6 +115,7 @@ const cartContains = (product) => {
   const renderCard2 = () => {
     return(
      <Card style={{ width: '18rem' }} onClick={() => changeRoute("create")}>
+       
         <Card.Img variant="top" src={IMAGE_PATH.concat("Default-Logo.png")} />
         <Card.Body>
           <Card.Title>Create New Product</Card.Title>
@@ -128,7 +130,8 @@ const cartContains = (product) => {
   return (
       <main style={{ padding: "1rem 0" }}>
       <div>
-      <Slider/>
+      <HomeCarousel/>
+      
         <> {success ? (
           <div className = "card-container">
             {Products.map((item) => renderCard(item))}

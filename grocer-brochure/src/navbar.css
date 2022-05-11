@@ -24,6 +24,7 @@
 .search-container {
     display: flex;
     align-items: center;
+    width: 15%;
     padding-top: 2px;
     padding-bottom: 5px;
     border-bottom: 2px solid #707070;
@@ -31,6 +32,7 @@
 
 .search-bar::placeholder {
     color: #74B88D;;
+    
 }
 
 .search-bar:focus {
@@ -62,6 +64,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+#search-tag {
+    width: 18vh;
+    border-radius: 500px;
+    text-decoration: none;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 #driver-tag {
