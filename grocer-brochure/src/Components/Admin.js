@@ -9,23 +9,31 @@ import Aos from 'aos';
 
 const Admin = () => {
 
+    const IMAGE_PATH = "/Images/"
+
     return (
         <main className='admin-main'>
             <div className='leftside-admin'>
-                <span className='admin-profile'></span>
+                <img src= {IMAGE_PATH.concat('/safeWayLogo.png')} alt="Error Missing Image"/>
                 <h1>Manage Products</h1>
                 <h1>Edit Profile</h1>
                 <h1>Edit Store Information</h1>
             </div>
             <div className='rightside-admin'>
                 <h1>Incoming Orders</h1>
-                <div className='order-box'></div>
+                <div className='order-box'>
+                <div className='admin-outgoing'>
+                    <h3>Lucas Chen</h3>
+                </div>
+                </div>
                 <h1>Outgoing Orders</h1>
                 <div className='order-box'>
                     <div className='admin-outgoing'>
-                        <h3>Matthew Le</h3>
+                        <h3>Johnathan Smith</h3>
                     </div>
-                    <div className='admin-outgoing'></div>
+                    <div className='admin-outgoing'>
+                        <h3>Emma Davis</h3>
+                    </div>
                 </div>
             </div>
         </main>
