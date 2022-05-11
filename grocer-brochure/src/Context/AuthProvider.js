@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { faker } from '@faker-js/faker';
 
 const AuthContext = createContext({});
 
@@ -43,14 +44,30 @@ const defaultCart = [
     }
 ]
 
+const defaultOrders = [
+    {'firstName': 'Sigurd', 'streetAddress': '9109 Lueilwitz Throughway'},
+    {'firstName': 'Anibal', 'streetAddress': '8647 Eino Oval'},
+    {'firstName': 'Bell', 'streetAddress': '76829 Murphy Plains'},
+    {'firstName': 'Jennyfer', 'streetAddress': '05239 Janis Square'},
+    {'firstName': 'Ryder', 'streetAddress': '64910 Daniel Walk'}
+];
+
 const currentCart = JSON.parse(localStorage.getItem('shoppinglist'));
 const currentUser = JSON.parse(localStorage.getItem('user'));
+const currentOrders = JSON.parse(localStorage.getItem('orders'));
+const currentDelivery = JSON.parse(localStorage.getItem('selecteduser'));
+const currentDeniedOrders = JSON.parse(localStorage.getItem('deniedorders'));
+
+
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState(currentUser?.verified ? currentUser : {'verified': false});
     const [cart, setCart] = useState(currentCart?.length ? currentCart : defaultCart);
+    const [orders, setOrders] = useState(currentOrders?.length ? currentOrders : defaultOrders);
+    const [delivery, setDelivery] = useState(currentDelivery?.length ? currentDelivery : {'delivering': false});
+    const [deniedOrders, setDeniedOrders] = useState(currentDeniedOrders?.length ? currentDeniedOrders : {'deny': false});
 
     return (
-        <AuthContext.Provider value={{ auth, setAuth, cart, setCart }}>
+        <AuthContext.Provider value={{ auth, setAuth, cart, setCart, orders, setOrders, delivery, setDelivery, deniedOrders, setDeniedOrders }}>
             {children}
         </AuthContext.Provider>
     )

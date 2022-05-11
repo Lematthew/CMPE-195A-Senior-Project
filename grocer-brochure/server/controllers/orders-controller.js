@@ -83,9 +83,26 @@ exports.orderUpdateStatus = async (req, res) => {
       })
       .then(() => {
         // Send a success message in response
-        res.json({ message: `Product updated ${req.body.name} merchant_id: ${req.body.merchant_id}` })    })
+        res.json({ message: `Product updated merchant_id: ${req.body.merchant_id}` })    })
       .catch(err => {
         // Send a error message in response
         res.json({ message: `There was an error retrieving merchants: ${err}` })
       })
+  }
+
+  exports.orderIncompleteList = async (req, res) => {
+
+    knex.select('*')
+    .from('order_items')
+    .join('users', function() {
+      this.on('order_items.user_id', '=', 'users.id')
+    })
+    .where('role', '=', 'Customer')
+    .then(orders => {
+      res.json(orders) 
+     })
+     .catch(err => {
+      // Send a error message in response
+      res.json({ message: `There was an error retrieving the data: ${err}` })
+ })
   }

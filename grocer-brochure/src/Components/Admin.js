@@ -21,7 +21,12 @@ const Admin = () => {
                 <h1>Incoming Orders</h1>
                 <div className='order-box'></div>
                 <h1>Outgoing Orders</h1>
-                <div className='order-box'></div>
+                <div className='order-box'>
+                    <div className='admin-outgoing'>
+                        <h3>Matthew Le</h3>
+                    </div>
+                    <div className='admin-outgoing'></div>
+                </div>
             </div>
         </main>
     )
