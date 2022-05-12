@@ -30,18 +30,18 @@ const handleDelete = (id) => {
   }
 
 const generateJSON = () => {
-    const total = calculateTotal()
+    const total = calculateTotal();
 
-    var hashItem = Context.cart
-    hashItem[4] = Date.now().toString()
+    var hashItem = Context.cart;
+    hashItem.push(Date.now().toString());
 
-    const hash_order = hash(hashItem)
-    hashItem.pop()
+    const hash_order = hash(hashItem);
+    hashItem.pop();
 
     return(JSON.stringify({
         'order_hash': hash_order,
         'total': total,
-        'user_id': Context.Auth.id,
+        'user_id': Context.auth.id,
         'cart': Context.cart
     }))
 }
@@ -57,18 +57,18 @@ const quantityChange = (id, quantity) => {
 }
 
 const handleCheckout = async (e) => {
-    var hashItem = Context.cart
-    hashItem[4] = Date.now().toString()
-    hashItem.pop()
     e.preventDefault();
 
     try{
+      console.log('checkout');
       const response = await axios.post(ORDERS_URL,  generateJSON(),          {
         headers: {'Content-Type': 'application/json'},
       })
  
     if(response){
-        console.log(response.body.message)
+        console.log(`Checkout: ${response.body.message}`)
+        Context.setCart([])
+        localStorage.setItem('shoppinglist', JSON.stringify([]));
     }
     else
       setErrMsg('Incorrect info')
@@ -113,7 +113,7 @@ const handleCheckout = async (e) => {
                         </li>
                     ))}
                     <label>Your total: ${calculateTotal()}</label>
-                    <button className='checkout-button' onClick={handleCheckout}>Checkout</button>
+                    <button className='checkout-button' onClick={(e) => handleCheckout(e)}>Checkout</button>
                 </ul>
             ) : (
                 <p style={{ marginTop: '2rem' }}>Your cart is empty.</p>
