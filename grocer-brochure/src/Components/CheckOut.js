@@ -30,13 +30,13 @@ const handleDelete = (id) => {
   }
 
 const generateJSON = () => {
-    const total = calculateTotal()
+    const total = calculateTotal();
 
     var hashItem = Context.cart
     hashItem[Context.cart.length] = Date.now().toString()
 
-    const hash_order = hash(hashItem)
-    hashItem.pop()
+    const hash_order = hash(hashItem);
+    hashItem.pop();
 
     return(JSON.stringify({
         'order_hash': hash_order,
@@ -65,6 +65,7 @@ const quantityChange = (id, quantity) => {
 const handleCheckout = async (e) => {
     e.preventDefault();
     try{
+      console.log('checkout');
       const response = await axios.post(ORDERS_URL,  generateJSON(),          {
         headers: {'Content-Type': 'application/json'},
       })
@@ -120,8 +121,7 @@ const handleCheckout = async (e) => {
                         </li>
                     ))}
                     <label>Your total: ${calculateTotal()}</label>
-                    <button className='checkout-button' onClick={(e)=> handleCheckout(e)}>Checkout</button>
-                    <button className='checkout-button' onClick={()=> emptyCart()}>Bugs</button>
+                    <button className='checkout-button' onClick={(e) => handleCheckout(e)}>Checkout</button>
                 </ul>
             ) : (
                 <p style={{ marginTop: '2rem' }}>Your cart is empty.</p>

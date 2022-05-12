@@ -20,27 +20,25 @@ const Driver = () => {
 
     useEffect(()=>{
         const run = async (e) => {
+            if (!Context.deniedOrders.deny) {
+                try{
+                    const response = await axios.get(ORDERS_INCOMPLETE_URL)
+            
+                    if(response) {
+                        localStorage.setItem('orders', JSON.stringify(response.data));
+                        setSuccess(true)
 
-            if (Context.deniedOrders.deny) {
-            try{
-                const response = await axios.get(ORDERS_INCOMPLETE_URL)
-        
-                if(response) {
-                    localStorage.setItem('orders', JSON.stringify(response.data));
-                    console.log(response.data);
-                    setSuccess(true)
+                        let denyOrder = Context.deniedOrders;
+                        denyOrder.deny = true;
 
-                    let denyOrder = Context.deniedOrders;
-                    denyOrder.deny = true;
-
-                    localStorage.setItem('deniedOrders', JSON.stringify(denyOrder))
+                        localStorage.setItem('deniedOrders', JSON.stringify(denyOrder))
+                    }
+                } catch (err) {
+                    console.log(err);
                 }
-            } catch (err) {
-                console.log(err);
             }
         }
         run();
-        }
     }, [success])
 
     const handleDelete = (request) => {

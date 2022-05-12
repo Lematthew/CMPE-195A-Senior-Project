@@ -78,10 +78,7 @@ exports.productsSpecific = async (req, res) => {
     'merchant_id': req.body.merchant_id
     })
     .then(productData => {
-        if(productData.length >= 1)
-          res.json(productData)
-        else
-          res.json({'verified': false})
+      res.json(productData)
     })
     .catch(err => {
       // Send a error message in response

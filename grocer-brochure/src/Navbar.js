@@ -15,8 +15,6 @@ function Navbar(){
     context.setAuth({'verified': false})
   }
 
-  console.log(context.auth.verified);
-
     return(
       <div>
         <div className="nav">
