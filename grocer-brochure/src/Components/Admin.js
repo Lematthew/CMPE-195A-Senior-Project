@@ -11,6 +11,28 @@ const Admin = () => {
 
     const IMAGE_PATH = "/Images/"
 
+    const OUTGOING_URL = '/orders/outgoing';
+
+    const Context   = useContext(AuthContext);
+    const [success, setSuccess] = useState(false);
+
+    const outgoingJSON = JSON.stringify({'merchant_id': Context.auth.id});
+
+    useEffect(()=>{
+        const run = async (e) => {
+            console.log('admin run')
+            try{
+                console.log(outgoingJSON)
+                const response = await axios.get(OUTGOING_URL, outgoingJSON);
+
+                console.log(response.data);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        run();
+    }, [success])
+
     return (
         <main className='admin-main'>
             <div className='leftside-admin'>
@@ -22,17 +44,11 @@ const Admin = () => {
             <div className='rightside-admin'>
                 <h1>Incoming Orders</h1>
                 <div className='order-box'>
-                <div className='admin-outgoing'>
-                    <h3>Lucas Chen</h3>
-                </div>
                 </div>
                 <h1>Outgoing Orders</h1>
                 <div className='order-box'>
                     <div className='admin-outgoing'>
                         <h3>Johnathan Smith</h3>
-                    </div>
-                    <div className='admin-outgoing'>
-                        <h3>Emma Davis</h3>
                     </div>
                 </div>
             </div>

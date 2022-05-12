@@ -20,11 +20,14 @@ const Driver = () => {
 
     useEffect(()=>{
         const run = async (e) => {
+            console.log('tried run');
             if (!Context.deniedOrders.deny) {
+                console.log('did run')
                 try{
                     const response = await axios.get(ORDERS_INCOMPLETE_URL)
             
                     if(response) {
+                        Context.setOrders(response.data);
                         localStorage.setItem('orders', JSON.stringify(response.data));
                         setSuccess(true)
 
@@ -54,7 +57,7 @@ const Driver = () => {
             try{
                 const response = await axios.put(ORDERS_OUTGOING_URL, JSON.stringify({
                     'order_hash': request.order_hash,
-                    'status': 'INCOMPLETE',
+                    'status': 'OUTGOING',
                     'merchant_id': request.merchant_id
                 }), 
                 {

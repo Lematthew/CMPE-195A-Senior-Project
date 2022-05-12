@@ -90,9 +90,10 @@ exports.orderUpdateStatus = async (req, res) => {
       })
   }
 
-  exports.orderIncompleteList = async (req, res) => {
+exports.orderIncompleteList = async (req, res) => {
 
     knex.select('*')
+    .groupBy('order_hash')
     .from('order_items')
     .join('users', function() {
       this.on('order_items.user_id', '=', 'users.id')
@@ -105,4 +106,19 @@ exports.orderUpdateStatus = async (req, res) => {
       // Send a error message in response
       res.json({ message: `There was an error retrieving the data: ${err}` })
  })
-  }
+}
+
+exports.orderOutgoingList = async (req, res) => {
+
+  knex.select('*')
+  .from('order_items')
+  .where('merchant_id', '=', req.body.merchant_id)
+  .andWhere('status', '=', 'OUTGOING')
+  .then(orders => {
+    res.json(orders) 
+   })
+   .catch(err => {
+    // Send a error message in response
+    res.json({ message: `There was an error retrieving the data: ${err}`})
+  })
+}
