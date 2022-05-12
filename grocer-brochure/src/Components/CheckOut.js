@@ -33,7 +33,7 @@ const generateJSON = () => {
     const total = calculateTotal()
 
     var hashItem = Context.cart
-    hashItem[4] = Date.now().toString()
+    hashItem[Context.cart.length] = Date.now().toString()
 
     const hash_order = hash(hashItem)
     hashItem.pop()
@@ -41,14 +41,20 @@ const generateJSON = () => {
     return(JSON.stringify({
         'order_hash': hash_order,
         'total': total,
-        'user_id': Context.Auth.id,
+        'user_id': Context.auth.id,
         'cart': Context.cart
     }))
 }
 
+const emptyCart = () => {
+  var listItems ={}
+  Context.setCart(listItems);
+  localStorage.setItem('shoppinglist', JSON.stringify(listItems));
+}
+
 
 const quantityChange = (id, quantity) => {
-    var newCart = []
+    var newCart = {}
 
     newCart = Context.cart.map((item) => item.id === id ? { ...item, Quantity: quantity } : item);
     Context.setCart(newCart)
@@ -57,21 +63,22 @@ const quantityChange = (id, quantity) => {
 }
 
 const handleCheckout = async (e) => {
-    var hashItem = Context.cart
-    hashItem[4] = Date.now().toString()
-    hashItem.pop()
     e.preventDefault();
-
     try{
       const response = await axios.post(ORDERS_URL,  generateJSON(),          {
         headers: {'Content-Type': 'application/json'},
       })
  
-    if(response){
-        console.log(response.body.message)
+
+    if(response.data.success){
+      console.log("hi")
+      console.log(response.data.message)
+      emptyCart()
     }
-    else
+    else{
       setErrMsg('Incorrect info')
+      console.log(response.data.message)
+    }
     } catch(err){
         if(!err?.response){
           setErrMsg('No Response from Server');
@@ -113,7 +120,8 @@ const handleCheckout = async (e) => {
                         </li>
                     ))}
                     <label>Your total: ${calculateTotal()}</label>
-                    <button className='checkout-button' onClick={handleCheckout}>Checkout</button>
+                    <button className='checkout-button' onClick={(e)=> handleCheckout(e)}>Checkout</button>
+                    <button className='checkout-button' onClick={()=> emptyCart()}>Bugs</button>
                 </ul>
             ) : (
                 <p style={{ marginTop: '2rem' }}>Your cart is empty.</p>

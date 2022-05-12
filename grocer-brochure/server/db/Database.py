@@ -5,6 +5,11 @@ conn = sqlite3.connect("GrocerBrochure.db")
 #create a cursor
 c = conn.cursor()
 
+c.execute("""delete From users;""")
+c.execute("""delete From products;""")
+c.execute("""delete From order_items;""")
+c.execute("""delete From merchants;""")
+
 c.execute("""CREATE TRIGGER IF NOT EXISTS create_merchant_account 
    AFTER insert ON users
    WHEN NEW.role = 'Merchant'
