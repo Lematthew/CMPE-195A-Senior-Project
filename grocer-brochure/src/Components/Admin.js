@@ -15,23 +15,39 @@ const Admin = () => {
 
     const Context   = useContext(AuthContext);
     const [success, setSuccess] = useState(false);
-
-    const outgoingJSON = JSON.stringify({'merchant_id': Context.auth.id});
+    const [outgoingOrders, setOutgoingOrders] = useState({});
 
     useEffect(()=>{
         const run = async (e) => {
-            console.log('admin run')
             try{
-                console.log(outgoingJSON)
-                const response = await axios.get(OUTGOING_URL, outgoingJSON);
+                const response = await axios.get(OUTGOING_URL, {
+                    params: {
+                        'merchant_id': Context.auth.id 
+                    }
+                });
+                
+                setOutgoingOrders(response.data)
 
-                console.log(response.data);
+                console.log(outgoingOrders);
             } catch (err) {
                 console.log(err);
             }
         }
         run();
+        console.log(`orders: ${outgoingOrders}`);
     }, [success])
+
+    const handleThing = () => {
+        console.log(outgoingOrders);
+
+        const groups = [...new Set(outgoingOrders.map(q => q.order_hash))];
+
+        const groupProducts =
+        groups.map( group => 
+                outgoingOrders.filter(order => order.order_hash = group));
+
+        console.log(groupProducts);
+    };
 
     return (
         <main className='admin-main'>
@@ -51,6 +67,7 @@ const Admin = () => {
                         <h3>Johnathan Smith</h3>
                     </div>
                 </div>
+                <button onClick={() => handleThing()}>Do thing</button>
             </div>
         </main>
     )

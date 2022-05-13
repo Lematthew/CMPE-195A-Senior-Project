@@ -112,7 +112,10 @@ exports.orderOutgoingList = async (req, res) => {
 
   knex.select('*')
   .from('order_items')
-  .where('merchant_id', '=', req.body.merchant_id)
+  .join('products', function() {
+    this.on('order_items.product_id', '=', 'products.id')
+  })
+  .where('order_items.merchant_id', '=', req.query.merchant_id)
   .andWhere('status', '=', 'OUTGOING')
   .then(orders => {
     res.json(orders) 
