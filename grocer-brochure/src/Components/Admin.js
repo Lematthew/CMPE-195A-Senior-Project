@@ -174,6 +174,7 @@ const Admin = () => {
         <main className='admin-main'>
              <> {GP.length > -1 ? (
             <><div className='leftside-admin'>
+                    <img className="admin-profile" src= {imgFile !== '' ? URL.createObjectURL(imgFile) : IMAGE_PATH.concat(profilePic)}></img>
                     <button  onClick = {() => changeRoute()} className='admin-button'>
                         Manage Products
                     </button>

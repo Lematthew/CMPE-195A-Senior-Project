@@ -57,6 +57,9 @@ const Cards = () => {
                   <Badge pill bg="success" style={{'font-size': '16px'}}>
                     Local
                   </Badge>
+                  <Badge pill bg="primary" style={{'font-size': '16px'}}>
+                  SUPER COOL
+                  </Badge>
                   </div>
               ):(<div>
 
