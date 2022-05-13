@@ -120,8 +120,8 @@ const handleCheckout = async (e) => {
                     ))}  
                     <label>Your total: ${calculateTotal()}</label>
                     <div>
-                    <button className='checkout-button' onClick={(e) => handleCheckout(e)}>Checkout</button>
-                    <button className='checkout-button' onClick={(e) => window.open("https://buy.stripe.com/test_14k4i435Bfk7cFy3cd")}>Edit Payment</button>
+                        <button className='checkout-button' onClick={(e) => handleCheckout(e)}>Checkout</button>
+                        <button className='checkout-button' onClick={(e) => window.open("https://buy.stripe.com/test_aEUg0M0Xt5Jx8pifZ0")}>Edit Payment</button>
                     </div>
                 </ul>
             ) : (

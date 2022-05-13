@@ -19,5 +19,7 @@ router.post('/test',upload.single('image'),(req,res) =>{
     res.send({'Message': req.file.filename})
 })
 
+router.post('/merchantImage',upload.single('image') ,productsRoutes.productsUpdateImageProfile)
+
 // Export router
 module.exports = router

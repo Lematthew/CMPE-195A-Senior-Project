@@ -79,6 +79,10 @@ c.execute("""UPDATE merchants set image1_path = 'rainbow.png' WHERE merchants.ad
 c.execute("""UPDATE merchants set image1_path = 'somaburgersjpg.jpg' WHERE merchants.admin_id = '4011';""") 
 c.execute("""UPDATE merchants set image1_path = 'teahouse.jpg' WHERE merchants.admin_id = '4012';""" )
 c.execute("""UPDATE merchants set image1_path = 'valencia farmers market.png' WHERE merchants.id = '4010';""")
+c.execute("""UPDATE merchants set image1_path = 'missionFoods.png' WHERE merchants.id = '4009';""")
+c.execute("""UPDATE merchants set image1_path = 'safewayLogo.png' WHERE merchants.id = '4001';""")
+c.execute("""UPDATE merchants set image1_path = 'costcoLogo.png' WHERE merchants.id = '4002';""")
+c.execute("""UPDATE merchants set image1_path = 'Walgreens-Logo.png' WHERE merchants.id = '4003';""")
 
 #c.execute("""INSERT INTO merchants (id, country, merchant_name, admin_id) VALUES(4001, "USA", "Safeway",70766)""")
 #c.execute("""INSERT INTO merchants (id, country, merchant_name, admin_id) VALUES(4002, "USA", "Costco", 15521)""")

@@ -3,16 +3,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./navbar.css";
 import AuthContext from './Context/AuthProvider';
 import {useContext} from 'react';
+import {useNavigate} from 'react-router-dom'
 
 
 
 function Navbar(){
 
   const context = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSignout = () =>{
     localStorage.setItem('user', JSON.stringify({'verified': false}))
     context.setAuth({'verified': false})
+    navigate('/login')
   }
 
     return(

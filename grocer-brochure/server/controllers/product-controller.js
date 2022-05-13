@@ -106,3 +106,20 @@ exports.productsSpecificProduct = async (req, res) => {
       res.json({ message: `There was an error retrieving products: ${err}` })
     })
 }
+
+exports.productsUpdateImageProfile = async(req, res) => {
+
+  knex('merchants')
+  .update({
+    'image1_path': req.file.filename
+  })
+  .where('admin_id', '=' ,req.body.id) // find correct record based on id
+  .then(() => {
+    // Send a success message in response
+    res.json({ message: `Profile Updated`, 'file_name': req.file.filename, 'valid': true})
+  })
+  .catch(err => {
+    // Send a error message in response
+    res.json({ message: `There was an error: ${err}`, 'valid': false})
+  })
+}

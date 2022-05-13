@@ -144,7 +144,7 @@ knex.schema
           table.string('status').defaultTo('INCOMPLETE')
           table.foreign('user_id').references('user.id')
           table.foreign('product_id').references('products.id')
-          table.foreign('merchant_id').references('merchants.id')
+          table.foreign('merchant_id').references('merchants.admin_id')
 
         })
         .then(() => {

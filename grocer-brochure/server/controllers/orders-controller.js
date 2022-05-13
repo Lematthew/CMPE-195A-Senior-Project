@@ -110,10 +110,11 @@ exports.orderIncompleteList = async (req, res) => {
 
 exports.orderOutgoingList = async (req, res) => {
 
-  knex.select('users.full_name','o.quantity', 'o.order_hash', 'o.status', 'products.name')
+  knex.select('users.full_name','o.quantity', 'o.order_hash', 'o.status', 'products.name', 'merchants.image1_path')
   .from('order_items as o')
   .join('products', 'products.id', '=', 'o.product_id')
   .join('users', 'users.id', '=', 'o.user_id')
+  .join('merchants', 'merchants.admin_id', '=', 'o.merchant_id')
   .where('o.merchant_id', '=', req.query.merchant_id)
   .then(orders => {
     res.json(orders) 
