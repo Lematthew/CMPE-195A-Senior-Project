@@ -1,5 +1,6 @@
 import React from 'react';
 import {useRef, useState,useEffect,useContext} from 'react'
+import { Collapse } from 'react-bootstrap';
 
 import AuthContext from '../Context/AuthProvider'
 import axios from '../Database/axios'
@@ -26,6 +27,7 @@ const Login = () => {
   },[user,pwd])
 
   const handleSubmit = async (e) => {
+    e.preventDefault()
     try{
       const response = await axios.post(LOGIN_URL, 
         JSON.stringify({
@@ -36,10 +38,11 @@ const Login = () => {
             headers: {'Content-Type': 'application/json'},
 
           })
- 
+    console.log(response.data)
     if(response.data.verified){
-
+      console.log('Valid')
       setSuccess(response);
+      Context.setAuth(response.data)
       localStorage.setItem('user', JSON.stringify(response.data));
       setUser('');
       setPwd('');

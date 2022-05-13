@@ -60,7 +60,7 @@ const currentDeniedOrders = JSON.parse(localStorage.getItem('deniedorders'));
 
 
 export const AuthProvider = ({ children }) => {
-    const [auth, setAuth] = useState(currentUser?.verified ? currentUser : {'verified': false});
+    const [auth, setAuth] = useState(currentUser?.id != null ? currentUser : {'verified': false});
     const [cart, setCart] = useState(currentCart?.length ? currentCart : defaultCart);
     const [orders, setOrders] = useState(currentOrders?.length ? currentOrders : defaultOrders);
     const [delivery, setDelivery] = useState(currentDelivery?.length ? currentDelivery : {'delivering': false});

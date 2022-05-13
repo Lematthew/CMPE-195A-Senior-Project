@@ -16,6 +16,7 @@ const Admin = () => {
     const Context   = useContext(AuthContext);
     const [success, setSuccess] = useState(false);
     const [outgoingOrders, setOutgoingOrders] = useState({});
+    const [GP, setGP] = useState({});
 
     useEffect(()=>{
         const run = async (e) => {
@@ -27,17 +28,20 @@ const Admin = () => {
                 });
                 
                 setOutgoingOrders(response.data)
-
+                setSuccess(true)
                 console.log(outgoingOrders);
             } catch (err) {
                 console.log(err);
             }
         }
         run();
+        if(success)
+         filterOrders()
+
         console.log(`orders: ${outgoingOrders}`);
     }, [success])
 
-    const handleThing = () => {
+    const filterOrders = () => {
         console.log(outgoingOrders);
 
         const groups = [...new Set(outgoingOrders.map(q => q.order_hash))];
@@ -46,29 +50,58 @@ const Admin = () => {
         groups.map( group => 
                 outgoingOrders.filter(order => order.order_hash = group));
 
-        console.log(groupProducts);
+        setGP(groupProducts)
+        console.log(GP);
     };
+
+    const renderRequest = (request) => {
+
+        if(request.length > 0)
+        return (            
+        <div className='admin-outgoing'>
+            <h2>{request[0].full_name}</h2>
+            <div>{request.map(product => renderProduct(product))}</div>
+        </div>
+        )
+        else
+             return
+      }
+
+      
+    const renderProduct = (product) => {
+        return (            
+        <div>
+            <p>{product.name}</p>
+        </div>
+        );
+      };
+
+
 
     return (
         <main className='admin-main'>
-            <div className='leftside-admin'>
-                <img src= {IMAGE_PATH.concat('/safeWayLogo.png')} alt="Error Missing Image"/>
-                <h1>Manage Products</h1>
-                <h1>Edit Profile</h1>
-                <h1>Edit Store Information</h1>
-            </div>
-            <div className='rightside-admin'>
-                <h1>Incoming Orders</h1>
-                <div className='order-box'>
-                </div>
-                <h1>Outgoing Orders</h1>
-                <div className='order-box'>
-                    <div className='admin-outgoing'>
-                        <h3>Johnathan Smith</h3>
-                    </div>
-                </div>
-                <button onClick={() => handleThing()}>Do thing</button>
-            </div>
+             <> {GP.length > -1 ? (
+            <><div className='leftside-admin'>
+                    <img src={IMAGE_PATH.concat('/safeWayLogo.png')} alt="Error Missing Image" />
+                    <h1>Manage Products</h1>
+                    <h1>Edit Profile</h1>
+                    <h1>Edit Store Information</h1>
+                </div><div className='rightside-admin'>
+                        <h1>Outgoing Orders</h1>
+                        <div className='order-box'>
+                        {GP.map(request => {
+                            return (renderRequest(request))
+                        })}
+                        </div>
+                    </div></>
+             ) : (
+                <div>
+                <h1>Loading</h1>
+              </div>
+
+             )
+            }
+            </>  
         </main>
     )
 };
