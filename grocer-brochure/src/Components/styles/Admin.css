@@ -59,3 +59,20 @@
 .admin-outgoing:hover {
     cursor: pointer;
 }
+
+.admin-button {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    color: #707070;
+    text-align: center;
+    text-decoration: none;
+    font-size: 40px;
+}
+
+.admin-quantity {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-top: 15px;
+}

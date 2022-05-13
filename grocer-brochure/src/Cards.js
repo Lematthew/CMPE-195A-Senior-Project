@@ -55,7 +55,7 @@ const Cards = () => {
             </span>
             {card.is_local ? (<div>
                   <Badge pill bg="success" style={{'font-size': '16px'}}>
-                    LOCAL 
+                    Local
                   </Badge>
                   </div>
               ):(<div>
