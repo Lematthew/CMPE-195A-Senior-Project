@@ -123,3 +123,21 @@ exports.orderOutgoingList = async (req, res) => {
     res.json({ message: `There was an error retrieving the data: ${err}`})
   })
 }
+
+exports.orderOutgoingDriver = async (req, res) => {
+
+  knex.select('*')
+  .from('order_items')
+  .join('users', 'users.id', '=', 'order_items.user_id')
+  .join('products', 'products.id', '=', 'order_items.product_id')
+  .where('status', '=', 'OUTGOING')
+  .orderBy('order_id', 'desc')
+  .limit(1)
+  .then(orders => {
+    res.json(orders) 
+   })
+   .catch(err => {
+    // Send a error message in response
+    res.json({ message: `There was an error retrieving the data: ${err}`})
+  })
+}

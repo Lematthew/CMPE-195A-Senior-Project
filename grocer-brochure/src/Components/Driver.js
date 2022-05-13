@@ -76,10 +76,10 @@ const Driver = () => {
     const renderRequest = (request) => {
         return (            
         <div className='driver-request' key = {request.order_hash}>
-            <div className='driver-img'><img /></div>
+            <div className='driver-img'></div>
             <div className='driver-h3'><h3 >{request.full_name}</h3></div>
             <div className='driver-p'><p>{request.address}</p></div>
-            <div className='driver-button'><a className='driver-confirm' onClick={() => handleAccept(request)} href='/Driver/222'>Accept</a></div>
+            <div className='driver-button'><a className='driver-confirm' onClick={() => handleAccept(request)} href={'/Driver/' + request.full_name}>Accept</a></div>
             <div className='driver-button'><span onClick={() => handleDelete(request)} className='driver-deny'>Deny</span></div>
         </div>
         );
