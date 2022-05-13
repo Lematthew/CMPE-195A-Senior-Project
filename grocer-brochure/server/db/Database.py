@@ -72,11 +72,6 @@ c.execute("""INSERT INTO products (id, name, merchant_id, price, description) VA
 c.execute("""INSERT INTO products (id, name, merchant_id, price, description) VALUES (7465, "Rice", 4003, 4.99, "tastes bad") """)
 c.execute("""INSERT INTO products (id, name, merchant_id, price, description) VALUES (5321, "Tomato", 4003, 4.99, "tastes bad") """)
 
-# c.execute("""INSERT INTO products (id, name, merchant_id, price, description) VALUES(34215, "Human Flesh", 4003, 4.99, "tastes bad") """)
-
-c.execute("""INSERT INTO products (id, name, merchant_id, price, description) VALUES (431, "Dog", 4002, 4.99, "tastes good (boy)") """)
-c.execute("""INSERT INTO products (id, name, merchant_id, price, description) VALUES (67352, "Cats", 4002, 4.99, "tastes Catty") """)
-c.execute("""INSERT INTO products (id, name, merchant_id, price, description) VALUES (5323, "Motivation to work on senior project", 4002, 4.99, "Almost all gone") """)
 c.execute("""INSERT INTO products (id, name, merchant_id, price, description) VALUES (4251, "Sandwhich", 4002, 4.75, "Subway bad") """)
 
 c.execute("""INSERT INTO order_items (order_id, user_id, product_id, quantity, order_total, merchant_id, order_hash, created_at) VALUES (1, 1, 1, 1, 2.99, 4001, "111", "Jan") """)

@@ -45,11 +45,6 @@ const defaultCart = [
 ]
 
 const defaultOrders = [
-    {'firstName': 'Sigurd', 'streetAddress': '9109 Lueilwitz Throughway'},
-    {'firstName': 'Anibal', 'streetAddress': '8647 Eino Oval'},
-    {'firstName': 'Bell', 'streetAddress': '76829 Murphy Plains'},
-    {'firstName': 'Jennyfer', 'streetAddress': '05239 Janis Square'},
-    {'firstName': 'Ryder', 'streetAddress': '64910 Daniel Walk'}
 ];
 
 const currentCart = JSON.parse(localStorage.getItem('shoppinglist'));
@@ -64,7 +59,7 @@ export const AuthProvider = ({ children }) => {
     const [cart, setCart] = useState(currentCart?.length ? currentCart : defaultCart);
     const [orders, setOrders] = useState(currentOrders?.length ? currentOrders : defaultOrders);
     const [delivery, setDelivery] = useState(currentDelivery?.length ? currentDelivery : {'delivering': false});
-    const [deniedOrders, setDeniedOrders] = useState(currentDeniedOrders?.length ? currentDeniedOrders : {'deny': false});
+    const [deniedOrders, setDeniedOrders] = useState(currentDeniedOrders ? {'deny': false}: {'deny': false});
 
     return (
         <AuthContext.Provider value={{ auth, setAuth, cart, setCart, orders, setOrders, delivery, setDelivery, deniedOrders, setDeniedOrders }}>

@@ -45,12 +45,12 @@ const Cards = () => {
       return (
         <div class="card" onClick={() => changeRoute(card.admin_id)}>
           <div class="leftside-card">
-            <img src= {IMAGE_PATH.concat(card.image1_path)} alt="Error Missing Image"/>
+            <img src= {IMAGE_PATH.concat(card.image2_path)} alt="Error Missing Image"/>
           </div>
           <div class="rightside-card">
             <p>{card.merchant_name}</p>
             <span class="rating">
-              <p class="rating-number">4.7</p>
+              <p class="rating-number">{Math.floor(Math.random() * 500)/100 }</p>
             </span>
           </div>
         </div>

@@ -1,11 +1,10 @@
 import React from 'react';
 import {useContext, useState, useRef, useEffect} from 'react'
 import AuthContext from '../Context/AuthProvider'
-import {FaTrashAlt} from 'react-icons/fa'
 import axios from '../Database/axios'
-import context from 'react-bootstrap/esm/AccordionContext';
-import { faker } from '@faker-js/faker';
 import "./styles/Driver.css";
+import { Button } from 'react-bootstrap';
+import context from 'react-bootstrap/esm/AccordionContext';
 
 const Driver = () => { 
 
@@ -20,9 +19,7 @@ const Driver = () => {
 
     useEffect(()=>{
         const run = async (e) => {
-            console.log('tried run');
-            if (!Context.deniedOrders.deny) {
-                console.log('did run')
+
                 try{
                     const response = await axios.get(ORDERS_INCOMPLETE_URL)
             
@@ -30,25 +27,25 @@ const Driver = () => {
                         Context.setOrders(response.data);
                         localStorage.setItem('orders', JSON.stringify(response.data));
                         setSuccess(true)
-
-                        let denyOrder = Context.deniedOrders;
-                        denyOrder.deny = true;
-
-                        localStorage.setItem('deniedOrders', JSON.stringify(denyOrder))
+                        
+                        Context.deniedOrders = true;
+                        localStorage.setItem('deniedOrders', JSON.stringify({deny: true}))
                     }
                 } catch (err) {
                     console.log(err);
                 }
-            }
+            
         }
+   
+        if(!success)
         run();
     }, [success])
 
-    const handleDelete = (request) => {
+    const handleDelete = (e,request) => {
         let requests = Context.orders;
         requests.splice(requests.indexOf(request), 1);
         localStorage.setItem('orders', JSON.stringify(requests));
-        window.location.reload(false);
+        window.location.reload(false)
     }
 
     const handleAccept = (request) => {
@@ -78,12 +75,12 @@ const Driver = () => {
 
     const renderRequest = (request) => {
         return (            
-        <div className='driver-request'>
+        <div className='driver-request' key = {request.order_hash}>
             <img />
             <h3>{request.full_name}</h3>
             <p>{request.address}</p>
             <a className='driver-confirm' onClick={() => handleAccept(request)} href='/Driver/222'>Accept</a>
-            <span onClick={() => handleDelete(request)} className='driver-deny'>Deny</span>
+            <span onClick={(e) => handleDelete(e,request)} className='driver-deny'>Deny</span>
         </div>
         );
       };
@@ -93,6 +90,7 @@ const Driver = () => {
             {Context.orders.map(request => {
                 return (renderRequest(request))
             })}
+
         </main>
     )
 };
