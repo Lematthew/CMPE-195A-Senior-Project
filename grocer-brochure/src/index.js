@@ -17,6 +17,7 @@ import Delivery from './Components/Delivery.js';
 import ProductPage from './Components/ProductPage.js';
 import Admin from './Components/Admin';
 import NewProductPage from './Components/NewProductPage';
+import Confirmation from './Components/Confirmation.js';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -28,6 +29,7 @@ ReactDOM.render(
       <Route path="Login" element={<Login />} />
       <Route path="About" element={<About />} />
       <Route path="StorePage/:id" element={<StorePage/>} />
+      <Route path="Confirmation" element={<Confirmation/>} />
       <Route path="Signup" element={<SignUp/>} />
       <Route path="Checkout" element={<CheckOut/>} />
       <Route path="Driver" element={<Driver/>} />

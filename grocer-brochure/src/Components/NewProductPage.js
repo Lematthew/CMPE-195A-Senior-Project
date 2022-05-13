@@ -1,6 +1,7 @@
 import react, { useState } from "react"
 import { Button, Alert } from "react-bootstrap";
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from "react";
 import axios from "../Database/axios";
 
 const NewProductPage = () =>{
@@ -16,6 +17,15 @@ const NewProductPage = () =>{
     const [success, setSuccess] = useState("")
     const [errMsg, setErrMsg] = useState("No Error")
     const [show, setShow] = useState(false)
+    const [lastName, setLastName]= useState("")
+    const navigate = useNavigate()
+
+
+    useEffect(()=> {
+
+        setErrMsg('');
+    
+      },[name,price,description])
 
 
     const createForm = () =>{
@@ -27,10 +37,19 @@ const NewProductPage = () =>{
         formData.append('description', description);
         formData.append('price', price);
         formData.append('image',imgFile)
-        for (var pair of formData.entries()) {
-            console.log(pair[0]+ ', ' + pair[1]); 
-        }
         return formData
+    }
+    const resetForm = () =>{
+        setLastName(name)
+        setName('')
+        setDescription('')
+        setPrice('')
+        setImgFile('')
+        console.log(name)
+    }
+
+    const handleNavigate = () => {
+        navigate(-1)
     }
 
     const handleSubmit = async (e) => {
@@ -39,6 +58,8 @@ const NewProductPage = () =>{
           const response = await axios.post(CREATE_URL,data,config)
         if(response.data.verified){
             setSuccess(true)
+            setShow(true)
+            resetForm()
         }
         else
           console.log(response.data)
@@ -67,16 +88,22 @@ const NewProductPage = () =>{
  
 
     return(
-        <main><body>
+        <main>
         <div className="container d-grid">
+        <div className = "row">
+            <div className="col-md-12">
+                <Button variant="success" onClick={e=>handleNavigate()}>Back to Store Page</Button>
+            </div>
+        </div>
         <Alert key="success"variant="success" show = {show}>
-                Product Created
+                Product {lastName} Created
         </Alert>
+  
         <h1> Product Information</h1>
             <div className="row">
                 <div className="col-sm-6">
                     <div className="p-3 border bg-light">
-                     <img src= {imgFile !== '' ? imgFile : IMAGE_PATH.concat("Default-Logo.png")} alt= 'Missing image'
+                     <img src= {imgFile !== '' ? URL.createObjectURL(imgFile) : IMAGE_PATH.concat("Default-Logo.png")} alt= 'Missing image'
                      style ={{
                          "width": 500,
                          "height":480,
@@ -88,31 +115,30 @@ const NewProductPage = () =>{
                 <form>
                 <div class="form-group">
                     <label for="formGroupExampleInput"> Product Name</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input" onChange ={e => setName(e.target.value)}></input>
+                    <input type="text"   className="form-control" id="formGroupExampleInput" placeholder="Example input"value ={name} onChange ={e => setName(e.target.value)} required></input>
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                     <label for="formGroupExampleInput2">Product Price:</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input" onChange = { e => setPrice(e.target.value)}></input>
+                    <input type="text"  className="form-control" id="formGroupExampleInput2" placeholder="Another input" value ={price} onChange = { e => setPrice(e.target.value)} required></input>
                 </div>
                 </form>
                 <label for="exampleFormControlTextarea1">Description</label>
-                    <div className="p-3 border bg-light">
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" onChange={e => setDescription(e.target.value)}></textarea>
+                    <div classNameName="p-3 border bg-light">
+                    <textarea   className="form-control" id="exampleFormControlTextarea1" rows="3" value ={description} onChange={e => setDescription(e.target.value)} required></textarea>
                     </div>
-                    <div class="custom-file"  style= {{"margin-top": "25px", "Font-Size": '16px'}}>
-                        <label class="custom-file-label" for="customFile">Product Image</label>
-                        <input type="file" class="custom-file-input" id="customFile" onChange = {e => setImgFile(e.target.files[0])} ></input>
+                    <div className="custom-file"  style= {{"margin-top": "25px", "Font-Size": '16px'}}>
+                        <label classNam="custom-file-label" for="customFile">Product Image</label>
+                        <input type="file" classNam="custom-file-input" id="customFile" onChange = {e => setImgFile(e.target.files[0])} ></input>
                     </div>
                 </div>
             </div>
-    
             <div className="row my-custom-row justify-content-center align-items-center" style= {{"marginTop": "50px"}}>
                 <Button variant="success" size="lg" onClick ={e => handleSubmit()}>
                    Create New Product
                 </Button>
             </div>
         </div>
-        </body>
+
         </main>
     )
 }

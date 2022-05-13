@@ -5,6 +5,7 @@ import {FaTrashAlt} from 'react-icons/fa'
 import axios from '../Database/axios'
 import context from 'react-bootstrap/esm/AccordionContext';
 import "./styles/Checkout.css";
+import { useNavigate } from 'react-router-dom';
 
 
 const Cart = () => {
@@ -15,6 +16,7 @@ var hash  = require('object-hash');
 
 const errRef                = useRef();
 const [errMsg,setErrMsg]    = useState('');
+const navigate = useNavigate()
 
 const calculateTotal = () =>{
     var total = 0;
@@ -65,20 +67,15 @@ const quantityChange = (id, quantity) => {
 const handleCheckout = async (e) => {
     e.preventDefault();
     try{
-      console.log('checkout');
       const response = await axios.post(ORDERS_URL,  generateJSON(),          {
         headers: {'Content-Type': 'application/json'},
       })
- 
-
     if(response.data.success){
-      console.log("hi")
-      console.log(response.data.message)
       emptyCart()
+      navigate('/confirmation')
     }
     else{
       setErrMsg('Incorrect info')
-      console.log(response.data.message)
     }
     } catch(err){
         if(!err?.response){
@@ -93,7 +90,6 @@ const handleCheckout = async (e) => {
         else {
           setErrMsg('Checkout Failed')
         }
-
     }
   }
 

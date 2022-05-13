@@ -1,0 +1,9 @@
+.confirmation-main {
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.newCard{
+    color:black;
+}

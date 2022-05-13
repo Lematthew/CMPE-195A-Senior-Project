@@ -3,7 +3,7 @@ import React from 'react';
 import "./styles/About.css";
 import { Button, Alert } from 'react-bootstrap';
 import { useEffect, useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 import AuthContext from '../Context/AuthProvider';
 import axios from '../Database/axios';
 
@@ -15,6 +15,7 @@ const ProductPage = () => {
     const path = "../Images/applefruit.png"
     const path2 = IMAGE_PATH.concat(ImageName)
     const params = useParams();
+    const navigate = useNavigate();
 
     const [Product, setProduct] = useState('');
     const [quantity, setQuantity] = useState(1);
@@ -50,6 +51,10 @@ const ProductPage = () => {
         return Context.cart.some(cartItem => cartItem.id === product.id)
     }
 
+    const handleNavigate = () => {
+      navigate(-1)
+  }
+
       const handleAdd = (item,quantity) => {
         var Item2Add = item
         Item2Add.quantity = quantity
@@ -72,6 +77,11 @@ const ProductPage = () => {
         
     <main><body>
     <div className="container d-grid">
+    <div className = "row">
+            <div className="col-md-12">
+                <Button variant="success" onClick={e=>handleNavigate()}>Back to Store Page</Button>
+            </div>
+        </div>
     <Alert key="success"variant="success" show = {show} style ={{'font-size': '24px'}}>
             Added Item to cart!
     </Alert>

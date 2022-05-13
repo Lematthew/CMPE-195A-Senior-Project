@@ -36,6 +36,22 @@ c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VA
 c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4002, "Costco@store.com", "Costco", "Password","Merchant")""")
 c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4001, "Walgreens@store.com",  "Walgreens", "Password","Merchant")""")
 
+c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4004, "rainbow@store.com",  "rainbow","Password","Merchant")""")
+c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4005, "localFoods@store.com", "LocalFoods", "Password","Merchant")""")
+c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4006, "missionDeli@store.com",  "Mission Deli", "Password","Merchant")""")
+
+c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4007, "LaPaz@store.com",  "La Paz","Password","Merchant")""")
+c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4008, "House Tokyo@store.com", "House Tokyo", "Password","Merchant")""")
+c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4009, "missionFoods@store.com",  "Mission Foods", "Password","Merchant")""")
+
+c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4010, "ValenciaFarmersMarket@store.com",  "Valencia Farmers Market","Password","Merchant")""")
+c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4011, "SomaBurgers@store.com", "Soma Burgers", "Password","Merchant")""")
+c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4012, "SfTeaHouse@store.com",  "Sf Tea House", "Password","Merchant")""")
+
+c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4013, "LaPaz@store.com",  "La Paz","Password","Merchant")""")
+c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4014, "House Tokyo@store.com", "House Tokyo", "Password","Merchant")""")
+c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4015, "missionDeli@store.com",  "Mission Deli", "Password","Merchant")""")
+
 #c.execute("""INSERT INTO merchants (id, country, merchant_name, admin_id) VALUES(4001, "USA", "Safeway",70766)""")
 #c.execute("""INSERT INTO merchants (id, country, merchant_name, admin_id) VALUES(4002, "USA", "Costco", 15521)""")
 #c.execute("""INSERT INTO merchants (id, country, merchant_name, admin_id) VALUES(4003, "Canada", "Walgreens", 42142)""")
