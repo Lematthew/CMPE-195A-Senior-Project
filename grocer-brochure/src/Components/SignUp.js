@@ -1,5 +1,6 @@
 import React from 'react';
 import {useRef, useState,useEffect,useContext} from 'react'
+import { useNavigate } from 'react-router-dom';
 import AuthContext from '../Context/AuthProvider'
 import axios from '../Database/axios'
 import './styles/SignUp.css'
@@ -12,6 +13,7 @@ const SignUp = () => {
   const {setAuth} = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
+  const navigate = useNavigate();
 
   //Singup Fields
   const [name,setName] = useState('');
@@ -21,6 +23,7 @@ const SignUp = () => {
   const [city,setCity] = useState('');
   const [zipcode,setZipcode] = useState('');
   const [role,setRole] = useState('Customer');
+  
 
 
   const [errMsg,setErrMsg] = useState('');
@@ -60,7 +63,7 @@ const SignUp = () => {
 
     if(response.data.verified){
       setSuccess(response);
-      setAuth({user,pwd});
+      navigate('/Login')
     }
     else
       setErrMsg('Insufficient info')
@@ -161,12 +164,11 @@ const SignUp = () => {
         <button>Sign Up</button>
       </form>
       <div class="need-account">
-      <p>Already have an account ? <br />
-        <span className ="line">
-          <a href='/login'>Login</a>
-        </span>
-      
-      </p>
+        <p>Already have an account ? <br />
+          <span className ="line">
+            <a href='/login'>Login</a>
+          </span>
+        </p>
       </div>
       </div> 
     </section>

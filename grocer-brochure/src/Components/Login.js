@@ -1,6 +1,7 @@
 import React from 'react';
 import {useRef, useState,useEffect,useContext} from 'react'
 import { Collapse } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 import AuthContext from '../Context/AuthProvider'
 import axios from '../Database/axios'
@@ -13,6 +14,7 @@ const Login = () => {
   const Context   = useContext(AuthContext);
   const userRef   = useRef();
   const errRef    = useRef();
+  const navigate  = useNavigate();
 
   const [user,setUser]        = useState('');
   const [pwd,setPwd]          = useState('');
@@ -46,6 +48,7 @@ const Login = () => {
       localStorage.setItem('user', JSON.stringify(response.data));
       setUser('');
       setPwd('');
+      navigate('/')
     }
     else
       console.log(response.data)

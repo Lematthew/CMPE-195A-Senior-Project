@@ -115,7 +115,6 @@ exports.orderOutgoingList = async (req, res) => {
   .join('products', 'products.id', '=', 'o.product_id')
   .join('users', 'users.id', '=', 'o.user_id')
   .where('o.merchant_id', '=', req.query.merchant_id)
-  .andWhere('status', '=', 'OUTGOING')
   .then(orders => {
     res.json(orders) 
    })
