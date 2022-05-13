@@ -62,3 +62,32 @@
     -webkit-transition: all .4s ease;
     cursor: pointer;
 }
+.driver-img {
+    height: 100%;
+    width: 10%;
+}
+
+.driver-h3 {
+    height: 100%;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.driver-p {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5px;
+}
+
+.driver-button {
+    height: 100%;
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

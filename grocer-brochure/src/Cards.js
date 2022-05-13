@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from './Database/axios';
 import "./Cards.css";
+import { Badge } from "react-bootstrap";
 
 const Cards = () => {
     const navigate = useNavigate();
@@ -52,6 +53,16 @@ const Cards = () => {
             <span class="rating">
               <p class="rating-number">{Math.floor(Math.random() * 500)/100 }</p>
             </span>
+            {card.is_local ? (<div>
+                  <Badge pill bg="success" style={{'font-size': '16px'}}>
+                    LOCAL 
+                  </Badge>
+                 <Badge pill bg="primary" style={{'font-size': '16px'}}>
+                      SUPER COOL
+                </Badge>
+                  </div>
+              ):(<div></div>)
+              }
           </div>
         </div>
       );

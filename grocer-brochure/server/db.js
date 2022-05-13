@@ -76,6 +76,7 @@ knex.schema
           table.string('image2_path').defaultTo("Default-Logo.png")
           table.string('image3_path').defaultTo("Default-Logo.png")
           table.string('image4_path').defaultTo("Default-Logo.png")
+          table.integer('is_local').defaultTo(0)
           table.integer('admin_id')
           table.foreign('admin_id').references('users.id')
         })

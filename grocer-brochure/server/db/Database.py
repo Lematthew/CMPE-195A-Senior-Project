@@ -12,7 +12,7 @@ c.execute("""delete From merchants;""")
 
 c.execute("""CREATE TRIGGER IF NOT EXISTS create_merchant_account 
    AFTER insert ON users
-   WHEN NEW.role = 'Merchant'
+   WHEN NEW.role = 'Merchant' AND NEW.city NOT LIKE 'San Jose'
 BEGIN
 	INSERT INTO merchants (
         merchant_name,
@@ -26,6 +26,29 @@ VALUES
     "US"
 	) ;
 END;""")
+
+c.execute("""CREATE TRIGGER IF NOT EXISTS create_merchant_account_local
+   AFTER insert ON users
+   WHEN NEW.role = 'Merchant' AND NEW.city LIKE 'San Jose'
+BEGIN
+	INSERT INTO merchants (
+        merchant_name,
+		admin_id,
+        country,
+        is_local
+	)
+VALUES
+	(
+    NEW.full_name,
+	NEW.id,
+    "US",
+    1
+	) ;
+END;""")
+
+
+
+
 
 c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role, address) VALUES (4, "John@Smith.com",  "John Smith","Password","Driver", "1 Washington Sq, San Jose")""")
 c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role, address) VALUES (3, "Vishnu@Adda.com",  "Vishnu Adda","Password","Customer", "1 Washington Sq, San Jose")""")

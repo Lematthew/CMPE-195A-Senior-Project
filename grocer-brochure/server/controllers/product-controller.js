@@ -60,6 +60,7 @@ exports.merchantsAll = async (req, res) => {
   knex
     .select('*') // select all records
     .from('merchants') // from 'products' table
+    .orderBy('is_local','desc')
     .then(merchantData => {
       // Send merchants extracted from database in response
       res.json(merchantData)

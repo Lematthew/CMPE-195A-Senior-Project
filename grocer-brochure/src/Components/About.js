@@ -5,7 +5,7 @@ import "./styles/About.css";
 const About = () => {
 
     const Context  = useContext(AuthContext)
-
+  
   
     return(
   <main style={{ padding: "1rem 0" }} className='about-main'> 
