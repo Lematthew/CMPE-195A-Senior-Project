@@ -71,6 +71,15 @@ c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VA
 c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4011, "SomaBurgers@store.com", "Soma Burgers", "Password","Merchant")""")
 c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4012, "SfTeaHouse@store.com",  "Sf Tea House", "Password","Merchant")""")
 
+c.execute("""UPDATE merchants set image1_path = 'houseTokyo.jpeg' WHERE merchants.admin_id = '4008';""")
+c.execute("""UPDATE merchants set image1_path = 'LaPaz.png' WHERE merchants.admin_id = '4007';""")
+c.execute("""UPDATE merchants set image1_path = 'localfoods.jpg' WHERE merchants.admin_id = '4005';""" )
+c.execute("""UPDATE merchants set image1_path = 'missionDeli.jpg' WHERE merchants.admin_id = '4006';""" )
+c.execute("""UPDATE merchants set image1_path = 'rainbow.png' WHERE merchants.admin_id = '4004';""" )
+c.execute("""UPDATE merchants set image1_path = 'somaburgersjpg.jpg' WHERE merchants.admin_id = '4011';""") 
+c.execute("""UPDATE merchants set image1_path = 'teahouse.jpg' WHERE merchants.admin_id = '4012';""" )
+c.execute("""UPDATE merchants set image1_path = 'valencia farmers market.png' WHERE merchants.id = '4010';""")
+
 #c.execute("""INSERT INTO merchants (id, country, merchant_name, admin_id) VALUES(4001, "USA", "Safeway",70766)""")
 #c.execute("""INSERT INTO merchants (id, country, merchant_name, admin_id) VALUES(4002, "USA", "Costco", 15521)""")
 #c.execute("""INSERT INTO merchants (id, country, merchant_name, admin_id) VALUES(4003, "Canada", "Walgreens", 42142)""")

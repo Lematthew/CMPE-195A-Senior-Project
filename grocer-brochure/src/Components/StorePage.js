@@ -21,8 +21,7 @@ function StorePage () {
   const IMAGE_PATH = "/Images/"
 
   const changeRoute = (productId) => {
-    navigate(`/StorePage/${params.id}/${productId}`, {
-    });
+    navigate(`/StorePage/${params.id}/${productId}`, { });
   };
 
   useEffect(()=>{
@@ -109,17 +108,10 @@ const cartContains = (product) => {
         <Card.Img variant="top" src={IMAGE_PATH.concat("Default-Logo.png")} />
         <Card.Body>
           <Card.Title>Create New Product</Card.Title>
-          <Card.Text styles= {{'margin-top': "50px"}}> Hello
-          </Card.Text>
-          <button type="button" class="btn btn-primary">Primary</button>
         </Card.Body>
       </Card>
     )
   }
-
-  console.log(Context.auth.id)
-  console.log(params.id)
-  console.log(Context.auth.id === params.id)
 
   return (
       <main style={{ padding: "1rem 0" }}>

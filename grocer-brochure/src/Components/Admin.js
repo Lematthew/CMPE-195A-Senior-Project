@@ -17,6 +17,7 @@ const Admin = () => {
     const [success, setSuccess] = useState(false);
     const [outgoingOrders, setOutgoingOrders] = useState({});
     const [GP, setGP] = useState({});
+    const navigate = useNavigate();
 
     useEffect(()=>{
         const run = async (e) => {
@@ -54,10 +55,11 @@ const Admin = () => {
         console.log(GP);
     };
 
+
     const renderRequest = (request) => {
 
         if(request.length > 0)
-        return (            
+        return (
         <div className='admin-outgoing'>
             <h2>{request[0].full_name}</h2>
             <div>{request.map(product => renderProduct(product))}</div>
@@ -74,17 +76,24 @@ const Admin = () => {
             <p>{product.name}: {product.quantity}</p>
         </div>
         );
+    }
+
+      const changeRoute = () => {
+        navigate(`/StorePage/${Context.auth.id}/`, { });
       };
-
-
-
+    
     return (
         <main className='admin-main'>
              <> {GP.length > -1 ? (
             <><div className='leftside-admin'>
-                    <h1>Manage Products</h1>
-                    <h1>Edit Profile</h1>
-                    <h1>Edit Store Information</h1>
+                    <div className="d-grid gap-2">
+                    <Button  onClick = {() => changeRoute()} variant="success" size="lg">
+                        Manage Products
+                    </Button>
+                    <Button onClick = {() => changeRoute()} variant="success" size="lg">
+                        Change Profile Image
+                    </Button>
+                    </div>
                 </div><div className='rightside-admin'>
                         <h1>Outgoing Orders</h1>
                         <div className='order-box'>

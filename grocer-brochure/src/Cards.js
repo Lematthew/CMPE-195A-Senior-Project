@@ -46,7 +46,7 @@ const Cards = () => {
       return (
         <div class="card" onClick={() => changeRoute(card.admin_id)}>
           <div class="leftside-card">
-            <img src= {IMAGE_PATH.concat(card.image2_path)} alt="Error Missing Image"/>
+            <img src= {IMAGE_PATH.concat(card.image1_path)} alt="Error Missing Image"/>
           </div>
           <div class="rightside-card">
             <p style = {{'font-size': '36px'}}>{card.merchant_name}</p>
