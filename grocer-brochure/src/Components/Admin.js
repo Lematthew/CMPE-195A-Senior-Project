@@ -177,7 +177,7 @@ const Admin = () => {
                     <button  onClick = {() => changeRoute()} className='admin-button'>
                         Manage Products
                     </button>
-                    <button onClick = {() => changeRoute()} className='admin-button'>
+                    <button onClick = {() => setModalShow(true)} className='admin-button'>
                         Change Profile Image
                     </button>
                 </div><div className='rightside-admin'>
