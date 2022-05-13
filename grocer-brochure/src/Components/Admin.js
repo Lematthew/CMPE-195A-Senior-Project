@@ -82,7 +82,6 @@ const Admin = () => {
         <main className='admin-main'>
              <> {GP.length > -1 ? (
             <><div className='leftside-admin'>
-                    <img src={IMAGE_PATH.concat('/safeWayLogo.png')} alt="Error Missing Image" />
                     <h1>Manage Products</h1>
                     <h1>Edit Profile</h1>
                     <h1>Edit Store Information</h1>

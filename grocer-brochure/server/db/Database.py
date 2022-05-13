@@ -71,10 +71,6 @@ c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VA
 c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4011, "SomaBurgers@store.com", "Soma Burgers", "Password","Merchant")""")
 c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4012, "SfTeaHouse@store.com",  "Sf Tea House", "Password","Merchant")""")
 
-c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4013, "LaPaz@store.com",  "La Paz","Password","Merchant")""")
-c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4014, "House Tokyo@store.com", "House Tokyo", "Password","Merchant")""")
-c.execute("""INSERT INTO  users (id, email, full_name, hashed_password, role) VALUES (4015, "missionDeli@store.com",  "Mission Deli", "Password","Merchant")""")
-
 #c.execute("""INSERT INTO merchants (id, country, merchant_name, admin_id) VALUES(4001, "USA", "Safeway",70766)""")
 #c.execute("""INSERT INTO merchants (id, country, merchant_name, admin_id) VALUES(4002, "USA", "Costco", 15521)""")
 #c.execute("""INSERT INTO merchants (id, country, merchant_name, admin_id) VALUES(4003, "Canada", "Walgreens", 42142)""")

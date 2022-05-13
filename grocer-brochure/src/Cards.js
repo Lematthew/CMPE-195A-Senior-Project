@@ -49,7 +49,7 @@ const Cards = () => {
             <img src= {IMAGE_PATH.concat(card.image2_path)} alt="Error Missing Image"/>
           </div>
           <div class="rightside-card">
-            <p>{card.merchant_name}</p>
+            <p style = {{'font-size': '36px'}}>{card.merchant_name}</p>
             <span class="rating">
               <p class="rating-number">{Math.floor(Math.random() * 500)/100 }</p>
             </span>
@@ -61,7 +61,9 @@ const Cards = () => {
                       SUPER COOL
                 </Badge>
                   </div>
-              ):(<div></div>)
+              ):(<div>
+
+              </div>)
               }
           </div>
         </div>

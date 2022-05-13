@@ -6,6 +6,7 @@ import axios from '../Database/axios'
 import context from 'react-bootstrap/esm/AccordionContext';
 import "./styles/Checkout.css";
 import { useNavigate } from 'react-router-dom';
+import StripeCheckout from 'react-stripe-checkout'
 
 
 const Cart = () => {
@@ -93,6 +94,7 @@ const handleCheckout = async (e) => {
     }
   }
 
+
     return (
         <main className='checkout-main'>
             <h1 className='checkout-h1'>Check Out!</h1>
@@ -115,9 +117,12 @@ const handleCheckout = async (e) => {
                                 tabIndex="0"
                             />
                         </li>
-                    ))}
+                    ))}  
                     <label>Your total: ${calculateTotal()}</label>
+                    <div>
                     <button className='checkout-button' onClick={(e) => handleCheckout(e)}>Checkout</button>
+                    <button className='checkout-button' onClick={(e) => window.open("https://buy.stripe.com/test_14k4i435Bfk7cFy3cd")}>Edit Payment</button>
+                    </div>
                 </ul>
             ) : (
                 <p style={{ marginTop: '2rem' }}>Your cart is empty.</p>

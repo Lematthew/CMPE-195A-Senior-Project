@@ -56,6 +56,8 @@ const SignUp = () => {
             headers: {'Content-Type': 'application/json'},
 
           })
+
+
     if(response.data.verified){
       setSuccess(response);
       setAuth({user,pwd});
