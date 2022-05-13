@@ -62,7 +62,7 @@ const Admin = () => {
         return (
         <div className='admin-outgoing'>
             <h2>{request[0].full_name}</h2>
-            <div>{request.map(product => renderProduct(product))}</div>
+            <div className='admin-quantity'>{request.map(product => renderProduct(product))}</div>
         </div>
         )
         else
@@ -72,9 +72,7 @@ const Admin = () => {
       
     const renderProduct = (product) => {
         return (            
-        <div>
             <p>{product.name}: {product.quantity}</p>
-        </div>
         );
     }
 
@@ -86,14 +84,12 @@ const Admin = () => {
         <main className='admin-main'>
              <> {GP.length > -1 ? (
             <><div className='leftside-admin'>
-                    <div className="d-grid gap-2">
-                    <Button  onClick = {() => changeRoute()} variant="success" size="lg">
+                    <button  onClick = {() => changeRoute()} className='admin-button'>
                         Manage Products
-                    </Button>
-                    <Button onClick = {() => changeRoute()} variant="success" size="lg">
+                    </button>
+                    <button onClick = {() => changeRoute()} className='admin-button'>
                         Change Profile Image
-                    </Button>
-                    </div>
+                    </button>
                 </div><div className='rightside-admin'>
                         <h1>Outgoing Orders</h1>
                         <div className='order-box'>
