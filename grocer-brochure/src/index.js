@@ -33,7 +33,7 @@ ReactDOM.render(
       <Route path="Signup" element={<SignUp/>} />
       <Route path="Checkout" element={<CheckOut/>} />
       <Route path="Driver" element={<Driver/>} />
-      <Route path="Driver/:id" element={<Delivery/>} />
+      <Route path="Driver/:full_name" element={<Delivery/>} />
       <Route path="Admin" element={<Admin/>}/>
       <Route path="StorePage/:merchant_id/:id" element={<ProductPage/>} />
       <Route path="StorePage/:merchant_id/create" element={<NewProductPage/>} />
