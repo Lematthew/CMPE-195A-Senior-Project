@@ -71,7 +71,7 @@ const Admin = () => {
     const renderProduct = (product) => {
         return (            
         <div>
-            <p>{product.name}</p>
+            <p>{product.name}: {product.quantity}</p>
         </div>
         );
       };
