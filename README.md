@@ -25,3 +25,5 @@ If you see 'done' in your terminal, the seeding was performed successfully.
 Start the project again with 'npm run start' (or refresh the page if you still had the program running)
 
 Once done, you should be able to interact with the website on localhost:3000
+
+https://github.com/Lematthew/CMPE-195A-Senior-Project
