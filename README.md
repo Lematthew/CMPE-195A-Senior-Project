@@ -27,3 +27,5 @@ Start the project again with 'npm run start' (or refresh the page if you still h
 Once done, you should be able to interact with the website on localhost:3000
 
 https://github.com/Lematthew/CMPE-195A-Senior-Project
+
+https://www.youtube.com/watch?v=siWp6R0f67M
